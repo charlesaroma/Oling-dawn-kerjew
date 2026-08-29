@@ -1,0 +1,6 @@
+[
+  { "id": "team-001", "name": "Amara Okafor", "role": "Executive Director", "photo": "/team/amara-okafor.jpg" },
+  { "id": "team-002", "name": "David Mensah", "role": "Head of Construction", "photo": "/team/david-mensah.jpg" },
+  { "id": "team-003", "name": "Grace Wanjiru", "role": "Community Partnerships Lead", "photo": "/team/grace-wanjiru.jpg" },
+  { "id": "team-004", "name": "Samuel Otieno", "role": "Finance & Operations", "photo": "/team/samuel-otieno.jpg" }
+]

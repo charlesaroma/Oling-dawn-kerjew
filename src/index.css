@@ -1,0 +1,88 @@
+/*
+   FONTS — via Google Fonts
+   Manrope for headings (sturdy, geometric); Inter for body/UI text.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/*
+   THEME — color palette + font families
+*/
+@theme {
+  /* Primary — Site Blue (trust, stability) */
+  --color-primary-50:  #EEF3FB;
+  --color-primary-100: #D2E0F3;
+  --color-primary-200: #A9C6E8;
+  --color-primary-300: #7AA8DB;
+  --color-primary-400: #4C89CD;
+  --color-primary-500: #2C6CB0;
+  --color-primary-600: #21548B;
+  --color-primary-700: #1A4270;
+  --color-primary-800: #12304F;
+  --color-primary-900: #0B1F33;
+
+  /* Accent — Safety Amber (construction, calls to action) */
+  --color-accent-50:  #FFF7EA;
+  --color-accent-100: #FFEAC2;
+  --color-accent-200: #FFD68A;
+  --color-accent-300: #FFC157;
+  --color-accent-400: #FFAD2E;
+  --color-accent-500: #F2900B;
+  --color-accent-600: #CC7407;
+  --color-accent-700: #9C5806;
+  --color-accent-800: #6E3E05;
+  --color-accent-900: #472803;
+
+  /* Neutral — Concrete Gray */
+  --color-neutral-50:  #F7F7F6;
+  --color-neutral-100: #EDEDEB;
+  --color-neutral-200: #DBDAD6;
+  --color-neutral-300: #BFBEB8;
+  --color-neutral-400: #98978F;
+  --color-neutral-500: #757369;
+  --color-neutral-600: #5A594F;
+  --color-neutral-700: #45443C;
+  --color-neutral-800: #2E2D28;
+  --color-neutral-900: #1A1916;
+
+  /* Functional / status */
+  --color-success: #1B7A43;
+  --color-warning: #B9770E;
+  --color-error:   #B3261E;
+  --color-info:    #1A6FA8;
+
+  /* Fonts */
+  --font-display: "Manrope", "Inter", sans-serif;
+  --font-sans:    "Inter", sans-serif;
+
+  /* Breakpoints — sm/md/lg kept at Tailwind defaults (640/768/1024) */
+  --breakpoint-xl:  1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* BASE */
+@layer base {
+  body {
+    @apply bg-white font-sans text-neutral-700 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-neutral-900;
+  }
+  ::selection {
+    background-color: var(--color-accent-200);
+    color: var(--color-neutral-900);
+  }
+}
+
+/* Constrains content on very large monitors instead of stretching edge-to-edge */
+@utility container-site {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

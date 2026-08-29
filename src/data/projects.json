@@ -1,0 +1,105 @@
+[
+  {
+    "id": "proj-001",
+    "slug": "kibera-primary-school",
+    "title": "Kibera Primary School",
+    "category": "School",
+    "location": "Nairobi, Kenya",
+    "status": "Completed",
+    "year": 2024,
+    "summary": "A six-classroom primary school built for 400 children who previously studied in a tin-roofed shed.",
+    "description": [
+      "Kibera Primary School was built in partnership with the local community council after years of children studying in a single overcrowded room.",
+      "The finished building includes six classrooms, a library, and a covered assembly yard, and now serves over 400 students."
+    ],
+    "coverImage": "/projects/kibera-school/cover.jpg",
+    "gallery": [
+      "/projects/kibera-school/1.jpg",
+      "/projects/kibera-school/2.jpg",
+      "/projects/kibera-school/3.jpg"
+    ],
+    "video": "/projects/kibera-school/walkthrough.mp4"
+  },
+  {
+    "id": "proj-002",
+    "slug": "mwanza-water-well",
+    "title": "Mwanza Community Water Well",
+    "category": "Water",
+    "location": "Mwanza, Tanzania",
+    "status": "Completed",
+    "year": 2023,
+    "summary": "A borehole well providing clean drinking water to over 1,200 residents across three villages.",
+    "description": [
+      "Before this project, residents walked over 5km each day to collect water from a seasonal river.",
+      "The new borehole well, fitted with a solar-powered pump, now serves three neighboring villages year-round."
+    ],
+    "coverImage": "/projects/mwanza-well/cover.jpg",
+    "gallery": [
+      "/projects/mwanza-well/1.jpg",
+      "/projects/mwanza-well/2.jpg"
+    ],
+    "video": null
+  },
+  {
+    "id": "proj-003",
+    "slug": "lira-community-clinic",
+    "title": "Lira Community Clinic",
+    "category": "Health",
+    "location": "Lira, Uganda",
+    "status": "Ongoing",
+    "year": 2025,
+    "summary": "A maternal health clinic under construction to serve a district with no prior access to prenatal care.",
+    "description": [
+      "The Lira Community Clinic is currently under construction and will include a maternity ward, an outpatient wing, and staff housing.",
+      "Once complete, it will serve an estimated 15,000 residents across the surrounding district."
+    ],
+    "coverImage": "/projects/lira-clinic/cover.jpg",
+    "gallery": [
+      "/projects/lira-clinic/1.jpg",
+      "/projects/lira-clinic/2.jpg",
+      "/projects/lira-clinic/3.jpg"
+    ],
+    "video": "/projects/lira-clinic/progress-update.mp4"
+  },
+  {
+    "id": "proj-004",
+    "slug": "accra-family-housing",
+    "title": "Accra Family Housing Initiative",
+    "category": "Housing",
+    "location": "Accra, Ghana",
+    "status": "Completed",
+    "year": 2022,
+    "summary": "Twelve flood-resistant family homes built for households displaced by seasonal flooding.",
+    "description": [
+      "Twelve families displaced by recurring seasonal flooding now have permanent, elevated, flood-resistant homes.",
+      "Each home was built with local labor, creating temporary employment for over 40 community members during construction."
+    ],
+    "coverImage": "/projects/accra-housing/cover.jpg",
+    "gallery": [
+      "/projects/accra-housing/1.jpg",
+      "/projects/accra-housing/2.jpg"
+    ],
+    "video": null
+  },
+  {
+    "id": "proj-005",
+    "slug": "kampala-youth-center",
+    "title": "Kampala Youth Community Center",
+    "category": "Community",
+    "location": "Kampala, Uganda",
+    "status": "Completed",
+    "year": 2023,
+    "summary": "A multipurpose center offering vocational training, sports facilities, and a library for local youth.",
+    "description": [
+      "The Kampala Youth Community Center gives young people in the area a safe space for vocational training and recreation.",
+      "The center now runs carpentry, tailoring, and computer literacy programs for over 200 youth annually."
+    ],
+    "coverImage": "/projects/kampala-youth-center/cover.jpg",
+    "gallery": [
+      "/projects/kampala-youth-center/1.jpg",
+      "/projects/kampala-youth-center/2.jpg",
+      "/projects/kampala-youth-center/3.jpg"
+    ],
+    "video": "/projects/kampala-youth-center/opening-day.mp4"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "orgName": "Hope Builders",
+  "tagline": "Building homes, schools, and clean water — together.",
+  "description": "Hope Builders is a nonprofit construction organization that partners with underserved communities to build schools, clinics, water wells, and housing.",
+  "email": "info@hopebuilders.org",
+  "phone": "+1 (555) 010-2030",
+  "address": "128 Freedom Way, Nairobi, Kenya",
+  "navLinks": [
+    { "label": "Home", "path": "/" },
+    { "label": "About", "path": "/about" },
+    { "label": "Projects", "path": "/projects" },
+    { "label": "Gallery", "path": "/gallery" },
+    { "label": "Blog", "path": "/blog" },
+    { "label": "Contact", "path": "/contact" }
+  ],
+  "socialLinks": [
+    { "label": "Facebook", "url": "https://facebook.com" },
+    { "label": "Instagram", "url": "https://instagram.com" },
+    { "label": "YouTube", "url": "https://youtube.com" }
+  ]
+}

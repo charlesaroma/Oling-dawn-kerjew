@@ -1,0 +1,12 @@
+[
+  { "id": "gal-001", "type": "image", "src": "/projects/kibera-school/1.jpg", "caption": "Classroom construction underway", "projectSlug": "kibera-primary-school" },
+  { "id": "gal-002", "type": "image", "src": "/projects/kibera-school/2.jpg", "caption": "Students on opening day", "projectSlug": "kibera-primary-school" },
+  { "id": "gal-003", "type": "video", "src": "/projects/kibera-school/walkthrough.mp4", "caption": "Walkthrough of the finished school", "projectSlug": "kibera-primary-school" },
+  { "id": "gal-004", "type": "image", "src": "/projects/mwanza-well/1.jpg", "caption": "Drilling the borehole", "projectSlug": "mwanza-water-well" },
+  { "id": "gal-005", "type": "image", "src": "/projects/mwanza-well/2.jpg", "caption": "First water reaches the village", "projectSlug": "mwanza-water-well" },
+  { "id": "gal-006", "type": "image", "src": "/projects/lira-clinic/1.jpg", "caption": "Laying the foundation", "projectSlug": "lira-community-clinic" },
+  { "id": "gal-007", "type": "video", "src": "/projects/lira-clinic/progress-update.mp4", "caption": "Q3 progress update", "projectSlug": "lira-community-clinic" },
+  { "id": "gal-008", "type": "image", "src": "/projects/accra-housing/1.jpg", "caption": "Elevated home framing", "projectSlug": "accra-family-housing" },
+  { "id": "gal-009", "type": "image", "src": "/projects/kampala-youth-center/1.jpg", "caption": "Carpentry workshop in session", "projectSlug": "kampala-youth-center" },
+  { "id": "gal-010", "type": "video", "src": "/projects/kampala-youth-center/opening-day.mp4", "caption": "Opening day celebration", "projectSlug": "kampala-youth-center" }
+]
