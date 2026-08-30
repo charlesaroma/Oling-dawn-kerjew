@@ -62,7 +62,7 @@ export default function Login() {
       </form>
 
       <div className="mt-8 rounded border border-gold-200 bg-gold-50 px-4 py-3 text-[11px] leading-relaxed text-forest-800">
-        Demo dashboard access — email <span className="font-mono">admin@odkhc.local</span>, password{' '}
+        Demo dashboard access. Email <span className="font-mono">admin@odkhc.local</span>, password{' '}
         <span className="font-mono">odkhc-admin-2026</span>. Replace with real authentication before launch.
       </div>
     </AuthSplitShell>

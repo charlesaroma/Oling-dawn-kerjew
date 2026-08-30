@@ -4,8 +4,17 @@ import { DATA, STORAGE_KEYS, loadJSON, saveJSON } from '../services/jsonDataLoad
 
 const AdminContext = createContext(null);
 
+const SEED = {
+  profiles: DATA.profiles,
+  projects: DATA.projects,
+  galleryItems: DATA.galleryItems,
+  blogPosts: DATA.blogPosts,
+  team: DATA.team,
+  siteConfig: DATA.siteConfig,
+};
+
 export function AdminProvider({ children }) {
-  const [state, setState] = useState(() => loadJSON(STORAGE_KEYS.admin, { profiles: DATA.profiles, activity: [] }));
+  const [state, setState] = useState(() => loadJSON(STORAGE_KEYS.admin, { ...SEED, activity: [] }));
 
   useEffect(() => {
     saveJSON(STORAGE_KEYS.admin, state);
@@ -18,45 +27,86 @@ export function AdminProvider({ children }) {
     }));
   }, []);
 
-  const addProfile = useCallback(
-    (profile) => {
-      const id = profile.id || `pro-${Date.now()}`;
-      const next = { ...profile, id, registeredDate: profile.registeredDate || new Date().toISOString().slice(0, 10) };
-      setState((s) => ({ ...s, profiles: [next, ...s.profiles] }));
-      logActivity(`Profile registered — "${next.fullName}"`);
-      return next;
+  /* ---------- generic per-domain CRUD factory ---------- */
+  const makeCrud = useCallback(
+    (domain, idPrefix, label, nameField) => ({
+      add: (item) => {
+        const id = item.id || `${idPrefix}-${Date.now()}`;
+        const next = { ...item, id };
+        setState((s) => ({ ...s, [domain]: [next, ...s[domain]] }));
+        logActivity(`${label} added: "${next[nameField]}"`);
+        return next;
+      },
+      update: (id, patch) => {
+        setState((s) => ({ ...s, [domain]: s[domain].map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
+        logActivity(`${label} updated: ${patch[nameField] || id}`);
+      },
+      remove: (id) => {
+        setState((s) => ({ ...s, [domain]: s[domain].filter((x) => x.id !== id) }));
+        logActivity(`${label} deleted: ${id}`);
+      },
+    }),
+    [logActivity],
+  );
+
+  const profileCrud = useMemo(() => makeCrud('profiles', 'pro', 'Profile', 'fullName'), [makeCrud]);
+  const projectCrud = useMemo(() => makeCrud('projects', 'proj', 'Project', 'title'), [makeCrud]);
+  const galleryCrud = useMemo(() => makeCrud('galleryItems', 'gal', 'Gallery item', 'caption'), [makeCrud]);
+  const blogCrud = useMemo(() => makeCrud('blogPosts', 'post', 'Post', 'title'), [makeCrud]);
+  const teamCrud = useMemo(() => makeCrud('team', 'team', 'Team member', 'name'), [makeCrud]);
+
+  const updateSiteConfig = useCallback(
+    (patch) => {
+      setState((s) => ({ ...s, siteConfig: { ...s.siteConfig, ...patch } }));
+      logActivity('Site settings updated');
     },
     [logActivity],
   );
 
-  const updateProfile = useCallback(
-    (id, patch) => {
-      setState((s) => ({
-        ...s,
-        profiles: s.profiles.map((p) => (p.id === id ? { ...p, ...patch } : p)),
-      }));
-      logActivity(`Profile updated — ${patch.fullName || id}`);
-    },
-    [logActivity],
-  );
+  const resetToDefaults = useCallback(() => {
+    setState({ ...SEED, activity: [{ id: 'act-reset', message: 'Dashboard data reset to defaults', at: new Date().toISOString() }] });
+  }, []);
 
-  const deleteProfile = useCallback(
-    (id) => {
-      setState((s) => ({ ...s, profiles: s.profiles.filter((p) => p.id !== id) }));
-      logActivity(`Profile deleted — ${id}`);
-    },
-    [logActivity],
-  );
+  const exportAllData = useCallback(() => {
+    const { activity: _activity, ...data } = state;
+    return data;
+  }, [state]);
 
   const value = useMemo(
     () => ({
       profiles: state.profiles || [],
+      projects: state.projects || [],
+      galleryItems: state.galleryItems || [],
+      blogPosts: state.blogPosts || [],
+      team: state.team || [],
+      siteConfig: { ...DATA.siteConfig, ...state.siteConfig },
       activity: state.activity || [],
-      addProfile,
-      updateProfile,
-      deleteProfile,
+
+      addProfile: profileCrud.add,
+      updateProfile: profileCrud.update,
+      deleteProfile: profileCrud.remove,
+
+      addProject: projectCrud.add,
+      updateProject: projectCrud.update,
+      deleteProject: projectCrud.remove,
+
+      addGalleryItem: galleryCrud.add,
+      updateGalleryItem: galleryCrud.update,
+      deleteGalleryItem: galleryCrud.remove,
+
+      addBlogPost: blogCrud.add,
+      updateBlogPost: blogCrud.update,
+      deleteBlogPost: blogCrud.remove,
+
+      addTeamMember: teamCrud.add,
+      updateTeamMember: teamCrud.update,
+      deleteTeamMember: teamCrud.remove,
+
+      updateSiteConfig,
+      resetToDefaults,
+      exportAllData,
     }),
-    [state, addProfile, updateProfile, deleteProfile],
+    [state, profileCrud, projectCrud, galleryCrud, blogCrud, teamCrud, updateSiteConfig, resetToDefaults, exportAllData],
   );
 
   return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>;

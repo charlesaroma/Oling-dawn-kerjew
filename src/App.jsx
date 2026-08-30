@@ -1,17 +1,46 @@
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Outlet, useLocation, Link } from 'react-router-dom';
+import { useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
+
+import { AdminProvider } from './context/AdminContext';
+import { getSession } from './services/authService';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
-import Home from './pages/0.home/Home';
-import About from './pages/1.about/About';
-import Projects from './pages/2.projects/Projects';
-import ProjectDetail from './pages/3.projectDetail/ProjectDetail';
-import Gallery from './pages/4.gallery/Gallery';
-import Blog from './pages/5.blog/Blog';
-import BlogPost from './pages/6.blogPost/BlogPost';
-import Contact from './pages/7.contact/Contact';
+import Home from './pages/1.home/Home';
+import About from './pages/2.about/About';
+import Projects from './pages/3.projects/Projects';
+import ProjectDetail from './pages/4.projectDetail/ProjectDetail';
+import Gallery from './pages/5.gallery/Gallery';
+import Blog from './pages/6.blog/Blog';
+import BlogPost from './pages/7.blogPost/BlogPost';
+import Contact from './pages/8.contact/Contact';
+
+/*
+  The login screen and the whole admin dashboard pull in heavy
+  staff-only dependencies (formik, yup, @tanstack/react-table, jspdf) —
+  code-split them out of the public bundle so site visitors never
+  download any of it.
+*/
+const Login = lazy(() => import('./pages/0.auth/Login'));
+const DashboardLayout = lazy(() => import('./dashboard/components/DashboardLayout'));
+const DashboardHome = lazy(() => import('./dashboard/0.overview/DashboardHome'));
+const ProfileList = lazy(() => import('./dashboard/1.profiles/ProfileList'));
+const ProjectList = lazy(() => import('./dashboard/2.projects/ProjectList'));
+const GalleryItemList = lazy(() => import('./dashboard/3.gallery/GalleryItemList'));
+const BlogPostList = lazy(() => import('./dashboard/4.blog/BlogPostList'));
+const TeamList = lazy(() => import('./dashboard/5.team/TeamList'));
+const SiteSettings = lazy(() => import('./dashboard/6.settings/SiteSettings'));
+const SearchResults = lazy(() => import('./dashboard/7.search/SearchResults'));
+
+function DashboardLoading() {
+  return (
+    <div className="flex min-h-screen items-center justify-center gap-3 bg-surface-alt text-sm text-navy-900/50">
+      <span className="h-4 w-4 animate-spin rounded-full border-2 border-navy-900/15 border-t-gold-500" />
+      Loading…
+    </div>
+  );
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -19,6 +48,11 @@ function ScrollToTop() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
+}
+
+function ProtectedRoute({ children }) {
+  if (!getSession()) return <Navigate to="/login" replace />;
+  return children;
 }
 
 function SiteLayout() {
@@ -35,12 +69,13 @@ function SiteLayout() {
 
 function NotFound() {
   return (
-    <div className="mx-auto flex max-w-xl flex-col items-center px-6 py-32 text-center">
-      <p className="font-display text-7xl italic text-gold-600">404</p>
-      <h1 className="mt-4 text-2xl">This page hasn't been built yet.</h1>
+    <div className="relative mx-auto flex min-h-[70vh] max-w-xl flex-col items-center justify-center overflow-hidden px-6 py-32 text-center">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-300/15 blur-3xl" />
+      <p className="relative font-display text-8xl italic text-gold-600">404</p>
+      <h1 className="relative mt-4 text-2xl">This page hasn't been built yet.</h1>
       <Link
         to="/"
-        className="mt-8 rounded-md bg-forest-800 px-6 py-3 text-sm font-semibold text-white hover:bg-forest-900"
+        className="relative mt-8 inline-flex items-center gap-2 rounded-xl bg-forest-800 px-6 py-3 text-sm font-semibold text-white shadow-elevated transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-900 hover:shadow-elevated-lg"
       >
         Back to Home
       </Link>
@@ -53,6 +88,7 @@ function Shell() {
     <>
       <ScrollToTop />
       <Routes>
+        {/* Public site */}
         <Route element={<SiteLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -64,6 +100,37 @@ function Shell() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+
+        {/* Auth — full screen, no navbar/footer */}
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<DashboardLoading />}>
+              <Login />
+            </Suspense>
+          }
+        />
+
+        {/* Admin dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Suspense fallback={<DashboardLoading />}>
+                <DashboardLayout />
+              </Suspense>
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardHome />} />
+          <Route path="profiles" element={<ProfileList />} />
+          <Route path="projects" element={<ProjectList />} />
+          <Route path="gallery" element={<GalleryItemList />} />
+          <Route path="blog" element={<BlogPostList />} />
+          <Route path="team" element={<TeamList />} />
+          <Route path="settings" element={<SiteSettings />} />
+          <Route path="search" element={<SearchResults />} />
+        </Route>
       </Routes>
     </>
   );
@@ -72,7 +139,9 @@ function Shell() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Shell />
+      <AdminProvider>
+        <Shell />
+      </AdminProvider>
     </BrowserRouter>
   );
 }

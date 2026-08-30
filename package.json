@@ -12,10 +12,18 @@
   "dependencies": {
     "@imagekit/react": "^5.0.2",
     "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/react-table": "^9.2.4",
+    "canvg": "^4.0.3",
+    "formik": "^2.4.9",
+    "framer-motion": "^13.1.1",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "lucide-react": "^1.37.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.3",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

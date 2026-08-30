@@ -1,12 +1,14 @@
 import { Navigate, useParams } from 'react-router-dom';
 import Container from '../../components/common/Container';
 import MediaImage from '../../components/media/MediaImage';
-import { getPostBySlug } from '../../services/blogService';
+import { useAdmin } from '../../context/AdminContext';
+import { getPublishedPosts, getPostBySlug } from '../../services/blogService';
 import { formatDate } from '../../utils/formatDate';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = getPostBySlug(slug);
+  const { blogPosts } = useAdmin();
+  const post = getPostBySlug(getPublishedPosts(blogPosts), slug);
 
   if (!post) return <Navigate to="/blog" replace />;
 
@@ -27,7 +29,7 @@ export default function BlogPost() {
           </div>
         </div>
 
-        <div className="aspect-16/9 overflow-hidden rounded-xl bg-forest-50">
+        <div className="aspect-16/9 overflow-hidden rounded-3xl bg-forest-50 shadow-elevated-lg">
           <MediaImage src={post.coverImage} alt={post.title} width={960} height={540} className="h-full w-full object-cover" />
         </div>
 

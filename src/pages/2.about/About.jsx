@@ -1,6 +1,7 @@
 import PageHeader from '../../components/common/PageHeader';
 import MissionSection from './sections/MissionSection';
 import PillarsSection from './sections/PillarsSection';
+import TeamSection from './sections/TeamSection';
 
 export default function About() {
   return (
@@ -8,6 +9,7 @@ export default function About() {
       <PageHeader title="About ODKHC" subtitle="Why we serve, and who we serve alongside." />
       <MissionSection />
       <PillarsSection />
+      <TeamSection />
     </>
   );
 }

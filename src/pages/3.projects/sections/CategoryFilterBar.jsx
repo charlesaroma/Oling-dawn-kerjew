@@ -1,8 +1,8 @@
-const BASE = 'rounded-full px-4 py-1.5 text-sm font-medium transition-colors';
+const BASE = 'rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-150';
 
 export default function CategoryFilterBar({ categories, active, onChange }) {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2.5">
       {['All', ...categories].map((category) => (
         <button
           key={category}
@@ -10,8 +10,8 @@ export default function CategoryFilterBar({ categories, active, onChange }) {
           onClick={() => onChange(category)}
           className={`${BASE} ${
             active === category
-              ? 'bg-forest-800 text-white'
-              : 'bg-forest-50 text-forest-700 hover:bg-forest-100'
+              ? 'bg-forest-800 text-white shadow-elevated'
+              : 'bg-forest-50 text-forest-700 hover:-translate-y-0.5 hover:bg-forest-100'
           }`}
         >
           {category}

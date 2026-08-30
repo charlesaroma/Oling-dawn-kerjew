@@ -1,11 +1,14 @@
+import { ArrowRight } from 'lucide-react';
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import Button from '../../../components/common/Button';
 import ProjectCard from '../../../components/cards/ProjectCard';
+import { useAdmin } from '../../../context/AdminContext';
 import { getFeaturedProjects } from '../../../services/projectsService';
 
 export default function FeaturedProjects() {
-  const projects = getFeaturedProjects(3);
+  const { projects: allProjects } = useAdmin();
+  const projects = getFeaturedProjects(allProjects, 3);
 
   return (
     <section className="py-20">
@@ -16,7 +19,9 @@ export default function FeaturedProjects() {
             title="Recent Initiatives"
             subtitle="A look at the communities your support has helped reach."
           />
-          <Button to="/projects" variant="secondary">View All Projects</Button>
+          <Button to="/projects" variant="secondary">
+            View All Projects <ArrowRight size={16} />
+          </Button>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

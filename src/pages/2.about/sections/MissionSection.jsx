@@ -1,10 +1,11 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaImage from '../../../components/media/MediaImage';
-import { DATA } from '../../../services/jsonDataLoader';
+import { useAdmin } from '../../../context/AdminContext';
 
 export default function MissionSection() {
-  const { description, registeredYear } = DATA.siteConfig;
+  const { siteConfig } = useAdmin();
+  const { description, registeredYear } = siteConfig;
 
   return (
     <section className="py-20">
@@ -15,9 +16,9 @@ export default function MissionSection() {
             title="Sustainable support for Uganda's most vulnerable communities"
           />
           <p className="text-navy-900/80">{description}</p>
-          <p className="font-mono text-sm text-bronze-700">Registered non-profit organization — Uganda, {registeredYear}</p>
+          <p className="font-mono text-sm text-bronze-700">Registered non-profit organization, Uganda, {registeredYear}</p>
         </div>
-        <div className="aspect-4/3 overflow-hidden rounded-xl bg-forest-50">
+        <div className="aspect-4/3 overflow-hidden rounded-3xl bg-forest-50 shadow-elevated-lg">
           <MediaImage
             src="/about/mission.jpg"
             alt="ODKHC volunteers with a community they serve"

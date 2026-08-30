@@ -3,11 +3,11 @@ import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import GalleryTile from '../../components/cards/GalleryTile';
 import Lightbox from './sections/Lightbox';
-import { getAllGalleryItems } from '../../services/galleryService';
+import { useAdmin } from '../../context/AdminContext';
 
 export default function Gallery() {
   const [active, setActive] = useState(null);
-  const items = getAllGalleryItems();
+  const { galleryItems: items } = useAdmin();
 
   return (
     <>

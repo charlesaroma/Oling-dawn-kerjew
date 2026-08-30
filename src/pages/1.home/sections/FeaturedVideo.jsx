@@ -1,10 +1,12 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaVideo from '../../../components/media/MediaVideo';
-import { getAllProjects } from '../../../services/projectsService';
+import { useAdmin } from '../../../context/AdminContext';
+import { getPublishedProjects } from '../../../services/projectsService';
 
 export default function FeaturedVideo() {
-  const featured = getAllProjects().find((project) => project.video);
+  const { projects } = useAdmin();
+  const featured = getPublishedProjects(projects).find((project) => project.video);
   if (!featured) return null;
 
   return (
@@ -16,7 +18,7 @@ export default function FeaturedVideo() {
           subtitle={featured.summary}
           align="center"
         />
-        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-xl shadow-lg">
+        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-3xl shadow-elevated-lg">
           <MediaVideo src={featured.video} className="aspect-video w-full bg-black" />
         </div>
       </Container>

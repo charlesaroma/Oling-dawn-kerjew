@@ -6,7 +6,7 @@ export default function BlogCard({ post }) {
   return (
     <Link
       to={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-lg border border-navy-900/10 bg-white transition-shadow hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-elevated transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated-lg"
     >
       <div className="aspect-16/9 overflow-hidden bg-forest-50">
         <MediaImage
@@ -14,12 +14,12 @@ export default function BlogCard({ post }) {
           alt={post.title}
           width={480}
           height={270}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
         <span className="font-mono text-xs text-bronze-700">{formatDate(post.publishedAt)} · {post.author}</span>
-        <h3 className="text-lg font-semibold text-forest-900">{post.title}</h3>
+        <h3 className="text-lg font-semibold text-forest-900 transition-colors group-hover:text-forest-700">{post.title}</h3>
         <p className="line-clamp-2 text-sm text-navy-900/70">{post.excerpt}</p>
       </div>
     </Link>

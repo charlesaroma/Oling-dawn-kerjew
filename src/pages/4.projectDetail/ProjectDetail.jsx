@@ -3,11 +3,13 @@ import Container from '../../components/common/Container';
 import MediaImage from '../../components/media/MediaImage';
 import Button from '../../components/common/Button';
 import ProjectGallery from './sections/ProjectGallery';
-import { getProjectBySlug } from '../../services/projectsService';
+import { useAdmin } from '../../context/AdminContext';
+import { getPublishedProjects, getProjectBySlug } from '../../services/projectsService';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const project = getProjectBySlug(slug);
+  const { projects } = useAdmin();
+  const project = getProjectBySlug(getPublishedProjects(projects), slug);
 
   if (!project) return <Navigate to="/projects" replace />;
 
@@ -24,7 +26,7 @@ export default function ProjectDetail() {
 
       <section className="py-16">
         <Container className="flex flex-col gap-12">
-          <div className="aspect-21/9 overflow-hidden rounded-2xl shadow-lg">
+          <div className="aspect-21/9 overflow-hidden rounded-3xl shadow-elevated-lg">
             <MediaImage
               src={project.coverImage}
               alt={project.title}
@@ -44,7 +46,7 @@ export default function ProjectDetail() {
               </div>
             </div>
 
-            <aside className="flex h-fit flex-col gap-4 rounded-lg border border-navy-900/10 p-6">
+            <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-navy-900/8 bg-white p-6 shadow-elevated">
               <div>
                 <p className="font-mono text-xs uppercase tracking-wide text-navy-900/50">Status</p>
                 <p className="font-semibold text-forest-900">{project.status}</p>
