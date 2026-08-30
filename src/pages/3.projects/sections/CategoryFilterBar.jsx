@@ -10,8 +10,8 @@ export default function CategoryFilterBar({ categories, active, onChange }) {
           onClick={() => onChange(category)}
           className={`${BASE} ${
             active === category
-              ? 'bg-primary-800 text-white'
-              : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+              ? 'bg-forest-800 text-white'
+              : 'bg-forest-50 text-forest-700 hover:bg-forest-100'
           }`}
         >
           {category}

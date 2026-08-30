@@ -8,7 +8,7 @@ export default function FeaturedVideo() {
   if (!featured) return null;
 
   return (
-    <section className="bg-neutral-50 py-20">
+    <section className="bg-surface-alt py-20">
       <Container className="flex flex-col gap-10">
         <SectionHeading
           eyebrow="See It For Yourself"

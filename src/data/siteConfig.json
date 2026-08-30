@@ -1,10 +1,13 @@
 {
-  "orgName": "Hope Builders",
-  "tagline": "Building homes, schools, and clean water — together.",
-  "description": "Hope Builders is a nonprofit construction organization that partners with underserved communities to build schools, clinics, water wells, and housing.",
-  "email": "info@hopebuilders.org",
-  "phone": "+1 (555) 010-2030",
-  "address": "128 Freedom Way, Nairobi, Kenya",
+  "orgName": "Oling Dawn Kerjew Humanitarian and Charities",
+  "shortName": "ODKHC",
+  "tagline": "Service to humanity — for God and mankind.",
+  "description": "Oling Dawn Kerjew Humanitarian and Charities (ODKHC) is a registered non-profit delivering sustainable education, healthcare, women's empowerment and community development to underprivileged populations across Uganda — with special focus on needy children, women and girls, and the families of Uganda's security personnel.",
+  "emails": ["info@olingdawnkerjew.org", "odkhumanitarianandcharities@gmail.com"],
+  "phones": ["+256 772 888 566", "+256 772 375 736"],
+  "registeredAddress": "Adebe Cell, Western Ward, Kamdini Town Council, Oyam South County, Oyam District, Northern Uganda",
+  "postalAddress": "P.O. Box 331793, Lira, Uganda",
+  "registeredYear": "2025",
   "navLinks": [
     { "label": "Home", "path": "/" },
     { "label": "About", "path": "/about" },
@@ -14,8 +17,8 @@
     { "label": "Contact", "path": "/contact" }
   ],
   "socialLinks": [
-    { "label": "Facebook", "url": "https://facebook.com" },
-    { "label": "Instagram", "url": "https://instagram.com" },
-    { "label": "YouTube", "url": "https://youtube.com" }
+    { "label": "X", "url": "https://x.com/ODKHC_NGO" },
+    { "label": "Instagram", "url": "https://www.instagram.com/odk_humanitarianandcharities/" },
+    { "label": "TikTok", "url": "https://www.tiktok.com/@odkhc_ngo" }
   ]
 }

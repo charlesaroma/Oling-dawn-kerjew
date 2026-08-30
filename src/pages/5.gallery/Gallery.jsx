@@ -11,7 +11,7 @@ export default function Gallery() {
 
   return (
     <>
-      <PageHeader title="Gallery" subtitle="Photos and videos from across our project sites." />
+      <PageHeader title="Gallery" subtitle="Photos and videos from across our project sites in Uganda." />
       <section className="py-16">
         <Container>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">

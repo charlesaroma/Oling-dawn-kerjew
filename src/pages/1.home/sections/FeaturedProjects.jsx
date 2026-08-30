@@ -13,8 +13,8 @@ export default function FeaturedProjects() {
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading
             eyebrow="Our Work"
-            title="Recent Projects"
-            subtitle="A look at the schools, clinics, and homes your support has helped build."
+            title="Recent Initiatives"
+            subtitle="A look at the communities your support has helped reach."
           />
           <Button to="/projects" variant="secondary">View All Projects</Button>
         </div>

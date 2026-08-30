@@ -7,27 +7,30 @@ export default function Hero() {
   const { tagline, description } = DATA.siteConfig;
 
   return (
-    <section className="relative isolate flex min-h-[85vh] items-center overflow-hidden bg-primary-900">
-      <MediaImage
-        src="/home/hero-cover.jpg"
-        alt=""
-        width={1920}
-        height={1080}
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-60"
-      />
-      <div className="absolute inset-0 -z-10 bg-linear-to-t from-primary-900 via-primary-900/70 to-primary-900/30" />
+    <section className="bg-gradient-to-b from-gold-100 to-surface">
+      <Container className="grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+        <div className="flex flex-col items-start gap-6">
+          <span className="font-mono text-sm uppercase tracking-widest text-gold-700">
+            Education · Healthcare · Community
+          </span>
+          <h1 className="max-w-xl font-display text-4xl italic font-semibold text-forest-900 sm:text-5xl">
+            {tagline}
+          </h1>
+          <p className="max-w-lg text-lg text-navy-900/80">{description}</p>
+          <div className="flex flex-wrap gap-4 pt-2">
+            <Button to="/projects" variant="primary">See Our Work</Button>
+            <Button to="/contact" variant="outline">Get Involved</Button>
+          </div>
+        </div>
 
-      <Container className="flex flex-col items-start gap-6 py-24">
-        <span className="rounded-full bg-accent-500/20 px-4 py-1 text-sm font-semibold uppercase tracking-widest text-accent-300">
-          Nonprofit Construction
-        </span>
-        <h1 className="max-w-2xl text-4xl font-display font-extrabold text-white sm:text-5xl lg:text-6xl">
-          {tagline}
-        </h1>
-        <p className="max-w-xl text-lg text-neutral-200">{description}</p>
-        <div className="flex flex-wrap gap-4 pt-2">
-          <Button to="/projects" variant="primary">See Our Projects</Button>
-          <Button to="/contact" variant="outline">Get Involved</Button>
+        <div className="aspect-4/3 overflow-hidden rounded-2xl shadow-xl">
+          <MediaImage
+            src="/home/hero-cover.jpg"
+            alt=""
+            width={960}
+            height={720}
+            className="h-full w-full object-cover"
+          />
         </div>
       </Container>
     </section>

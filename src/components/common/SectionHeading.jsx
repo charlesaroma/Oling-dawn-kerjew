@@ -4,10 +4,10 @@ export default function SectionHeading({ eyebrow, title, subtitle, align = 'left
   return (
     <div className={`flex flex-col gap-3 ${alignment}`}>
       {eyebrow && (
-        <span className="text-sm font-semibold uppercase tracking-widest text-accent-600">{eyebrow}</span>
+        <span className="font-mono text-sm uppercase tracking-widest text-gold-700">{eyebrow}</span>
       )}
-      <h2 className="text-3xl font-bold sm:text-4xl">{title}</h2>
-      {subtitle && <p className="max-w-2xl text-neutral-600">{subtitle}</p>}
+      <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
+      {subtitle && <p className="max-w-2xl text-navy-900/70">{subtitle}</p>}
     </div>
   );
 }

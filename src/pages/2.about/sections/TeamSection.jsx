@@ -7,13 +7,13 @@ export default function TeamSection() {
   const { team } = DATA;
 
   return (
-    <section className="bg-neutral-50 py-20">
+    <section className="bg-surface-alt py-20">
       <Container className="flex flex-col gap-10">
         <SectionHeading eyebrow="Our Team" title="The people behind the projects" align="center" />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member) => (
             <div key={member.id} className="flex flex-col items-center gap-3 text-center">
-              <div className="h-28 w-28 overflow-hidden rounded-full bg-neutral-200">
+              <div className="h-28 w-28 overflow-hidden rounded-full bg-forest-100">
                 <MediaImage
                   src={member.photo}
                   alt={member.name}
@@ -23,8 +23,8 @@ export default function TeamSection() {
                 />
               </div>
               <div>
-                <p className="font-semibold text-neutral-900">{member.name}</p>
-                <p className="text-sm text-neutral-500">{member.role}</p>
+                <p className="font-semibold text-forest-900">{member.name}</p>
+                <p className="text-sm text-navy-900/60">{member.role}</p>
               </div>
             </div>
           ))}

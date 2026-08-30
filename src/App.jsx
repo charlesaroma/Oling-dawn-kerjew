@@ -36,11 +36,11 @@ function SiteLayout() {
 function NotFound() {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center px-6 py-32 text-center">
-      <p className="font-display text-7xl text-accent-500">404</p>
-      <h1 className="mt-4 font-display text-2xl text-neutral-900">This page hasn't been built yet.</h1>
+      <p className="font-display text-7xl italic text-gold-600">404</p>
+      <h1 className="mt-4 text-2xl">This page hasn't been built yet.</h1>
       <Link
         to="/"
-        className="mt-8 rounded-md bg-primary-800 px-6 py-3 text-sm font-semibold text-white hover:bg-primary-900"
+        className="mt-8 rounded-md bg-forest-800 px-6 py-3 text-sm font-semibold text-white hover:bg-forest-900"
       >
         Back to Home
       </Link>

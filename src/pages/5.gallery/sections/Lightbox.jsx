@@ -6,7 +6,7 @@ export default function Lightbox({ item, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-6"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-navy-900/90 p-6"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -25,7 +25,7 @@ export default function Lightbox({ item, onClose }) {
         ) : (
           <MediaImage src={item.src} alt={item.caption} width={1200} height={800} className="max-h-[85vh] w-full rounded-lg object-contain" />
         )}
-        {item.caption && <p className="mt-3 text-center text-sm text-neutral-200">{item.caption}</p>}
+        {item.caption && <p className="mt-3 text-center text-sm text-gold-100/80">{item.caption}</p>}
       </div>
     </div>
   );

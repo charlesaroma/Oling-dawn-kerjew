@@ -1,59 +1,83 @@
 /*
    FONTS — via Google Fonts
-   Manrope for headings (sturdy, geometric); Inter for body/UI text.
+   Fraunces (variable, display/headlines — use italic + 500/600 weight,
+   sparingly); Public Sans (body/UI, USWDS civic-trust workhorse);
+   IBM Plex Mono (stats, dates, eyebrow labels — "measured/reported" feel).
 */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
 @import "tailwindcss";
 
 /*
    THEME — color palette + font families
+   Palette follows design-system.md's dawn/day/growth/night concept, drawn
+   from the ODKHC seal (dawn-night split, water, earth, globe quadrants).
 */
 @theme {
-  /* Primary — Site Blue (trust, stability) */
-  --color-primary-50:  #EEF3FB;
-  --color-primary-100: #D2E0F3;
-  --color-primary-200: #A9C6E8;
-  --color-primary-300: #7AA8DB;
-  --color-primary-400: #4C89CD;
-  --color-primary-500: #2C6CB0;
-  --color-primary-600: #21548B;
-  --color-primary-700: #1A4270;
-  --color-primary-800: #12304F;
-  --color-primary-900: #0B1F33;
+  /* Forest — headings, nav, brand voice (~15-20% of every page) */
+  --color-forest-50:  #F1F7F1;
+  --color-forest-100: #DCEBDC;
+  --color-forest-200: #B9D7B8;
+  --color-forest-300: #8FBD8D;
+  --color-forest-400: #66A164;
+  --color-forest-500: #4A8548;
+  --color-forest-600: #3A6B39;
+  --color-forest-700: #2F5730;
+  --color-forest-800: #26452A;
+  --color-forest-900: #1B3220;
 
-  /* Accent — Safety Amber (construction, calls to action) */
-  --color-accent-50:  #FFF7EA;
-  --color-accent-100: #FFEAC2;
-  --color-accent-200: #FFD68A;
-  --color-accent-300: #FFC157;
-  --color-accent-400: #FFAD2E;
-  --color-accent-500: #F2900B;
-  --color-accent-600: #CC7407;
-  --color-accent-700: #9C5806;
-  --color-accent-800: #6E3E05;
-  --color-accent-900: #472803;
+  /* Gold — dawn sun; buttons/links/the one CTA band (~5-8%, always intentional) */
+  --color-gold-50:  #FFFCF2;
+  --color-gold-100: #FDF3D6;
+  --color-gold-200: #FAE4A8;
+  --color-gold-300: #F6D077;
+  --color-gold-400: #F0BB4C;
+  --color-gold-500: #E5A526;
+  --color-gold-600: #C6871A;
+  --color-gold-700: #9C6913;
+  --color-gold-800: #744E10;
+  --color-gold-900: #4D340B;
 
-  /* Neutral — Concrete Gray */
-  --color-neutral-50:  #F7F7F6;
-  --color-neutral-100: #EDEDEB;
-  --color-neutral-200: #DBDAD6;
-  --color-neutral-300: #BFBEB8;
-  --color-neutral-400: #98978F;
-  --color-neutral-500: #757369;
-  --color-neutral-600: #5A594F;
-  --color-neutral-700: #45443C;
-  --color-neutral-800: #2E2D28;
-  --color-neutral-900: #1A1916;
+  /* Bronze — texture, not structure: badges, dividers, mono accents (<5%) */
+  --color-bronze-50:  #FBF3EE;
+  --color-bronze-100: #F1DDCD;
+  --color-bronze-200: #E3BEA0;
+  --color-bronze-300: #D29A6E;
+  --color-bronze-400: #BC7A48;
+  --color-bronze-500: #A15F30;
+  --color-bronze-600: #834B25;
+  --color-bronze-700: #683B1E;
+  --color-bronze-800: #4E2C17;
+  --color-bronze-900: #351D0F;
+
+  /* Navy — night sky; footer + the single dark CTA band only */
+  --color-navy-50:  #EEF1F5;
+  --color-navy-100: #CDD6E2;
+  --color-navy-200: #9DAFC6;
+  --color-navy-300: #6C87A9;
+  --color-navy-400: #48678C;
+  --color-navy-500: #2F4C6E;
+  --color-navy-600: #223A56;
+  --color-navy-700: #1A2C42;
+  --color-navy-800: #121F2F;
+  --color-navy-900: #0B141F;
 
   /* Functional / status */
   --color-success: #1B7A43;
-  --color-warning: #B9770E;
+  --color-warning: #9C6913;
   --color-error:   #B3261E;
-  --color-info:    #1A6FA8;
+  --color-info:    #223A56;
+
+  /* Semantic surfaces — named by purpose, so section backgrounds read as
+     intent, not raw color. Follow the dawn -> day -> growth -> night arc. */
+  --color-surface:      var(--color-gold-50);   /* default bright canvas */
+  --color-surface-alt:  var(--color-forest-50); /* alternating "growth" tint */
+  --color-surface-cta:  var(--color-gold-500);  /* the one bold donate/CTA band */
+  --color-surface-dark: var(--color-navy-900);  /* footer — closes the arc */
 
   /* Fonts */
-  --font-display: "Manrope", "Inter", sans-serif;
-  --font-sans:    "Inter", sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body:    "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 
   /* Breakpoints — sm/md/lg kept at Tailwind defaults (640/768/1024) */
   --breakpoint-xl:  1280px;
@@ -63,14 +87,14 @@
 /* BASE */
 @layer base {
   body {
-    @apply bg-white font-sans text-neutral-700 antialiased;
+    @apply bg-surface font-body text-navy-900 antialiased;
   }
   h1, h2, h3, h4 {
-    @apply font-display text-neutral-900;
+    @apply font-display text-forest-900;
   }
   ::selection {
-    background-color: var(--color-accent-200);
-    color: var(--color-neutral-900);
+    background-color: var(--color-gold-200);
+    color: var(--color-forest-900);
   }
 }
 

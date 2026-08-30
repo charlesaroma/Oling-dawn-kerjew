@@ -1,27 +1,26 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaImage from '../../../components/media/MediaImage';
+import { DATA } from '../../../services/jsonDataLoader';
 
 export default function MissionSection() {
+  const { description, registeredYear } = DATA.siteConfig;
+
   return (
     <section className="py-20">
       <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div className="flex flex-col gap-6">
           <SectionHeading
-            eyebrow="Our Mission"
-            title="Building infrastructure that lasts, alongside the people who use it"
-            subtitle="We partner directly with communities to design and construct schools, clinics, water systems, and homes — using local labor and materials wherever possible."
+            eyebrow="Who We Are"
+            title="Sustainable support for Uganda's most vulnerable communities"
           />
-          <p className="text-neutral-600">
-            Founded by a small group of engineers and volunteers, Hope Builders has grown into a network of
-            local contractors, donors, and community leaders working toward the same goal: durable,
-            community-owned infrastructure in places that need it most.
-          </p>
+          <p className="text-navy-900/80">{description}</p>
+          <p className="font-mono text-sm text-bronze-700">Registered non-profit organization — Uganda, {registeredYear}</p>
         </div>
-        <div className="aspect-4/3 overflow-hidden rounded-xl bg-neutral-100">
+        <div className="aspect-4/3 overflow-hidden rounded-xl bg-forest-50">
           <MediaImage
             src="/about/mission.jpg"
-            alt="Volunteers and community members working on a construction site"
+            alt="ODKHC volunteers with a community they serve"
             width={640}
             height={480}
             className="h-full w-full object-cover"

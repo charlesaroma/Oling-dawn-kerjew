@@ -1,12 +1,10 @@
 [
-  { "id": "gal-001", "type": "image", "src": "/projects/kibera-school/1.jpg", "caption": "Classroom construction underway", "projectSlug": "kibera-primary-school" },
-  { "id": "gal-002", "type": "image", "src": "/projects/kibera-school/2.jpg", "caption": "Students on opening day", "projectSlug": "kibera-primary-school" },
-  { "id": "gal-003", "type": "video", "src": "/projects/kibera-school/walkthrough.mp4", "caption": "Walkthrough of the finished school", "projectSlug": "kibera-primary-school" },
-  { "id": "gal-004", "type": "image", "src": "/projects/mwanza-well/1.jpg", "caption": "Drilling the borehole", "projectSlug": "mwanza-water-well" },
-  { "id": "gal-005", "type": "image", "src": "/projects/mwanza-well/2.jpg", "caption": "First water reaches the village", "projectSlug": "mwanza-water-well" },
-  { "id": "gal-006", "type": "image", "src": "/projects/lira-clinic/1.jpg", "caption": "Laying the foundation", "projectSlug": "lira-community-clinic" },
-  { "id": "gal-007", "type": "video", "src": "/projects/lira-clinic/progress-update.mp4", "caption": "Q3 progress update", "projectSlug": "lira-community-clinic" },
-  { "id": "gal-008", "type": "image", "src": "/projects/accra-housing/1.jpg", "caption": "Elevated home framing", "projectSlug": "accra-family-housing" },
-  { "id": "gal-009", "type": "image", "src": "/projects/kampala-youth-center/1.jpg", "caption": "Carpentry workshop in session", "projectSlug": "kampala-youth-center" },
-  { "id": "gal-010", "type": "video", "src": "/projects/kampala-youth-center/opening-day.mp4", "caption": "Opening day celebration", "projectSlug": "kampala-youth-center" }
+  { "id": "gal-001", "type": "image", "src": "/projects/sudanese-refugee-food-aid/1.jpg", "caption": "MAMA AFRICA and ODKHC distributing bread and food aid to Sudanese refugees", "projectSlug": "sudanese-refugee-food-aid" },
+  { "id": "gal-002", "type": "image", "src": "/projects/sudanese-refugee-food-aid/2.jpg", "caption": "Families at the refugee camp in Kiryandongo District, Bweyale Town", "projectSlug": "sudanese-refugee-food-aid" },
+  { "id": "gal-003", "type": "image", "src": "/projects/arova-high-school/1.jpg", "caption": "Distributing scholastic materials at Arova High School", "projectSlug": "arova-high-school-scholastic-materials" },
+  { "id": "gal-004", "type": "image", "src": "/projects/arova-high-school/2.jpg", "caption": "Listening to students about school conditions in Myene Village", "projectSlug": "arova-high-school-scholastic-materials" },
+  { "id": "gal-005", "type": "image", "src": "/projects/afghan-refugee-support/1.jpg", "caption": "Afghan refugee families now living in Uganda", "projectSlug": "afghan-refugee-support" },
+  { "id": "gal-006", "type": "image", "src": "/projects/kamdini-grinding-mill/1.jpg", "caption": "The community grinding mill in Kamdini Sub County", "projectSlug": "kamdini-grinding-mill" },
+  { "id": "gal-007", "type": "image", "src": "/projects/kamdini-grinding-mill/2.jpg", "caption": "Residents grinding produce at low cost", "projectSlug": "kamdini-grinding-mill" },
+  { "id": "gal-008", "type": "image", "src": "/projects/digital-marketplace-partnership/1.jpg", "caption": "Smallholder farmers onboarding to the digital marketplace", "projectSlug": "digital-marketplace-partnership" }
 ]

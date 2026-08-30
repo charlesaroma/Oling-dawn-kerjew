@@ -35,7 +35,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label htmlFor="name" className="text-sm font-medium text-neutral-700">Name</label>
+        <label htmlFor="name" className="text-sm font-medium text-forest-800">Name</label>
         <input
           id="name"
           name="name"
@@ -43,12 +43,12 @@ export default function ContactForm() {
           required
           value={form.name}
           onChange={handleChange}
-          className="rounded-md border border-neutral-300 px-4 py-2.5 focus:border-primary-500 focus:outline-none"
+          className="rounded-md border border-navy-900/15 px-4 py-2.5 focus:border-gold-500 focus:outline-none"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="email" className="text-sm font-medium text-neutral-700">Email</label>
+        <label htmlFor="email" className="text-sm font-medium text-forest-800">Email</label>
         <input
           id="email"
           name="email"
@@ -56,12 +56,12 @@ export default function ContactForm() {
           required
           value={form.email}
           onChange={handleChange}
-          className="rounded-md border border-neutral-300 px-4 py-2.5 focus:border-primary-500 focus:outline-none"
+          className="rounded-md border border-navy-900/15 px-4 py-2.5 focus:border-gold-500 focus:outline-none"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="message" className="text-sm font-medium text-neutral-700">Message</label>
+        <label htmlFor="message" className="text-sm font-medium text-forest-800">Message</label>
         <textarea
           id="message"
           name="message"
@@ -69,7 +69,7 @@ export default function ContactForm() {
           required
           value={form.message}
           onChange={handleChange}
-          className="resize-none rounded-md border border-neutral-300 px-4 py-2.5 focus:border-primary-500 focus:outline-none"
+          className="resize-none rounded-md border border-navy-900/15 px-4 py-2.5 focus:border-gold-500 focus:outline-none"
         />
       </div>
 

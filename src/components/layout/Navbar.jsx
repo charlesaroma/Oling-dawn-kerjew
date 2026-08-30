@@ -5,17 +5,18 @@ import Button from '../common/Button';
 import { DATA } from '../../services/jsonDataLoader';
 
 const linkClasses = ({ isActive }) =>
-  `text-sm font-medium transition-colors ${isActive ? 'text-accent-600' : 'text-neutral-700 hover:text-primary-700'}`;
+  `text-sm font-medium transition-colors ${isActive ? 'text-gold-600' : 'text-forest-700 hover:text-gold-600'}`;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { orgName, navLinks } = DATA.siteConfig;
+  const { shortName, navLinks } = DATA.siteConfig;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 backdrop-blur">
-      <Container className="flex items-center justify-between py-4">
-        <NavLink to="/" className="text-lg font-display font-extrabold text-primary-800">
-          {orgName}
+    <header className="sticky top-0 z-50 border-b border-gold-200 bg-white/95 backdrop-blur">
+      <Container className="flex items-center justify-between py-3">
+        <NavLink to="/" className="flex items-center gap-3">
+          <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 rounded-full" />
+          <span className="font-display italic text-lg font-semibold text-forest-800">{shortName}</span>
         </NavLink>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -34,7 +35,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-gold-200 md:hidden"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
         >
@@ -43,7 +44,7 @@ export default function Navbar() {
       </Container>
 
       {open && (
-        <nav className="border-t border-neutral-200 bg-white md:hidden">
+        <nav className="border-t border-gold-200 bg-white md:hidden">
           <Container className="flex flex-col gap-4 py-4">
             {navLinks.map((link) => (
               <NavLink

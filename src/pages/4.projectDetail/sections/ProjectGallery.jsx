@@ -11,7 +11,7 @@ export default function ProjectGallery({ project }) {
       )}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         {project.gallery.map((src) => (
-          <div key={src} className="aspect-square overflow-hidden rounded-lg bg-neutral-100">
+          <div key={src} className="aspect-square overflow-hidden rounded-lg bg-forest-50">
             <MediaImage src={src} alt={project.title} width={320} height={320} className="h-full w-full object-cover" />
           </div>
         ))}

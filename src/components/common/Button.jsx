@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 
 const VARIANTS = {
-  primary: 'bg-accent-500 text-white hover:bg-accent-600',
-  secondary: 'bg-primary-700 text-white hover:bg-primary-800',
-  outline: 'border border-white text-white hover:bg-white hover:text-primary-800',
+  primary: 'bg-gold-500 text-navy-900 hover:bg-gold-600',
+  secondary: 'bg-forest-800 text-white hover:bg-forest-900',
+  outline: 'border border-forest-800 text-forest-800 hover:bg-forest-800 hover:text-white',
+  dark: 'bg-navy-900 text-gold-300 hover:bg-navy-800',
 };
 
 export default function Button({ to, href, variant = 'primary', className = '', children, ...props }) {

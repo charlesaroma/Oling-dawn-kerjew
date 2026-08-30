@@ -14,24 +14,24 @@ export default function BlogPost() {
     <article className="py-16">
       <Container className="mx-auto flex max-w-3xl flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-neutral-500">
+          <span className="font-mono text-sm text-bronze-700">
             {formatDate(post.publishedAt)} · {post.author}
           </span>
-          <h1 className="text-3xl font-display font-extrabold text-neutral-900 sm:text-4xl">{post.title}</h1>
+          <h1 className="text-3xl italic sm:text-4xl">{post.title}</h1>
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span key={tag} className="rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700">
+              <span key={tag} className="rounded-full bg-forest-50 px-3 py-1 font-mono text-xs font-medium text-forest-700">
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="aspect-16/9 overflow-hidden rounded-xl bg-neutral-100">
+        <div className="aspect-16/9 overflow-hidden rounded-xl bg-forest-50">
           <MediaImage src={post.coverImage} alt={post.title} width={960} height={540} className="h-full w-full object-cover" />
         </div>
 
-        <div className="flex flex-col gap-4 text-neutral-700">
+        <div className="flex flex-col gap-4 text-navy-900/80">
           {post.content.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
