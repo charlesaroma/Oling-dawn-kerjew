@@ -16,7 +16,7 @@ const SEED = {
 // Bump whenever src/data/*.json seed content changes in a way that stale
 // browser caches should pick up — this forces a one-time reseed instead of
 // silently keeping whatever was cached before the seed data existed.
-const SEED_VERSION = 2;
+const SEED_VERSION = 3;
 
 export function AdminProvider({ children }) {
   const [state, setState] = useState(() => {
