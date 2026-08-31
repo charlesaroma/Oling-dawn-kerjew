@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
 import ConfirmModal from '../components/ConfirmModal';
 import Button from '../../components/common/Button';
-import GalleryItemForm from '../components/GalleryItemForm';
+import GalleryListHeader from './sections/GalleryListHeader';
+import GalleryTable from './sections/GalleryTable';
+import GalleryItemForm from './sections/GalleryItemForm';
 import { useAdmin } from '../../context/AdminContext';
 
 export default function GalleryItemList() {
@@ -29,33 +30,9 @@ export default function GalleryItemList() {
     return galleryItems.filter((i) => i.caption?.toLowerCase().includes(q));
   }, [galleryItems, query]);
 
-  const columns = [
-    { key: 'caption', label: 'Caption', render: (r) => (
-      <div>
-        <p className="font-medium text-forest-900">{r.caption || '(no caption)'}</p>
-        <p className="font-mono text-[10px] text-navy-900/40">{r.src}</p>
-      </div>
-    ) },
-    { key: 'type', label: 'Type' },
-    { key: 'projectSlug', label: 'Linked Project' },
-  ];
-
-  const rowActions = (row) => (
-    <div className="flex justify-end gap-3 text-xs">
-      <button type="button" onClick={() => setModalItem({ item: row })} className="text-gold-700 hover:text-gold-800">Edit</button>
-      <button type="button" onClick={() => setConfirmId(row.id)} className="text-navy-900/40 transition-colors hover:text-error">Delete</button>
-    </div>
-  );
-
   return (
     <div>
-      <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="font-display text-3xl text-forest-900">Gallery</h1>
-          <p className="mt-1 text-sm text-navy-900/60">{galleryItems.length} items</p>
-        </div>
-        <Button variant="primary" onClick={() => setModalItem({ item: null })}>+ New Item</Button>
-      </header>
+      <GalleryListHeader count={galleryItems.length} onAdd={() => setModalItem({ item: null })} />
 
       <div className="mb-4">
         <input
@@ -66,12 +43,18 @@ export default function GalleryItemList() {
         />
       </div>
 
-      <DataTable columns={columns} rows={rows} actions={rowActions} emptyMessage="No gallery items match your search." />
+      <GalleryTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
 
       <Modal
         isOpen={!!modalItem}
         onClose={() => setModalItem(null)}
         title={modalItem?.item ? 'Edit Gallery Item' : 'New Gallery Item'}
+        footer={(
+          <>
+            <Button type="button" variant="outline" onClick={() => setModalItem(null)}>Cancel</Button>
+            <Button type="submit" form="gallery-item-form" variant="primary">Save item</Button>
+          </>
+        )}
       >
         <GalleryItemForm
           initial={modalItem?.item}
@@ -80,7 +63,6 @@ export default function GalleryItemList() {
             else addGalleryItem(data);
             setModalItem(null);
           }}
-          onCancel={() => setModalItem(null)}
         />
       </Modal>
 

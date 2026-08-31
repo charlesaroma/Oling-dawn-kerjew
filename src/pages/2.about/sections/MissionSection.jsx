@@ -21,7 +21,7 @@ export default function MissionSection() {
         <div className="aspect-4/3 overflow-hidden rounded-3xl bg-forest-50 shadow-elevated-lg">
           <MediaImage
             src="/about/mission.jpg"
-            alt="ODKHC volunteers with a community they serve"
+            alt="Oling Dawn Kerjew Projects volunteers with a community they serve"
             width={640}
             height={480}
             className="h-full w-full object-cover"

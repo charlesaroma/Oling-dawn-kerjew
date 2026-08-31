@@ -13,8 +13,19 @@ const SEED = {
   siteConfig: DATA.siteConfig,
 };
 
+// Bump whenever src/data/*.json seed content changes in a way that stale
+// browser caches should pick up — this forces a one-time reseed instead of
+// silently keeping whatever was cached before the seed data existed.
+const SEED_VERSION = 2;
+
 export function AdminProvider({ children }) {
-  const [state, setState] = useState(() => loadJSON(STORAGE_KEYS.admin, { ...SEED, activity: [] }));
+  const [state, setState] = useState(() => {
+    const cached = loadJSON(STORAGE_KEYS.admin, null);
+    if (!cached || cached.seedVersion !== SEED_VERSION) {
+      return { ...SEED, activity: [], seedVersion: SEED_VERSION };
+    }
+    return cached;
+  });
 
   useEffect(() => {
     saveJSON(STORAGE_KEYS.admin, state);
@@ -64,7 +75,11 @@ export function AdminProvider({ children }) {
   );
 
   const resetToDefaults = useCallback(() => {
-    setState({ ...SEED, activity: [{ id: 'act-reset', message: 'Dashboard data reset to defaults', at: new Date().toISOString() }] });
+    setState({
+      ...SEED,
+      activity: [{ id: 'act-reset', message: 'Dashboard data reset to defaults', at: new Date().toISOString() }],
+      seedVersion: SEED_VERSION,
+    });
   }, []);
 
   const exportAllData = useCallback(() => {

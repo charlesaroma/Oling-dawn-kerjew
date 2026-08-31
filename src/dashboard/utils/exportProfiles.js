@@ -37,7 +37,7 @@ export function exportProfilesCSV(profiles, filename = 'odkhc-profiles.csv') {
 export function exportProfilesPDF(profiles, filename = 'odkhc-profiles.pdf') {
   const doc = new jsPDF({ orientation: 'landscape' });
   doc.setFontSize(14);
-  doc.text('ODKHC — Registered Profiles', 14, 14);
+  doc.text('Oling Dawn Kerjew Projects — Registered Profiles', 14, 14);
   autoTable(doc, {
     startY: 20,
     head: [COLUMNS.map((c) => c.label)],

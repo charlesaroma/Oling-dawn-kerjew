@@ -35,10 +35,11 @@ export default function DashboardSidebar({ open, onClose }) {
       >
         <div className="flex items-center justify-between gap-3 border-b border-white/5 px-6 py-5">
           <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-            <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 rounded-full ring-2 ring-gold-500/30" />
+            <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-2 ring-gold-500/30" />
             <div className="flex flex-col leading-tight">
-              <span className="font-display italic text-base font-semibold text-white">ODKHC</span>
-              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-gold-400">Admin Console</span>
+              <span className="font-display italic text-sm font-semibold text-white">Oling Dawn Kerjew</span>
+              <span className="font-display italic text-sm font-semibold text-gold-400">Projects</span>
+              <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.25em] text-gold-400/70">Admin Console</span>
             </div>
           </Link>
           <button type="button" onClick={onClose} className="text-gold-100/60 hover:text-white md:hidden" aria-label="Close menu">

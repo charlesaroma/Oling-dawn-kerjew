@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
 import ConfirmModal from '../components/ConfirmModal';
 import Button from '../../components/common/Button';
-import ProfileForm from '../components/ProfileForm';
+import ProfileListHeader from './sections/ProfileListHeader';
+import ProfileTable from './sections/ProfileTable';
+import ProfileForm from './sections/ProfileForm';
 import { useAdmin } from '../../context/AdminContext';
-import { formatDate } from '../../utils/formatDate';
 import { exportProfilesCSV, exportProfilesPDF } from '../utils/exportProfiles';
 
 export default function ProfileList() {
@@ -35,41 +35,16 @@ export default function ProfileList() {
     );
   }, [profiles, query]);
 
-  const columns = [
-    { key: 'fullName', label: 'Name', render: (r) => (
-      <div>
-        <p className="font-medium text-forest-900">{r.fullName}</p>
-        <p className="font-mono text-[10px] text-navy-900/40">{r.id}</p>
-      </div>
-    ) },
-    { key: 'category', label: 'Category' },
-    { key: 'gender', label: 'Gender' },
-    { key: 'location', label: 'Location' },
-    { key: 'registeredDate', label: 'Registered', render: (r) => formatDate(r.registeredDate) },
-  ];
-
-  const rowActions = (row) => (
-    <div className="flex justify-end gap-3 text-xs">
-      <button type="button" onClick={() => setModalItem({ item: row })} className="text-gold-700 hover:text-gold-800">Edit</button>
-      <button type="button" onClick={() => setConfirmId(row.id)} className="text-navy-900/40 transition-colors hover:text-error">Delete</button>
-    </div>
-  );
-
   const confirmTarget = confirmId ? profiles.find((p) => p.id === confirmId) : null;
 
   return (
     <div>
-      <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="font-display text-3xl text-forest-900">Profiles</h1>
-          <p className="mt-1 text-sm text-navy-900/60">{profiles.length} registered</p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          <Button variant="outline" onClick={() => exportProfilesCSV(rows)}>Export CSV</Button>
-          <Button variant="outline" onClick={() => exportProfilesPDF(rows)}>Export PDF</Button>
-          <Button variant="primary" onClick={() => setModalItem({ item: null })}>+ Register Person</Button>
-        </div>
-      </header>
+      <ProfileListHeader
+        count={profiles.length}
+        onExportCSV={() => exportProfilesCSV(rows)}
+        onExportPDF={() => exportProfilesPDF(rows)}
+        onAdd={() => setModalItem({ item: null })}
+      />
 
       <div className="mb-4">
         <input
@@ -80,13 +55,19 @@ export default function ProfileList() {
         />
       </div>
 
-      <DataTable columns={columns} rows={rows} actions={rowActions} emptyMessage="No profiles match your search." />
+      <ProfileTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
 
       <Modal
         isOpen={!!modalItem}
         onClose={() => setModalItem(null)}
         title={modalItem?.item ? 'Edit Profile' : 'Register Person'}
         size="xl"
+        footer={(
+          <>
+            <Button type="button" variant="outline" onClick={() => setModalItem(null)}>Cancel</Button>
+            <Button type="submit" form="profile-form" variant="primary">Save profile</Button>
+          </>
+        )}
       >
         <ProfileForm
           initial={modalItem?.item}
@@ -95,7 +76,6 @@ export default function ProfileList() {
             else addProfile(data);
             setModalItem(null);
           }}
-          onCancel={() => setModalItem(null)}
         />
       </Modal>
 

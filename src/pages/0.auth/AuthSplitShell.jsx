@@ -24,9 +24,12 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
 
       <div className="flex flex-col items-center justify-center bg-surface px-6 py-16 sm:px-12 lg:px-16 xl:px-24">
         <div className="w-full max-w-sm">
-          <Link to="/" className="mb-10 flex items-center justify-center gap-3 lg:justify-start" aria-label="ODKHC Home">
-            <img src="/apple-touch-icon.png" alt="" className="h-12 w-12 rounded-full" />
-            <span className="font-display italic text-lg font-semibold text-forest-800">ODKHC</span>
+          <Link to="/" className="mb-10 flex items-center justify-center gap-3 lg:justify-start" aria-label="Oling Dawn Kerjew Projects Home">
+            <img src="/apple-touch-icon.png" alt="" className="h-12 w-12 shrink-0 rounded-full" />
+            <span className="flex flex-col leading-tight font-display italic text-lg font-semibold">
+              <span className="text-forest-800">Oling Dawn Kerjew</span>
+              <span className="text-gold-600">Projects</span>
+            </span>
           </Link>
           {children}
         </div>

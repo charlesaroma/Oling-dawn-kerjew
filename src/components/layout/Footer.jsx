@@ -7,14 +7,20 @@ import { useAdmin } from '../../context/AdminContext';
 export default function Footer() {
   const { siteConfig } = useAdmin();
   const { orgName, tagline, emails, phones, registeredAddress, postalAddress, navLinks, socialLinks } = siteConfig;
+  const nameWords = orgName.split(' ');
+  const nameLastWord = nameWords.pop();
+  const nameLead = nameWords.join(' ');
 
   return (
     <footer className="border-t border-white/5 bg-surface-dark text-gold-100/80">
       <Container className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 rounded-full ring-1 ring-white/10" />
-            <span className="font-display italic text-lg font-semibold text-white">{orgName}</span>
+            <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-white/10" />
+            <span className="flex flex-col leading-tight font-display italic text-lg font-semibold">
+              <span className="text-white">{nameLead}</span>
+              <span className="text-gold-400">{nameLastWord}</span>
+            </span>
           </div>
           <p className="text-sm text-gold-100/70">{tagline}</p>
           {socialLinks?.length > 0 && (

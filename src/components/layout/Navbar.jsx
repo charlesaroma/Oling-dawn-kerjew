@@ -13,14 +13,20 @@ const linkClasses = ({ isActive }) =>
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { siteConfig } = useAdmin();
-  const { shortName, navLinks } = siteConfig;
+  const { orgName, navLinks } = siteConfig;
+  const nameWords = orgName.split(' ');
+  const nameLastWord = nameWords.pop();
+  const nameLead = nameWords.join(' ');
 
   return (
     <header className="sticky top-0 z-50 border-b border-navy-900/6 bg-white/90 shadow-sm backdrop-blur-md">
-      <Container className="flex items-center justify-between py-3">
-        <NavLink to="/" className="flex items-center gap-3">
-          <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 rounded-full ring-1 ring-navy-900/5" />
-          <span className="font-display italic text-lg font-semibold text-forest-800">{shortName}</span>
+      <Container className="flex items-center justify-between gap-4 py-3">
+        <NavLink to="/" className="flex min-w-0 items-center gap-3">
+          <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-navy-900/5" />
+          <span className="flex flex-col leading-tight font-display italic text-base font-semibold sm:text-lg">
+            <span className="text-forest-800">{nameLead}</span>
+            <span className="text-gold-600">{nameLastWord}</span>
+          </span>
         </NavLink>
 
         <nav className="hidden items-center gap-9 md:flex">

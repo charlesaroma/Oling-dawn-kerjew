@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 
-export default function Modal({ isOpen, onClose, title, description, size = 'lg', children }) {
+export default function Modal({ isOpen, onClose, title, description, size = 'lg', footer, children }) {
   // Keep the latest onClose in a ref so the listener doesn't need to be torn
   // down and re-attached every render just because the caller passed a new
   // inline arrow function — it only (dis)connects when isOpen actually flips.
@@ -23,7 +23,7 @@ export default function Modal({ isOpen, onClose, title, description, size = 'lg'
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-100 flex items-start justify-center overflow-y-auto p-4 py-10">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -36,11 +36,11 @@ export default function Modal({ isOpen, onClose, title, description, size = 'lg'
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.15 }}
-            className={`relative my-auto max-h-[85vh] w-full ${maxWidth} overflow-y-auto rounded-2xl border border-navy-900/8 bg-white p-6 shadow-elevated-lg xl:p-8`}
+            className={`relative flex max-h-[85dvh] w-full ${maxWidth} flex-col overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-elevated-lg`}
             role="dialog"
             aria-modal="true"
           >
-            <div className="mb-6 flex items-start justify-between gap-4">
+            <div className="flex flex-none items-start justify-between gap-4 rounded-t-2xl border-b border-navy-900/8 px-6 py-5 xl:px-8">
               <div>
                 <h3 className="font-display text-xl text-forest-900">{title}</h3>
                 {description && <p className="mt-1 text-sm text-navy-900/60">{description}</p>}
@@ -54,7 +54,14 @@ export default function Modal({ isOpen, onClose, title, description, size = 'lg'
                 <X size={20} />
               </button>
             </div>
-            {children}
+            <div className="flex-1 overflow-y-auto px-6 py-6 xl:px-8">
+              {children}
+            </div>
+            {footer && (
+              <div className="flex flex-none items-center justify-end gap-3 rounded-b-2xl border-t border-navy-900/8 px-6 py-4 xl:px-8">
+                {footer}
+              </div>
+            )}
           </motion.div>
         </div>
       )}

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
 import ConfirmModal from '../components/ConfirmModal';
 import Button from '../../components/common/Button';
-import TeamMemberForm from '../components/TeamMemberForm';
+import TeamListHeader from './sections/TeamListHeader';
+import TeamTable from './sections/TeamTable';
+import TeamMemberForm from './sections/TeamMemberForm';
 import { useAdmin } from '../../context/AdminContext';
 
 export default function TeamList() {
@@ -22,36 +23,24 @@ export default function TeamList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const columns = [
-    { key: 'name', label: 'Name' },
-    { key: 'role', label: 'Role' },
-  ];
-
-  const rowActions = (row) => (
-    <div className="flex justify-end gap-3 text-xs">
-      <button type="button" onClick={() => setModalItem({ item: row })} className="text-gold-700 hover:text-gold-800">Edit</button>
-      <button type="button" onClick={() => setConfirmId(row.id)} className="text-navy-900/40 transition-colors hover:text-error">Delete</button>
-    </div>
-  );
-
   const confirmTarget = confirmId ? team.find((m) => m.id === confirmId) : null;
 
   return (
     <div>
-      <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="font-display text-3xl text-forest-900">Team</h1>
-          <p className="mt-1 text-sm text-navy-900/60">{team.length} members &middot; shown on the public About page</p>
-        </div>
-        <Button variant="primary" onClick={() => setModalItem({ item: null })}>+ Add Member</Button>
-      </header>
+      <TeamListHeader count={team.length} onAdd={() => setModalItem({ item: null })} />
 
-      <DataTable columns={columns} rows={team} actions={rowActions} emptyMessage="No team members yet — add the first one." />
+      <TeamTable rows={team} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
 
       <Modal
         isOpen={!!modalItem}
         onClose={() => setModalItem(null)}
         title={modalItem?.item ? 'Edit Team Member' : 'Add Team Member'}
+        footer={(
+          <>
+            <Button type="button" variant="outline" onClick={() => setModalItem(null)}>Cancel</Button>
+            <Button type="submit" form="team-member-form" variant="primary">Save member</Button>
+          </>
+        )}
       >
         <TeamMemberForm
           initial={modalItem?.item}
@@ -60,7 +49,6 @@ export default function TeamList() {
             else addTeamMember(data);
             setModalItem(null);
           }}
-          onCancel={() => setModalItem(null)}
         />
       </Modal>
 

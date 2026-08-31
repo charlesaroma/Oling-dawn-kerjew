@@ -18,7 +18,7 @@ export default function Hero() {
       <Container className="relative grid gap-14 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
         <div className="flex flex-col items-start gap-6">
           <span className="font-mono text-sm uppercase tracking-widest text-gold-700">
-            Education · Healthcare · Community
+            Construction · Education · Healthcare
           </span>
           <h1 className="max-w-xl font-display text-5xl italic font-semibold leading-[1.08] text-forest-900 sm:text-6xl">
             {tagline}

@@ -6,7 +6,7 @@ import TeamSection from './sections/TeamSection';
 export default function About() {
   return (
     <>
-      <PageHeader title="About ODKHC" subtitle="Why we serve, and who we serve alongside." />
+      <PageHeader title="About Oling Dawn Kerjew Projects" subtitle="Why we serve, and who we serve alongside." />
       <MissionSection />
       <PillarsSection />
       <TeamSection />

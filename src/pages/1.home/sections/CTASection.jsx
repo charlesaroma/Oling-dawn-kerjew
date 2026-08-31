@@ -11,8 +11,8 @@ export default function CTASection() {
           Help bring the next dawn.
         </h2>
         <p className="max-w-xl text-lg text-navy-900/70">
-          Every donation, volunteer hour, and partnership brings education, healthcare, and hope closer to the
-          families who need it most.
+          Every donation, volunteer hour, and partnership brings construction, education, healthcare, and hope
+          closer to the families who need it most.
         </p>
         <Button to="/contact" variant="dark">
           Get Involved <ArrowRight size={16} />

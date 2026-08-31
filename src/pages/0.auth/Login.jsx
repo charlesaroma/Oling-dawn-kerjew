@@ -24,11 +24,11 @@ export default function Login() {
     <AuthSplitShell
       kicker="Staff Portal"
       title={<>Serving with <br /> accountability.</>}
-      blurb="Sign in to register and manage the community profiles behind every ODKHC initiative."
+      blurb="Sign in to register and manage the community profiles behind every Oling Dawn Kerjew Projects initiative."
     >
       <div className="mb-10 text-center lg:text-left">
         <h1 className="mb-3 font-display text-3xl italic font-semibold text-forest-900 lg:text-4xl">Sign in</h1>
-        <p className="text-sm text-navy-900/60">Access the ODKHC admin dashboard.</p>
+        <p className="text-sm text-navy-900/60">Access the Oling Dawn Kerjew Projects admin dashboard.</p>
       </div>
 
       <form onSubmit={submit} noValidate className="space-y-6">

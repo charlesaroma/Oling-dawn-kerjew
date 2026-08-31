@@ -6,7 +6,7 @@ import { STORAGE_KEYS, loadJSON, saveJSON } from './jsonDataLoader';
   backend exists; Login.jsx and ProtectedRoute (App.jsx) only depend on
   the login()/getSession()/logout() contract below, not this constant.
 */
-const DEMO_ADMIN = { email: 'admin@odkhc.local', password: 'odkhc-admin-2026', name: 'ODKHC Admin' };
+const DEMO_ADMIN = { email: 'admin@odkhc.local', password: 'odkhc-admin-2026', name: 'Oling Dawn Kerjew Projects Admin' };
 
 export function login({ email, password }) {
   if (email.trim().toLowerCase() !== DEMO_ADMIN.email || password !== DEMO_ADMIN.password) {
