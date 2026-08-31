@@ -74,6 +74,11 @@
   --color-surface-cta:  var(--color-gold-500);  /* the one bold donate/CTA band */
   --color-surface-dark: var(--color-navy-900);  /* footer — closes the arc */
 
+  /* Dashboard chrome — single source of truth for the fixed sidebar's width,
+     shared by DashboardSidebar.jsx (w-[var(--sidebar-w)]) and
+     DashboardLayout.jsx (pl-[var(--sidebar-w)]) so the two never drift apart. */
+  --sidebar-w: 18rem;
+
   /* Fonts */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-body:    "Public Sans", ui-sans-serif, system-ui, sans-serif;

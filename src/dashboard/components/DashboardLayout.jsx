@@ -35,12 +35,12 @@ export default function DashboardLayout() {
     <div className="min-h-screen bg-surface">
       <DashboardSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="md:pl-64">
+      <div className="lg:pl-[var(--sidebar-w)]">
         <header className="sticky top-0 z-30 flex items-center gap-4 border-b border-navy-900/8 bg-white/90 px-6 py-3 backdrop-blur-sm lg:px-10">
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}
-            className="text-navy-900/60 hover:text-forest-800 md:hidden"
+            className="text-navy-900/60 hover:text-forest-800 lg:hidden"
             aria-label="Open menu"
           >
             <Menu size={22} />
