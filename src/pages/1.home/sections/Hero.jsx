@@ -3,13 +3,12 @@ import Container from '../../../components/common/Container';
 import Button from '../../../components/common/Button';
 import MediaImage from '../../../components/media/MediaImage';
 import { useProjects } from '../../../services/projectQueries';
-import { useSiteConfig } from '../../../services/siteConfigQueries';
+import { DATA } from '../../../services/jsonDataLoader';
 import { getPublishedProjects } from '../../../services/projectsService';
 
 export default function Hero() {
   const { data: projects } = useProjects();
-  const { data: siteConfig } = useSiteConfig();
-  const { tagline, description } = siteConfig;
+  const { tagline, description } = DATA.siteConfig;
   const activeCount = getPublishedProjects(projects).length;
 
   return (
