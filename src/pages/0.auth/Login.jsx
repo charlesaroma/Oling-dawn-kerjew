@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
 import Button from '../../components/common/Button';
 import AuthSplitShell from './AuthSplitShell';
 import FloatingInput from './FloatingInput';
@@ -13,6 +14,7 @@ export default function Login() {
   const { addToast } = useToast();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -62,11 +64,21 @@ export default function Login() {
         <FloatingInput
           id="password"
           label="Password"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           required
           autoComplete="current-password"
           value={form.password}
           onChange={(e) => { setForm({ ...form, password: e.target.value }); setError(''); }}
+          rightSlot={(
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              className="p-1 text-navy-900/40 transition-colors hover:text-forest-800"
+            >
+              {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+            </button>
+          )}
         />
 
         {error && (

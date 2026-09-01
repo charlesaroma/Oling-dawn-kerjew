@@ -1,11 +1,11 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaVideo from '../../../components/media/MediaVideo';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
 import { getPublishedProjects } from '../../../services/projectsService';
 
 export default function FeaturedVideo() {
-  const { projects } = useAdmin();
+  const { data: projects } = useProjects();
   const featured = getPublishedProjects(projects).find((project) => project.video);
   if (!featured) return null;
 

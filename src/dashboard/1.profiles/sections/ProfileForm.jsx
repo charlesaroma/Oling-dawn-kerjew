@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import ImageUploadField from '../../components/ImageUploadField';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
 
 import { FIELD, ERROR_FIELD, LABEL, GROUP_HEADING, CALLOUT } from '../../components/formStyles';
 
@@ -34,7 +34,7 @@ const schema = yup
   });
 
 export default function ProfileForm({ initial, onSubmit }) {
-  const { projects } = useAdmin();
+  const { data: projects } = useProjects();
 
   const formik = useFormik({
     initialValues: {
@@ -118,7 +118,7 @@ export default function ProfileForm({ initial, onSubmit }) {
       <div>
         <h3 className={GROUP_HEADING}>Identification</h3>
         <p className={`mb-4 ${CALLOUT}`}>
-          Provide a National ID (NIN) for Ugandan nationals, or a passport number for non-Ugandans. Use test data only until a secured backend exists.
+          Provide a National ID (NIN) for Ugandan nationals, or a passport number for non-Ugandans.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>

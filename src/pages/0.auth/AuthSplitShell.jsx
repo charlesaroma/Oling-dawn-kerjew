@@ -8,7 +8,7 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="relative hidden lg:block">
         <MediaImage
-          src="/dashboard/auth-cover.jpg"
+          src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/_MG_7668.JPG"
           alt=""
           width={960}
           height={1080}

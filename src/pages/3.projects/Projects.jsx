@@ -4,11 +4,11 @@ import PageHeader from '../../components/common/PageHeader';
 import EmptyState from '../../components/common/EmptyState';
 import ProjectCard from '../../components/cards/ProjectCard';
 import CategoryFilterBar from './sections/CategoryFilterBar';
-import { useAdmin } from '../../context/AdminContext';
+import { useProjects } from '../../services/projectQueries';
 import { getPublishedProjects, getProjectCategories, filterProjectsByCategory } from '../../services/projectsService';
 
 export default function Projects() {
-  const { projects: allProjects } = useAdmin();
+  const { data: allProjects } = useProjects();
   const published = useMemo(() => getPublishedProjects(allProjects), [allProjects]);
   const [category, setCategory] = useState('All');
   const categories = useMemo(() => getProjectCategories(published), [published]);

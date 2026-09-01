@@ -1,11 +1,11 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '../../components/common/Button';
-import { useAdmin } from '../../context/AdminContext';
+import { useSiteConfig, useUpdateSiteConfig } from '../../services/siteConfigQueries';
+import { useToast } from '../../context/useToast';
 import OrganizationSection from './sections/OrganizationSection';
 import ContactSection from './sections/ContactSection';
 import SocialLinksSection from './sections/SocialLinksSection';
-import DataSection from './sections/DataSection';
 
 const schema = yup.object({
   orgName: yup.string().trim().required('Organization name is required.'),
@@ -20,9 +20,15 @@ const schema = yup.object({
 });
 
 export default function SiteSettings() {
-  const { siteConfig, updateSiteConfig } = useAdmin();
+  const { data: siteConfig } = useSiteConfig();
+  const updateSiteConfig = useUpdateSiteConfig();
+  const { addToast } = useToast();
 
   const formik = useFormik({
+    // Reinitialize once the real config arrives — initialValues are only
+    // captured once at mount otherwise, and useSiteConfig()'s stable empty
+    // shape resolves before the actual fetch does.
+    enableReinitialize: true,
     initialValues: {
       ...siteConfig,
       emails: (siteConfig.emails || []).join(', '),
@@ -31,13 +37,19 @@ export default function SiteSettings() {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      updateSiteConfig({
-        ...values,
-        orgName: values.orgName.trim(),
-        tagline: values.tagline.trim(),
-        emails: values.emails.split(',').map((s) => s.trim()).filter(Boolean),
-        phones: values.phones.split(',').map((s) => s.trim()).filter(Boolean),
-      });
+      updateSiteConfig.mutate(
+        {
+          ...values,
+          orgName: values.orgName.trim(),
+          tagline: values.tagline.trim(),
+          emails: values.emails.split(',').map((s) => s.trim()).filter(Boolean),
+          phones: values.phones.split(',').map((s) => s.trim()).filter(Boolean),
+        },
+        {
+          onSuccess: () => addToast('Site settings updated', 'success'),
+          onError: (err) => addToast(err.message || 'Failed to update settings', 'error'),
+        },
+      );
     },
   });
 
@@ -56,8 +68,6 @@ export default function SiteSettings() {
         <SocialLinksSection formik={formik} />
         <Button type="submit" variant="primary">Save Settings</Button>
       </form>
-
-      <DataSection />
     </div>
   );
 }

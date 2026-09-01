@@ -1,11 +1,11 @@
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import BlogCard from '../../components/cards/BlogCard';
-import { useAdmin } from '../../context/AdminContext';
+import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts } from '../../services/blogService';
 
 export default function Blog() {
-  const { blogPosts } = useAdmin();
+  const { data: blogPosts } = useBlogPosts();
   const posts = getPublishedPosts(blogPosts);
 
   return (

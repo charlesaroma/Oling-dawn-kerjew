@@ -133,16 +133,18 @@ export default function ProjectForm({ initial, onSubmit }) {
             name="coverImage"
             value={formik.values.coverImage}
             onChange={(value) => formik.setFieldValue('coverImage', value)}
-            placeholder="/projects/slug/cover.jpg"
+            placeholder="Paste a URL, or choose a file to upload"
+            tag="projects"
           />
           <MediaListField
             label="Gallery images"
             items={formik.values.gallery}
             onChange={(items) => formik.setFieldValue('gallery', items)}
+            tag="projects"
           />
           <div>
-            <label className={LABEL}>Video path (optional)</label>
-            <input name="video" value={formik.values.video} onChange={formik.handleChange} className={FIELD} placeholder="/projects/slug/video.mp4" />
+            <label className={LABEL}>Video URL (optional)</label>
+            <input name="video" value={formik.values.video} onChange={formik.handleChange} className={FIELD} placeholder="https://ik.imagekit.io/.../video.mp4" />
           </div>
         </div>
       </div>

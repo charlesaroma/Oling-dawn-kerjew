@@ -6,10 +6,15 @@ import Button from '../../components/common/Button';
 import TeamListHeader from './sections/TeamListHeader';
 import TeamTable from './sections/TeamTable';
 import TeamMemberForm from './sections/TeamMemberForm';
-import { useAdmin } from '../../context/AdminContext';
+import { useTeam, useCreateTeamMember, useUpdateTeamMember, useDeleteTeamMember } from '../../services/teamQueries';
+import { useToast } from '../../context/useToast';
 
 export default function TeamList() {
-  const { team, addTeamMember, updateTeamMember, deleteTeamMember } = useAdmin();
+  const { data: team, isLoading } = useTeam();
+  const createTeamMember = useCreateTeamMember();
+  const updateTeamMember = useUpdateTeamMember();
+  const deleteTeamMember = useDeleteTeamMember();
+  const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
   const [modalItem, setModalItem] = useState(() => {
@@ -29,7 +34,11 @@ export default function TeamList() {
     <div>
       <TeamListHeader count={team.length} onAdd={() => setModalItem({ item: null })} />
 
-      <TeamTable rows={team} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
+      {isLoading ? (
+        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+      ) : (
+        <TeamTable rows={team} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
+      )}
 
       <Modal
         isOpen={!!modalItem}
@@ -45,8 +54,12 @@ export default function TeamList() {
         <TeamMemberForm
           initial={modalItem?.item}
           onSubmit={(data) => {
-            if (modalItem?.item) updateTeamMember(modalItem.item.id, data);
-            else addTeamMember(data);
+            const onSettled = {
+              onSuccess: () => addToast(modalItem?.item ? 'Team member updated' : 'Team member added', 'success'),
+              onError: (err) => addToast(err.message || 'Failed to save team member', 'error'),
+            };
+            if (modalItem?.item) updateTeamMember.mutate({ id: modalItem.item.id, ...data }, onSettled);
+            else createTeamMember.mutate(data, onSettled);
             setModalItem(null);
           }}
         />
@@ -55,7 +68,13 @@ export default function TeamList() {
       <ConfirmModal
         isOpen={!!confirmId}
         onClose={() => setConfirmId(null)}
-        onConfirm={() => { deleteTeamMember(confirmId); setConfirmId(null); }}
+        onConfirm={() => {
+          deleteTeamMember.mutate(confirmId, {
+            onSuccess: () => addToast('Team member removed', 'success'),
+            onError: (err) => addToast(err.message || 'Failed to remove team member', 'error'),
+          });
+          setConfirmId(null);
+        }}
         title="Remove team member"
         message={confirmTarget ? `Remove "${confirmTarget.name}"? This cannot be undone.` : ''}
         confirmLabel="Remove"

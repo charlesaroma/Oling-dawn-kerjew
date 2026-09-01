@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Container from '../common/Container';
 import SocialIcon from '../common/SocialIcon';
-import { useAdmin } from '../../context/AdminContext';
+import { useSiteConfig } from '../../services/siteConfigQueries';
 
 export default function Footer() {
-  const { siteConfig } = useAdmin();
+  const { data: siteConfig } = useSiteConfig();
   const { orgName, tagline, emails, phones, registeredAddress, postalAddress, navLinks, socialLinks } = siteConfig;
   const nameWords = orgName.split(' ');
   const nameLastWord = nameWords.pop();

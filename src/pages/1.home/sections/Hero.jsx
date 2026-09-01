@@ -2,11 +2,13 @@ import { ArrowRight } from 'lucide-react';
 import Container from '../../../components/common/Container';
 import Button from '../../../components/common/Button';
 import MediaImage from '../../../components/media/MediaImage';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
+import { useSiteConfig } from '../../../services/siteConfigQueries';
 import { getPublishedProjects } from '../../../services/projectsService';
 
 export default function Hero() {
-  const { siteConfig, projects } = useAdmin();
+  const { data: projects } = useProjects();
+  const { data: siteConfig } = useSiteConfig();
   const { tagline, description } = siteConfig;
   const activeCount = getPublishedProjects(projects).length;
 
@@ -35,7 +37,7 @@ export default function Hero() {
         <div className="relative">
           <div className="aspect-4/3 overflow-hidden rounded-3xl shadow-elevated-lg">
             <MediaImage
-              src="/home/hero-cover.jpg"
+              src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/_MG_7659.JPG"
               alt=""
               width={960}
               height={720}

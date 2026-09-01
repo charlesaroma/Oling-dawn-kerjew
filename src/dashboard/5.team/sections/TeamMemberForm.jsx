@@ -42,7 +42,8 @@ export default function TeamMemberForm({ initial, onSubmit }) {
         name="photo"
         value={formik.values.photo}
         onChange={(value) => formik.setFieldValue('photo', value)}
-        placeholder="/team/photo.jpg"
+        placeholder="Paste a URL, or choose a file to upload"
+        tag="team"
       />
       <div>
         <label className={LABEL}>Short bio (optional)</label>

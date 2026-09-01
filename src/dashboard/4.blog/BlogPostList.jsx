@@ -6,10 +6,15 @@ import Button from '../../components/common/Button';
 import BlogListHeader from './sections/BlogListHeader';
 import BlogTable from './sections/BlogTable';
 import BlogPostForm from './sections/BlogPostForm';
-import { useAdmin } from '../../context/AdminContext';
+import { useBlogPosts, useCreateBlogPost, useUpdateBlogPost, useDeleteBlogPost } from '../../services/blogQueries';
+import { useToast } from '../../context/useToast';
 
 export default function BlogPostList() {
-  const { blogPosts, addBlogPost, updateBlogPost, deleteBlogPost } = useAdmin();
+  const { data: blogPosts, isLoading } = useBlogPosts();
+  const createBlogPost = useCreateBlogPost();
+  const updateBlogPost = useUpdateBlogPost();
+  const deleteBlogPost = useDeleteBlogPost();
+  const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
@@ -45,12 +50,22 @@ export default function BlogPostList() {
         />
       </div>
 
-      <BlogTable
-        rows={rows}
-        onTogglePublish={(row) => updateBlogPost(row.id, { publishStatus: (row.publishStatus ?? 'published') === 'draft' ? 'published' : 'draft' })}
-        onEdit={(row) => setModalItem({ item: row })}
-        onDelete={(id) => setConfirmId(id)}
-      />
+      {isLoading ? (
+        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+      ) : (
+        <BlogTable
+          rows={rows}
+          onTogglePublish={(row) => updateBlogPost.mutate(
+            { id: row.id, publishStatus: (row.publishStatus ?? 'published') === 'draft' ? 'published' : 'draft' },
+            {
+              onSuccess: () => addToast('Post publish state updated', 'success'),
+              onError: (err) => addToast(err.message || 'Failed to update post', 'error'),
+            },
+          )}
+          onEdit={(row) => setModalItem({ item: row })}
+          onDelete={(id) => setConfirmId(id)}
+        />
+      )}
 
       <Modal
         isOpen={!!modalItem}
@@ -67,8 +82,12 @@ export default function BlogPostList() {
         <BlogPostForm
           initial={modalItem?.item}
           onSubmit={(data) => {
-            if (modalItem?.item) updateBlogPost(modalItem.item.id, data);
-            else addBlogPost(data);
+            const onSettled = {
+              onSuccess: () => addToast(modalItem?.item ? 'Post updated' : 'Post created', 'success'),
+              onError: (err) => addToast(err.message || 'Failed to save post', 'error'),
+            };
+            if (modalItem?.item) updateBlogPost.mutate({ id: modalItem.item.id, ...data }, onSettled);
+            else createBlogPost.mutate(data, onSettled);
             setModalItem(null);
           }}
         />
@@ -77,7 +96,13 @@ export default function BlogPostList() {
       <ConfirmModal
         isOpen={!!confirmId}
         onClose={() => setConfirmId(null)}
-        onConfirm={() => { deleteBlogPost(confirmId); setConfirmId(null); }}
+        onConfirm={() => {
+          deleteBlogPost.mutate(confirmId, {
+            onSuccess: () => addToast('Post deleted', 'success'),
+            onError: (err) => addToast(err.message || 'Failed to delete post', 'error'),
+          });
+          setConfirmId(null);
+        }}
         title="Delete post"
         message={confirmTarget ? `Delete "${confirmTarget.title}"? This cannot be undone.` : ''}
         confirmLabel="Delete"

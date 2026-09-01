@@ -1,10 +1,10 @@
 import { Flame, LayoutGrid, MapPinned, Globe2 } from 'lucide-react';
 import Container from '../../../components/common/Container';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
 import { getPublishedProjects, getProjectCategories } from '../../../services/projectsService';
 
 export default function ImpactStats() {
-  const { projects: allProjects } = useAdmin();
+  const { data: allProjects } = useProjects();
   const projects = getPublishedProjects(allProjects);
   const districts = new Set(projects.map((p) => p.location.split(',')[0].trim()));
 

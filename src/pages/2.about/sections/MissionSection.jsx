@@ -1,10 +1,10 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaImage from '../../../components/media/MediaImage';
-import { useAdmin } from '../../../context/AdminContext';
+import { useSiteConfig } from '../../../services/siteConfigQueries';
 
 export default function MissionSection() {
-  const { siteConfig } = useAdmin();
+  const { data: siteConfig } = useSiteConfig();
   const { description, registeredYear } = siteConfig;
 
   return (
@@ -20,7 +20,7 @@ export default function MissionSection() {
         </div>
         <div className="aspect-4/3 overflow-hidden rounded-3xl bg-forest-50 shadow-elevated-lg">
           <MediaImage
-            src="/about/mission.jpg"
+            src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/20250812_123723.jpg"
             alt="Oling Dawn Kerjew Projects volunteers with a community they serve"
             width={640}
             height={480}

@@ -1,8 +1,8 @@
 import { formatDate } from '../../../utils/formatDate';
-import { useAdmin } from '../../../context/AdminContext';
+import { useSiteConfig } from '../../../services/siteConfigQueries';
 
 export default function DashboardHeader() {
-  const { siteConfig } = useAdmin();
+  const { data: siteConfig } = useSiteConfig();
 
   return (
     <header className="mb-8">

@@ -107,7 +107,8 @@ export default function BlogPostForm({ initial, onSubmit }) {
           name="coverImage"
           value={formik.values.coverImage}
           onChange={(value) => formik.setFieldValue('coverImage', value)}
-          placeholder="/blog/slug/cover.jpg"
+          placeholder="Paste a URL, or choose a file to upload"
+          tag="blog"
         />
       </div>
     </form>

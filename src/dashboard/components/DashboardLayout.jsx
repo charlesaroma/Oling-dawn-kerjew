@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Menu, Search } from 'lucide-react';
 import DashboardSidebar from './DashboardSidebar';
 import UploadModal from '../3.gallery/sections/UploadModal';
 import UploadTray from '../3.gallery/components/UploadTray';
 import { getSession } from '../../services/authService';
 import useSocket from '../../services/useSocket';
-
-// Scoped to the dashboard (this file is already behind a React.lazy() boundary
-// in App.jsx) so @tanstack/react-query never ships in the public site's bundle.
-const queryClient = new QueryClient();
 
 const getInitials = (name) =>
   (name || '')
@@ -87,9 +82,5 @@ function DashboardShell() {
 }
 
 export default function DashboardLayout() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <DashboardShell />
-    </QueryClientProvider>
-  );
+  return <DashboardShell />;
 }

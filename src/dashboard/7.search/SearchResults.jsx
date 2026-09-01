@@ -1,12 +1,16 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAdmin } from '../../context/AdminContext';
+import { useBlogPosts } from '../../services/blogQueries';
+import { useProjects } from '../../services/projectQueries';
 import ResultGroup from './sections/ResultGroup';
 
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const q = (searchParams.get('q') || '').trim().toLowerCase();
-  const { profiles, projects, blogPosts } = useAdmin();
+  const { profiles } = useAdmin();
+  const { data: blogPosts } = useBlogPosts();
+  const { data: projects } = useProjects();
 
   const matchedProfiles = q ? profiles.filter((p) => p.fullName.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)) : [];
   const matchedProjects = q ? projects.filter((p) => p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)) : [];

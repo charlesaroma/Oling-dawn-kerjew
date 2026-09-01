@@ -1,10 +1,10 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaImage from '../../../components/media/MediaImage';
-import { useAdmin } from '../../../context/AdminContext';
+import { useTeam } from '../../../services/teamQueries';
 
 export default function TeamSection() {
-  const { team } = useAdmin();
+  const { data: team } = useTeam();
   if (!team.length) return null;
 
   return (

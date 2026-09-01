@@ -3,12 +3,12 @@ import Container from '../../components/common/Container';
 import MediaImage from '../../components/media/MediaImage';
 import Button from '../../components/common/Button';
 import ProjectGallery from './sections/ProjectGallery';
-import { useAdmin } from '../../context/AdminContext';
+import { useProjects } from '../../services/projectQueries';
 import { getPublishedProjects, getProjectBySlug } from '../../services/projectsService';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const { projects } = useAdmin();
+  const { data: projects } = useProjects();
   const project = getProjectBySlug(getPublishedProjects(projects), slug);
 
   if (!project) return <Navigate to="/projects" replace />;

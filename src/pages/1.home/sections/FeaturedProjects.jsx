@@ -3,11 +3,11 @@ import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import Button from '../../../components/common/Button';
 import ProjectCard from '../../../components/cards/ProjectCard';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
 import { getFeaturedProjects } from '../../../services/projectsService';
 
 export default function FeaturedProjects() {
-  const { projects: allProjects } = useAdmin();
+  const { data: allProjects } = useProjects();
   const projects = getFeaturedProjects(allProjects, 3);
 
   return (

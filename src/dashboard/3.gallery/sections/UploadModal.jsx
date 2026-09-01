@@ -1,44 +1,20 @@
 import { useRef, useState } from 'react';
-import { upload } from '@imagekit/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { X, Upload as UploadIcon, Minus, Loader2, AlertCircle } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../../../components/common/Button';
-import api from '../../../services/api';
+import { uploadFile } from '../../../services/uploadMedia';
 import { useImageCategories } from '../../../services/imageCategoryQueries';
 import { useUpload } from '../contexts/useUpload';
 import { useToast } from '../../../context/useToast';
 
-const FOLDER = '/oling-dawn-kerjew-projects/media';
 const BATCH_SIZE = 3;
 const MAX_BYTES = 25 * 1024 * 1024;
 
 async function uploadOne(file, idx, tag, setProgress) {
-  const { data: auth } = await api.get('/api/media/auth');
-
-  const result = await upload({
-    file,
-    fileName: file.name,
-    folder: FOLDER,
-    useUniqueFileName: true,
-    tags: [tag],
-    token: auth.token,
-    expire: auth.expire,
-    publicKey: auth.publicKey,
-    signature: auth.signature,
-    onProgress: (e) => {
-      if (e.lengthComputable) {
-        setProgress((prev) => ({ ...prev, [idx]: Math.round((e.loaded / e.total) * 100) }));
-      }
-    },
-  });
-
-  await api.post('/api/media/record', {
-    fileId: result.fileId,
-    url: result.url,
-    name: result.name,
+  await uploadFile(file, {
     tag,
-    size: result.size,
+    onProgress: (pct) => setProgress((prev) => ({ ...prev, [idx]: pct })),
   });
 }
 

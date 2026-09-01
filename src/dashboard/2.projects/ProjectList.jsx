@@ -6,10 +6,15 @@ import Button from '../../components/common/Button';
 import ProjectListHeader from './sections/ProjectListHeader';
 import ProjectTable from './sections/ProjectTable';
 import ProjectForm from './sections/ProjectForm';
-import { useAdmin } from '../../context/AdminContext';
+import { useProjects, useCreateProject, useUpdateProject, useDeleteProject } from '../../services/projectQueries';
+import { useToast } from '../../context/useToast';
 
 export default function ProjectList() {
-  const { projects, addProject, updateProject, deleteProject } = useAdmin();
+  const { data: projects, isLoading } = useProjects();
+  const createProject = useCreateProject();
+  const updateProject = useUpdateProject();
+  const deleteProject = useDeleteProject();
+  const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
@@ -45,12 +50,22 @@ export default function ProjectList() {
         />
       </div>
 
-      <ProjectTable
-        rows={rows}
-        onTogglePublish={(row) => updateProject(row.id, { publishStatus: (row.publishStatus ?? 'published') === 'draft' ? 'published' : 'draft' })}
-        onEdit={(row) => setModalItem({ item: row })}
-        onDelete={(id) => setConfirmId(id)}
-      />
+      {isLoading ? (
+        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+      ) : (
+        <ProjectTable
+          rows={rows}
+          onTogglePublish={(row) => updateProject.mutate(
+            { id: row.id, publishStatus: (row.publishStatus ?? 'published') === 'draft' ? 'published' : 'draft' },
+            {
+              onSuccess: () => addToast('Project publish state updated', 'success'),
+              onError: (err) => addToast(err.message || 'Failed to update project', 'error'),
+            },
+          )}
+          onEdit={(row) => setModalItem({ item: row })}
+          onDelete={(id) => setConfirmId(id)}
+        />
+      )}
 
       <Modal
         isOpen={!!modalItem}
@@ -67,8 +82,12 @@ export default function ProjectList() {
         <ProjectForm
           initial={modalItem?.item}
           onSubmit={(data) => {
-            if (modalItem?.item) updateProject(modalItem.item.id, data);
-            else addProject(data);
+            const onSettled = {
+              onSuccess: () => addToast(modalItem?.item ? 'Project updated' : 'Project created', 'success'),
+              onError: (err) => addToast(err.message || 'Failed to save project', 'error'),
+            };
+            if (modalItem?.item) updateProject.mutate({ id: modalItem.item.id, ...data }, onSettled);
+            else createProject.mutate(data, onSettled);
             setModalItem(null);
           }}
         />
@@ -77,7 +96,13 @@ export default function ProjectList() {
       <ConfirmModal
         isOpen={!!confirmId}
         onClose={() => setConfirmId(null)}
-        onConfirm={() => { deleteProject(confirmId); setConfirmId(null); }}
+        onConfirm={() => {
+          deleteProject.mutate(confirmId, {
+            onSuccess: () => addToast('Project deleted', 'success'),
+            onError: (err) => addToast(err.message || 'Failed to delete project', 'error'),
+          });
+          setConfirmId(null);
+        }}
         title="Delete project"
         message={confirmTarget ? `Delete "${confirmTarget.title}"? This cannot be undone.` : ''}
         confirmLabel="Delete"

@@ -1,4 +1,5 @@
 import { Image } from '@imagekit/react';
+import { ImageOff } from 'lucide-react';
 
 const IMAGEKIT_URL_ENDPOINT = import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT;
 
@@ -24,6 +25,21 @@ export default function MediaImage({ src, alt, className = '', width, height, ..
         className={className}
         loading="lazy"
       />
+    );
+  }
+
+  // No photo uploaded yet for this item — render a neutral placeholder
+  // instead of letting <Image> attempt to load an empty/undefined src.
+  if (!src) {
+    return (
+      <div
+        className={`flex items-center justify-center bg-forest-50 text-forest-300 ${className}`}
+        style={{ width, height }}
+        role="img"
+        aria-label={alt || 'No image yet'}
+      >
+        <ImageOff size={Math.min(width || 32, height || 32, 32)} strokeWidth={1.5} />
+      </div>
     );
   }
 

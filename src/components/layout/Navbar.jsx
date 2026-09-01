@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Container from '../common/Container';
 import Button from '../common/Button';
-import { useAdmin } from '../../context/AdminContext';
+import { useSiteConfig } from '../../services/siteConfigQueries';
 
 const linkClasses = ({ isActive }) =>
   `relative py-1 text-sm font-medium transition-colors after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:rounded-full after:bg-gold-500 after:transition-all after:duration-200 ${
@@ -12,7 +12,7 @@ const linkClasses = ({ isActive }) =>
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { siteConfig } = useAdmin();
+  const { data: siteConfig } = useSiteConfig();
   const { orgName, navLinks } = siteConfig;
   const nameWords = orgName.split(' ');
   const nameLastWord = nameWords.pop();

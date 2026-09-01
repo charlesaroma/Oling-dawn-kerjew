@@ -1,13 +1,13 @@
 import { Navigate, useParams } from 'react-router-dom';
 import Container from '../../components/common/Container';
 import MediaImage from '../../components/media/MediaImage';
-import { useAdmin } from '../../context/AdminContext';
+import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts, getPostBySlug } from '../../services/blogService';
 import { formatDate } from '../../utils/formatDate';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const { blogPosts } = useAdmin();
+  const { data: blogPosts } = useBlogPosts();
   const post = getPostBySlug(getPublishedPosts(blogPosts), slug);
 
   if (!post) return <Navigate to="/blog" replace />;

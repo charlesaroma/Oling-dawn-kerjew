@@ -1,5 +1,6 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { AdminProvider } from './context/AdminContext';
 import { AuthProvider } from './context/AuthContext';
@@ -141,16 +142,23 @@ function Shell() {
   );
 }
 
+// Instantiated at the true root — public pages now need TanStack Query too
+// (Projects/Blog/Team/SiteConfig/Gallery all fetch live backend data), so
+// this can no longer be scoped to just the lazy-loaded dashboard bundle.
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <ToastProvider>
-        <AuthProvider>
-          <AdminProvider>
-            <Shell />
-          </AdminProvider>
-        </AuthProvider>
-      </ToastProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ToastProvider>
+          <AuthProvider>
+            <AdminProvider>
+              <Shell />
+            </AdminProvider>
+          </AuthProvider>
+        </ToastProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }

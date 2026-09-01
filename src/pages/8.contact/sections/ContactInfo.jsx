@@ -1,9 +1,9 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
 import SocialIcon from '../../../components/common/SocialIcon';
-import { useAdmin } from '../../../context/AdminContext';
+import { useSiteConfig } from '../../../services/siteConfigQueries';
 
 export default function ContactInfo() {
-  const { siteConfig } = useAdmin();
+  const { data: siteConfig } = useSiteConfig();
   const { emails, phones, registeredAddress, postalAddress, socialLinks } = siteConfig;
 
   return (
