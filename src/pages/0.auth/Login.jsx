@@ -21,17 +21,19 @@ export default function Login() {
     try {
       login(form);
 
-      // Best-effort: also sign in against the real backend so Gallery's media
-      // library (the only feature wired to it so far) has a token to work with.
-      // A failure here shouldn't block access to the rest of the dashboard,
-      // which still runs entirely on localStorage.
+      // Also sign in against the real backend — nearly every dashboard
+      // domain (Profiles/Projects/Blog/Team/Gallery/Account) now depends on
+      // this token for writes. Read-only pages still work without it, so a
+      // failure here doesn't block dashboard access entirely, but the user
+      // needs to know saves won't work until they retry.
       try {
         await apiLogin({ email: form.email, password: form.password });
+        addToast('Welcome back! Signed in successfully.', 'success');
       } catch (apiErr) {
-        console.error('Backend login failed — Gallery will be unavailable until this succeeds:', apiErr);
+        console.error('Backend login failed — saving/uploading will be unavailable until this succeeds:', apiErr);
+        addToast('Signed in, but the server login failed — saving changes may not work. Try signing out and back in.', 'warning');
       }
 
-      addToast('Welcome back! Signed in successfully.', 'success');
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);
