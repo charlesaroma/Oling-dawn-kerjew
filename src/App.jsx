@@ -18,6 +18,7 @@ import Gallery from './pages/5.gallery/Gallery';
 import Blog from './pages/6.blog/Blog';
 import BlogPost from './pages/7.blogPost/BlogPost';
 import Contact from './pages/8.contact/Contact';
+import Construction from './pages/9.construction/Construction';
 
 /*
   The login screen and the whole admin dashboard pull in heavy
@@ -109,6 +110,7 @@ function Shell() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/construction" element={<Construction />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blog" element={<Blog />} />

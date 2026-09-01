@@ -30,6 +30,10 @@
       "path": "/projects"
     },
     {
+      "label": "Construction",
+      "path": "/construction"
+    },
+    {
       "label": "Gallery",
       "path": "/gallery"
     },

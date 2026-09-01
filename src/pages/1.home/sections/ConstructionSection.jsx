@@ -34,10 +34,10 @@ export default function ConstructionSection() {
             tone="dark"
           />
           <Link
-            to="/projects"
+            to="/construction"
             className="group flex shrink-0 items-center gap-2 border-b border-gold-500/40 pb-1 text-sm font-semibold text-gold-400 transition-colors hover:border-gold-500"
           >
-            See our projects
+            How it works
             <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </div>
