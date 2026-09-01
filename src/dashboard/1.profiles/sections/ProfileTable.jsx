@@ -14,7 +14,7 @@ const columns = [
   { key: 'registeredDate', label: 'Registered', render: (r) => formatDate(r.registeredDate) },
 ];
 
-export default function ProfileTable({ rows, onEdit, onDelete }) {
+export default function ProfileTable({ rows, onEdit, onDelete, onVisibleRowsChange }) {
   const rowActions = (row) => (
     <div className="flex justify-end gap-3 text-xs">
       <button type="button" onClick={() => onEdit(row)} className="text-gold-700 hover:text-gold-800">Edit</button>
@@ -22,5 +22,15 @@ export default function ProfileTable({ rows, onEdit, onDelete }) {
     </div>
   );
 
-  return <DataTable columns={columns} rows={rows} actions={rowActions} emptyMessage="No profiles match your search." />;
+  return (
+    <DataTable
+      columns={columns}
+      rows={rows}
+      actions={rowActions}
+      searchPlaceholder="Search name, category or location…"
+      filters={['category', 'gender']}
+      onVisibleRowsChange={onVisibleRowsChange}
+      emptyMessage="No profiles registered yet."
+    />
+  );
 }

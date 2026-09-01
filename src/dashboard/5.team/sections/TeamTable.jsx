@@ -13,5 +13,13 @@ export default function TeamTable({ rows, onEdit, onDelete }) {
     </div>
   );
 
-  return <DataTable columns={columns} rows={rows} actions={rowActions} emptyMessage="No team members yet — add the first one." />;
+  return (
+    <DataTable
+      columns={columns}
+      rows={rows}
+      actions={rowActions}
+      searchPlaceholder="Search name or role…"
+      emptyMessage="No team members yet — add the first one."
+    />
+  );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
 import ConfirmModal from '../components/ConfirmModal';
@@ -17,7 +17,6 @@ export default function ProjectList() {
   const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
   const [modalItem, setModalItem] = useState(() => {
     const found = location.state?.editId ? projects.find((p) => p.id === location.state.editId) : null;
     return found ? { item: found } : null;
@@ -29,32 +28,17 @@ export default function ProjectList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const rows = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return projects;
-    return projects.filter((p) => p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
-  }, [projects, query]);
-
   const confirmTarget = confirmId ? projects.find((p) => p.id === confirmId) : null;
 
   return (
     <div>
       <ProjectListHeader count={projects.length} onAdd={() => setModalItem({ item: null })} />
 
-      <div className="mb-4">
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by title or category…"
-          className="w-full max-w-xs rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
-        />
-      </div>
-
       {isLoading ? (
         <p className="py-16 text-center text-sm text-ink-500">Loading…</p>
       ) : (
         <ProjectTable
-          rows={rows}
+          rows={projects}
           onTogglePublish={(row) => updateProject.mutate(
             { id: row.id, publishStatus: (row.publishStatus ?? 'published') === 'draft' ? 'published' : 'draft' },
             {

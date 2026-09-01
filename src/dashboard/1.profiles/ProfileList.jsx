@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
 import ConfirmModal from '../components/ConfirmModal';
@@ -18,7 +18,7 @@ export default function ProfileList() {
   const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
+  const [visibleRows, setVisibleRows] = useState([]);
   // Deep link from global search: navigate('/dashboard/profiles', { state: { editId } }).
   // Consumed once as the initial value so opening the modal isn't a setState-in-effect.
   const [modalItem, setModalItem] = useState(() => {
@@ -32,38 +32,25 @@ export default function ProfileList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const rows = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return profiles;
-    return profiles.filter(
-      (p) => p.fullName.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.location?.toLowerCase().includes(q),
-    );
-  }, [profiles, query]);
-
   const confirmTarget = confirmId ? profiles.find((p) => p.id === confirmId) : null;
 
   return (
     <div>
       <ProfileListHeader
         count={profiles.length}
-        onExportCSV={() => exportProfilesCSV(rows)}
-        onExportPDF={() => exportProfilesPDF(rows)}
+        onExportCSV={() => (visibleRows.length
+          ? exportProfilesCSV(visibleRows)
+          : addToast('Nothing to export — adjust your search or filters.', 'warning'))}
+        onExportPDF={() => (visibleRows.length
+          ? exportProfilesPDF(visibleRows)
+          : addToast('Nothing to export — adjust your search or filters.', 'warning'))}
         onAdd={() => setModalItem({ item: null })}
       />
-
-      <div className="mb-4">
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by name, category, or location…"
-          className="w-full max-w-xs rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
-        />
-      </div>
 
       {isLoading ? (
         <p className="py-16 text-center text-sm text-ink-500">Loading…</p>
       ) : (
-        <ProfileTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
+        <ProfileTable rows={profiles} onVisibleRowsChange={setVisibleRows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
       )}
 
       <Modal

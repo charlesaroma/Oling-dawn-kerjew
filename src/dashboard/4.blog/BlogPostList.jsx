@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
 import ConfirmModal from '../components/ConfirmModal';
@@ -17,7 +17,6 @@ export default function BlogPostList() {
   const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
   const [modalItem, setModalItem] = useState(() => {
     const found = location.state?.editId ? blogPosts.find((p) => p.id === location.state.editId) : null;
     return found ? { item: found } : null;
@@ -29,32 +28,17 @@ export default function BlogPostList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const rows = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return blogPosts;
-    return blogPosts.filter((p) => p.title.toLowerCase().includes(q));
-  }, [blogPosts, query]);
-
   const confirmTarget = confirmId ? blogPosts.find((p) => p.id === confirmId) : null;
 
   return (
     <div>
       <BlogListHeader count={blogPosts.length} onAdd={() => setModalItem({ item: null })} />
 
-      <div className="mb-4">
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by title…"
-          className="w-full max-w-xs rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
-        />
-      </div>
-
       {isLoading ? (
         <p className="py-16 text-center text-sm text-ink-500">Loading…</p>
       ) : (
         <BlogTable
-          rows={rows}
+          rows={blogPosts}
           onTogglePublish={(row) => updateBlogPost.mutate(
             { id: row.id, publishStatus: (row.publishStatus ?? 'published') === 'draft' ? 'published' : 'draft' },
             {

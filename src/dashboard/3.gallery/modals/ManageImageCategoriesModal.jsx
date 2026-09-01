@@ -101,7 +101,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
             value={item}
             className="flex items-start gap-2 rounded-xl border border-ink-900/8 bg-white px-3 py-2.5"
           >
-            <GripVertical size={16} className="mt-1 shrink-0 cursor-grab text-ink-900/30 active:cursor-grabbing" />
+            <GripVertical size={16} className="mt-1 shrink-0 cursor-grab text-ink-400 active:cursor-grabbing" />
             {editingId === item.id ? (
               <div className="flex-1 space-y-1.5">
                 <input

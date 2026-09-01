@@ -51,7 +51,7 @@ function AccountBlock({ session, onSignOut }) {
           </span>
           <div className="min-w-0 leading-tight">
             <p className="truncate text-[13px] font-medium text-surface">{session.name}</p>
-            <p className="truncate text-[11px] text-surface/45">{session.email}</p>
+            <p className="truncate text-[11px] text-surface/60">{session.email}</p>
           </div>
         </div>
       )}
@@ -70,7 +70,7 @@ function AccountBlock({ session, onSignOut }) {
 function NavSections({ dense, onNavigate }) {
   return SECTIONS.map((section) => (
     <div key={section.label} className="mb-5 last:mb-0">
-      <p className="mb-2.5 px-3.5 font-mono text-[10px] uppercase tracking-[0.22em] text-surface/30">{section.label}</p>
+      <p className="mb-2.5 px-3.5 font-mono text-[10px] uppercase tracking-[0.22em] text-surface/55">{section.label}</p>
       <div className="space-y-0.5">
         {section.items.map((item) => {
           const Icon = item.icon;

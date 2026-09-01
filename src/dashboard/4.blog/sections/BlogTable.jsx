@@ -25,5 +25,14 @@ export default function BlogTable({ rows, onTogglePublish, onEdit, onDelete }) {
     </div>
   );
 
-  return <DataTable columns={columns} rows={rows} actions={rowActions} emptyMessage="No posts match your search." />;
+  return (
+    <DataTable
+      columns={columns}
+      rows={rows}
+      actions={rowActions}
+      searchPlaceholder="Search title, author or slug…"
+      filters={['publishStatus']}
+      emptyMessage="No posts yet."
+    />
+  );
 }

@@ -98,7 +98,7 @@ export default function Login() {
         </button>
       </form>
 
-      <p className="mt-10 border-t border-ink-900/8 pt-6 text-xs leading-relaxed text-ink-400">
+      <p className="mt-10 border-t border-ink-900/8 pt-6 text-xs leading-relaxed text-ink-500">
         This console is for Oling Dawn Kerjew Projects staff. If you need access, contact the
         administrator at{' '}
         <a href="mailto:info@olingdawnkerjew.org" className="text-bronze-700 underline underline-offset-2 hover:text-bronze-800">

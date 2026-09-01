@@ -25,5 +25,14 @@ export default function ProjectTable({ rows, onTogglePublish, onEdit, onDelete }
     </div>
   );
 
-  return <DataTable columns={columns} rows={rows} actions={rowActions} emptyMessage="No projects match your search." />;
+  return (
+    <DataTable
+      columns={columns}
+      rows={rows}
+      actions={rowActions}
+      searchPlaceholder="Search title, category or slug…"
+      filters={['category', 'status', 'publishStatus']}
+      emptyMessage="No projects yet."
+    />
+  );
 }
