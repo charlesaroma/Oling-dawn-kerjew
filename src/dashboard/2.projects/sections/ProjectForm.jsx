@@ -5,7 +5,7 @@ import MediaListField from '../../components/MediaListField';
 
 import { FIELD, ERROR_FIELD, LABEL, GROUP_HEADING } from '../../components/formStyles';
 
-const LIFECYCLE = ['Ongoing', 'Completed'];
+const LIFECYCLE = ['Planned', 'Ongoing', 'Completed'];
 const PUBLISH_STATES = ['draft', 'published'];
 
 const slugify = (value) =>
@@ -34,7 +34,7 @@ export default function ProjectForm({ initial, onSubmit }) {
       slug: '',
       category: '',
       location: '',
-      status: LIFECYCLE[0],
+      status: 'Ongoing',
       publishStatus: PUBLISH_STATES[0],
       year: new Date().getFullYear(),
       summary: '',

@@ -5,6 +5,7 @@ import MediaImage from '../media/MediaImage';
 const STATUS_STYLES = {
   Completed: 'border-success/25 text-success',
   Ongoing: 'border-gold-600/30 text-gold-700',
+  Planned: 'border-info/30 text-info',
 };
 
 export default function ProjectCard({ project }) {
