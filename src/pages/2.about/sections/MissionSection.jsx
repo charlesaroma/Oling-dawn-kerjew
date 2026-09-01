@@ -19,7 +19,7 @@ export default function MissionSection() {
         </div>
         <div className="aspect-4/3 overflow-hidden rounded-3xl bg-forest-50 shadow-elevated-lg">
           <MediaImage
-            src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/20250812_123723.jpg"
+            src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/ladies_hairdressing_training_20250812_123723.jpg?updatedAt=1788261011246"
             alt="Oling Dawn Kerjew Projects volunteers with a community they serve"
             width={640}
             height={480}

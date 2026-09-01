@@ -8,7 +8,7 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="relative hidden lg:block">
         <MediaImage
-          src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/_MG_7668.JPG"
+          src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/NGO_secondary_school_20250811_120553.jpg?updatedAt=1788261122344"
           alt=""
           width={960}
           height={1080}

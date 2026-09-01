@@ -36,7 +36,7 @@ export default function Hero() {
         <div className="relative">
           <div className="aspect-4/3 overflow-hidden rounded-3xl shadow-elevated-lg">
             <MediaImage
-              src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/_MG_7659.JPG"
+              src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/distributing_agricultural_tools_hoes_MG_7659.JPG?updatedAt=1788261051598"
               alt=""
               width={960}
               height={720}
