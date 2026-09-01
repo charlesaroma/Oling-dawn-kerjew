@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import api from './api';
+import api from '../api/axios';
 
 // A stable reference so consumers destructuring `data: categories = EMPTY`
 // don't get a fresh array (and a spurious "changed" signal) on every render

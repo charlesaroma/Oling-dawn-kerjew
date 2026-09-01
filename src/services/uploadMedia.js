@@ -1,5 +1,5 @@
 import { upload } from '@imagekit/react';
-import api from './api';
+import api from '../api/axios';
 
 const FOLDER = '/oling-dawn-kerjew-projects/media';
 

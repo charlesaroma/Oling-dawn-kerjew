@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import api from './api';
+import api from '../api/axios';
 
 // Stable reference so `data: items = EMPTY` at call sites doesn't hand back a
 // fresh array (and trigger unnecessary recomputation) on every render before
