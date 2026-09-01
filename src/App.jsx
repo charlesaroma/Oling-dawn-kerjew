@@ -70,17 +70,30 @@ function SiteLayout() {
   );
 }
 
+/* Dark like every other page top — the navbar rides transparent until you
+   scroll, so a light background here would leave it invisible. */
 function NotFound() {
   return (
-    <div className="relative mx-auto flex min-h-[70vh] max-w-xl flex-col items-center justify-center overflow-hidden px-6 py-32 text-center">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-300/15 blur-3xl" />
-      <p className="relative font-display text-8xl italic text-gold-600">404</p>
-      <h1 className="relative mt-4 text-2xl">This page hasn't been built yet.</h1>
+    <div className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-ink-900 px-6 py-32 text-center">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[min(60vw,520px)] w-[min(60vw,520px)] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70"
+        style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.14) 0%, transparent 66%)' }}
+      />
+      <p className="relative font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">
+        Error 404
+      </p>
+      <h1 className="relative mt-6 max-w-[16ch] font-display text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.02] tracking-[-0.02em] text-surface text-balance">
+        This page hasn&apos;t been built yet.
+      </h1>
+      <p className="relative mt-5 max-w-[42ch] leading-relaxed text-surface/60">
+        The link may be old, or the page may still be in progress. Everything else is a click away.
+      </p>
       <Link
         to="/"
-        className="relative mt-8 inline-flex items-center gap-2 rounded-xl bg-forest-800 px-6 py-3 text-sm font-semibold text-white shadow-elevated transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-900 hover:shadow-elevated-lg"
+        className="relative mt-9 inline-flex items-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
       >
-        Back to Home
+        Back to home
       </Link>
     </div>
   );

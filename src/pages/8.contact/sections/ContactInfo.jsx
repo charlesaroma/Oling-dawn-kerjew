@@ -19,7 +19,7 @@ export default function ContactInfo() {
             <Icon size={15} strokeWidth={1.75} />
           </span>
           <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">{label}</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">{label}</p>
             <div className="mt-2.5 space-y-1.5">
               {items.map(({ text, href, muted }) => (
                 href ? (
@@ -28,7 +28,7 @@ export default function ContactInfo() {
                     {text}
                   </a>
                 ) : (
-                  <p key={text} className={`text-[15px] leading-relaxed ${muted ? 'text-ink-400' : 'text-forest-900'}`}>{text}</p>
+                  <p key={text} className={`text-[15px] leading-relaxed ${muted ? 'text-ink-500' : 'text-forest-900'}`}>{text}</p>
                 )
               ))}
             </div>
@@ -37,7 +37,7 @@ export default function ContactInfo() {
       ))}
 
       <div className="pt-7">
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">Follow</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">Follow</p>
         <div className="mt-3.5 flex gap-2.5">
           {socialLinks.map((social) => (
             <a

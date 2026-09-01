@@ -22,11 +22,11 @@ export default function MissionSection() {
 
           <dl className="mt-10 grid gap-6 border-t border-ink-900/10 pt-8 sm:grid-cols-2">
             <div>
-              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">Registered</dt>
+              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">Registered</dt>
               <dd className="mt-2 font-display text-2xl text-forest-900 tabular-nums">{registeredYear}</dd>
             </div>
             <div>
-              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">Based in</dt>
+              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">Based in</dt>
               <dd className="mt-2 text-[15px] leading-relaxed text-forest-900">{registeredAddress}</dd>
             </div>
           </dl>

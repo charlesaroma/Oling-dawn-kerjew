@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
 import Container from '../common/Container';
 import SocialIcon from '../common/SocialIcon';
 import { DATA } from '../../services/jsonDataLoader';
@@ -11,19 +10,20 @@ export default function Footer() {
   const nameLead = nameWords.join(' ');
 
   return (
-    <footer className="border-t border-white/5 bg-surface-dark text-gold-100/80">
-      <Container className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-white/10" />
-            <span className="flex flex-col leading-tight font-display italic text-lg font-semibold">
-              <span className="text-white">{nameLead}</span>
-              <span className="text-gold-400">{nameLastWord}</span>
+    <footer className="bg-ink-900 text-surface/70">
+      <Container className="grid gap-14 py-20 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:gap-16">
+        <div>
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-full ring-1 ring-surface/15" />
+            <span className="flex flex-col font-display text-lg leading-[1.05]">
+              <span className="text-surface">{nameLead}</span>
+              <span className="italic text-gold-500">{nameLastWord}</span>
             </span>
-          </div>
-          <p className="text-sm text-gold-100/70">{tagline}</p>
+          </Link>
+          <p className="mt-6 max-w-[34ch] font-display text-xl italic leading-snug text-surface/80">{tagline}</p>
+
           {socialLinks?.length > 0 && (
-            <div className="mt-2 flex gap-2">
+            <div className="mt-8 flex gap-2.5">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -31,7 +31,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-gold-100/70 transition-all hover:-translate-y-0.5 hover:border-gold-500/40 hover:text-gold-400"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-surface/15 text-surface/60 transition-all duration-200 hover:-translate-y-0.5 hover:border-gold-500/60 hover:text-gold-400"
                 >
                   <SocialIcon label={social.label} />
                 </a>
@@ -40,43 +40,47 @@ export default function Footer() {
           )}
         </div>
 
-        <div className="flex flex-col gap-2.5">
-          <span className="font-mono text-xs uppercase tracking-widest text-gold-300">Explore</span>
+        <nav className="flex flex-col gap-3.5">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Explore</span>
           {navLinks.map((link) => (
-            <Link key={link.path} to={link.path} className="text-sm text-gold-100/70 transition-colors hover:text-white">
+            <Link key={link.path} to={link.path} className="w-fit text-sm text-surface/65 transition-colors hover:text-surface">
               {link.label}
             </Link>
           ))}
-        </div>
+        </nav>
 
-        <div className="flex flex-col gap-2.5">
-          <span className="font-mono text-xs uppercase tracking-widest text-gold-300">Contact</span>
-          {emails.map((email) => (
-            <a key={email} href={`mailto:${email}`} className="flex items-start gap-2 text-sm text-gold-100/70 transition-colors hover:text-white">
-              <Mail size={14} className="mt-0.5 shrink-0 text-gold-100/40" />
-              {email}
-            </a>
-          ))}
-          {phones.map((phone) => (
-            <a key={phone} href={`tel:${phone.replace(/\s+/g, '')}`} className="flex items-start gap-2 text-sm text-gold-100/70 transition-colors hover:text-white">
-              <Phone size={14} className="mt-0.5 shrink-0 text-gold-100/40" />
-              {phone}
-            </a>
-          ))}
-        </div>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Contact</span>
+            {emails.map((email) => (
+              <a key={email} href={`mailto:${email}`} className="w-fit break-all text-sm text-surface/65 transition-colors hover:text-surface">
+                {email}
+              </a>
+            ))}
+            {phones.map((phone) => (
+              <a key={phone} href={`tel:${phone.replace(/\s+/g, '')}`} className="w-fit text-sm text-surface/65 transition-colors hover:text-surface">
+                {phone}
+              </a>
+            ))}
+          </div>
 
-        <div className="flex flex-col gap-2.5">
-          <span className="font-mono text-xs uppercase tracking-widest text-gold-300">Address</span>
-          <p className="flex items-start gap-2 text-sm text-gold-100/70">
-            <MapPin size={14} className="mt-0.5 shrink-0 text-gold-100/40" />
-            {registeredAddress}
-          </p>
-          <p className="pl-[22px] text-sm text-gold-100/70">{postalAddress}</p>
+          <div className="flex flex-col gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Address</span>
+            <p className="max-w-[36ch] text-sm leading-relaxed text-surface/65">{registeredAddress}</p>
+            <p className="text-sm text-surface/45">{postalAddress}</p>
+          </div>
         </div>
       </Container>
 
-      <div className="border-t border-white/5 py-4 text-center text-xs text-gold-100/50">
-        © {new Date().getFullYear()} {orgName}. All rights reserved.
+      <div className="border-t border-surface/10">
+        <Container className="flex flex-wrap items-center justify-between gap-3 py-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-surface/35">
+            © {new Date().getFullYear()} {orgName}
+          </p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-surface/35">
+            Registered NGO · Uganda
+          </p>
+        </Container>
       </div>
     </footer>
   );

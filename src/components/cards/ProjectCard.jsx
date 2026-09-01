@@ -42,7 +42,7 @@ export default function ProjectCard({ project }) {
           <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-ink-500">{project.summary}</p>
         )}
 
-        <p className="mt-5 flex items-center gap-2 border-t border-ink-900/8 pt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-400">
+        <p className="mt-5 flex items-center gap-2 border-t border-ink-900/8 pt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-500">
           {project.location}
           {project.year && <span className="ml-auto tabular-nums">{project.year}</span>}
         </p>

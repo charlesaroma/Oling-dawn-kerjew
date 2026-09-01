@@ -29,7 +29,7 @@ export default function ImpactStats() {
               <p className="font-display text-[clamp(2.6rem,5vw,4rem)] leading-[0.9] tracking-[-0.02em] text-forest-900 tabular-nums">
                 {stat.value}
               </p>
-              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">{stat.label}</p>
+              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">{stat.label}</p>
             </div>
           ))}
         </div>

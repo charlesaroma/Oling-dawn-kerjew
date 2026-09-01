@@ -6,7 +6,7 @@ const initialState = { name: '', email: '', organisation: '', subject: 'General 
 
 const SUBJECTS = ['General enquiry', 'Partnership', 'Volunteering', 'Donation', 'Media'];
 
-const LABEL = 'mb-2 block font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-ink-400';
+const LABEL = 'mb-2 block font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-ink-500';
 const FIELD =
   'w-full rounded-xl border border-ink-900/10 bg-surface/60 px-4 py-3.5 text-[15px] text-ink-800 outline-none transition-all duration-200 placeholder:text-ink-300 focus:border-gold-500 focus:bg-white focus:ring-4 focus:ring-gold-500/10';
 
@@ -103,7 +103,7 @@ export default function ContactForm() {
             ? (<><Loader2 size={16} className="animate-spin" /> Sending…</>)
             : (<>Send message <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" /></>)}
         </button>
-        <p className="text-xs leading-relaxed text-ink-400">We reply to every message,<br className="hidden sm:block" /> usually within two working days.</p>
+        <p className="text-xs leading-relaxed text-ink-500">We reply to every message,<br className="hidden sm:block" /> usually within two working days.</p>
       </div>
     </form>
   );
