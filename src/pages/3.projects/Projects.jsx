@@ -6,8 +6,14 @@ import ProjectCard from '../../components/cards/ProjectCard';
 import CategoryFilterBar from './sections/CategoryFilterBar';
 import { useProjects } from '../../services/projectQueries';
 import { getPublishedProjects, getProjectCategories, filterProjectsByCategory } from '../../services/projectsService';
+import { useSEO } from '../../hooks/useSEO';
 
 export default function Projects() {
+  useSEO({
+    title: 'Our Projects',
+    description: 'Construction, education, healthcare, and community initiatives carried out alongside the people Oling Dawn Kerjew Projects serves.',
+  });
+
   const { data: allProjects } = useProjects();
   const published = useMemo(() => getPublishedProjects(allProjects), [allProjects]);
   const [category, setCategory] = useState('All');

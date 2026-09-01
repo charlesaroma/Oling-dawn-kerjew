@@ -4,11 +4,18 @@ import MediaImage from '../../components/media/MediaImage';
 import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts, getPostBySlug } from '../../services/blogService';
 import { formatDate } from '../../utils/formatDate';
+import { useSEO } from '../../hooks/useSEO';
 
 export default function BlogPost() {
   const { slug } = useParams();
   const { data: blogPosts } = useBlogPosts();
   const post = getPostBySlug(getPublishedPosts(blogPosts), slug);
+
+  useSEO({
+    title: post?.title,
+    description: post?.excerpt,
+    image: post?.coverImage,
+  });
 
   if (!post) return <Navigate to="/blog" replace />;
 

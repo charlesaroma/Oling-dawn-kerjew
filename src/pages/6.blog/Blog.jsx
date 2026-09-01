@@ -3,8 +3,14 @@ import PageHeader from '../../components/common/PageHeader';
 import BlogCard from '../../components/cards/BlogCard';
 import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts } from '../../services/blogService';
+import { useSEO } from '../../hooks/useSEO';
 
 export default function Blog() {
+  useSEO({
+    title: 'Blog & Articles',
+    description: 'Updates, stories, and lessons from the field — news from Oling Dawn Kerjew Projects.',
+  });
+
   const { data: blogPosts } = useBlogPosts();
   const posts = getPublishedPosts(blogPosts);
 

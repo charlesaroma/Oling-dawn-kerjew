@@ -5,11 +5,18 @@ import Button from '../../components/common/Button';
 import ProjectGallery from './sections/ProjectGallery';
 import { useProjects } from '../../services/projectQueries';
 import { getPublishedProjects, getProjectBySlug } from '../../services/projectsService';
+import { useSEO } from '../../hooks/useSEO';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const { data: projects } = useProjects();
   const project = getProjectBySlug(getPublishedProjects(projects), slug);
+
+  useSEO({
+    title: project?.title,
+    description: project?.summary,
+    image: project?.coverImage,
+  });
 
   if (!project) return <Navigate to="/projects" replace />;
 

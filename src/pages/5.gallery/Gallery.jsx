@@ -4,8 +4,14 @@ import PageHeader from '../../components/common/PageHeader';
 import GalleryTile from '../../components/cards/GalleryTile';
 import Lightbox from './sections/Lightbox';
 import { useMedia } from '../../services/mediaQueries';
+import { useSEO } from '../../hooks/useSEO';
 
 export default function Gallery() {
+  useSEO({
+    title: 'Gallery',
+    description: 'Photos and videos from across Oling Dawn Kerjew Projects sites in Uganda.',
+  });
+
   const [active, setActive] = useState(null);
   const { data: items } = useMedia();
 
