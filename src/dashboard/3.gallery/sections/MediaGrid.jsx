@@ -1,5 +1,7 @@
-import { CheckSquare, Square, Pencil, Trash2 } from 'lucide-react';
+import { CheckSquare, Square, Pencil, Trash2, Play } from 'lucide-react';
 import EmptyState from '../../../components/common/EmptyState';
+import MediaImage from '../../../components/media/MediaImage';
+import { isVideoUrl } from '../../../utils/isVideoUrl';
 
 export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, onDeleteOne }) {
   if (!items.length) {
@@ -10,6 +12,7 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 xl:grid-cols-5">
       {items.map((item) => {
         const selected = selectedIds.has(item.id);
+        const isVideo = isVideoUrl(item.url);
         return (
           <div key={item.id} className="group relative overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-elevated">
             <button
@@ -23,11 +26,19 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
               {selected ? <CheckSquare size={16} /> : <Square size={16} />}
             </button>
             <div className="aspect-square overflow-hidden bg-forest-50">
-              <img
-                src={item.url}
-                alt={item.alt || ''}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
+              {isVideo ? (
+                <div className="flex h-full w-full items-center justify-center bg-navy-900/5">
+                  <Play size={28} className="text-forest-400" />
+                </div>
+              ) : (
+                <MediaImage
+                  src={item.url}
+                  alt={item.alt || ''}
+                  width={300}
+                  height={300}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              )}
             </div>
             <div className="space-y-2 p-3">
               <div className="flex items-center justify-between gap-2">

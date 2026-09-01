@@ -12,9 +12,13 @@ import { useToast } from '../../context/useToast';
 
 const ITEMS_PER_PAGE = 12;
 
+// Sizes are always stored as "<n> KB" (see media.controller.js) — parse
+// back to a number for the "Largest" sort.
+const parseSizeKB = (size) => parseInt(size, 10) || 0;
+
 export default function MediaLibrary() {
   const [activeTag, setActiveTag] = useState('');
-  const { data: items = [], isLoading } = useMedia(activeTag);
+  const { data: items = [], isLoading, isError } = useMedia(activeTag);
   const { data: categories = [] } = useImageCategories();
   const deleteMedia = useDeleteMedia();
   const { openModal } = useUpload();
@@ -39,6 +43,7 @@ export default function MediaLibrary() {
       if (sort === 'oldest') return new Date(a.createdAt) - new Date(b.createdAt);
       if (sort === 'name-asc') return (a.alt || '').localeCompare(b.alt || '');
       if (sort === 'name-desc') return (b.alt || '').localeCompare(a.alt || '');
+      if (sort === 'largest') return parseSizeKB(b.size) - parseSizeKB(a.size);
       return new Date(b.createdAt) - new Date(a.createdAt);
     });
 
@@ -94,6 +99,8 @@ export default function MediaLibrary() {
 
       {isLoading ? (
         <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+      ) : isError ? (
+        <p className="py-16 text-center text-sm text-error">Failed to load media. Try refreshing the page.</p>
       ) : (
         <>
           <MediaGrid
@@ -104,20 +111,44 @@ export default function MediaLibrary() {
             onDeleteOne={setConfirmId}
           />
 
-          {totalPages > 1 && (
-            <div className="mt-6 flex items-center justify-center gap-2">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => setPage(p)}
-                  className={`h-8 w-8 rounded-lg text-xs font-semibold transition-colors ${
-                    p === page ? 'bg-gold-500 text-navy-900' : 'text-navy-900/50 hover:bg-forest-50'
-                  }`}
-                >
-                  {p}
-                </button>
-              ))}
+          {filtered.length > 0 && (
+            <div className="mt-6 flex flex-col items-center gap-3">
+              <p className="text-xs text-navy-900/50">
+                Showing {pageItems.length} of {filtered.length} item{filtered.length === 1 ? '' : 's'}
+                {activeTag ? ` in ${activeTag}` : ''}
+              </p>
+              {totalPages > 1 && (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={page <= 1}
+                    className="rounded-lg border border-navy-900/10 px-3 py-1.5 text-xs font-semibold text-navy-900/60 transition-colors hover:bg-forest-50 disabled:opacity-30"
+                  >
+                    Previous
+                  </button>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      onClick={() => setPage(p)}
+                      className={`h-8 w-8 rounded-lg text-xs font-semibold transition-colors ${
+                        p === page ? 'bg-gold-500 text-navy-900' : 'text-navy-900/50 hover:bg-forest-50'
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={page >= totalPages}
+                    className="rounded-lg border border-navy-900/10 px-3 py-1.5 text-xs font-semibold text-navy-900/60 transition-colors hover:bg-forest-50 disabled:opacity-30"
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </>
@@ -125,9 +156,13 @@ export default function MediaLibrary() {
 
       {selectedIds.size > 0 && (
         <div className="fixed inset-x-0 bottom-6 z-40 mx-auto flex w-fit items-center gap-4 rounded-full border border-navy-900/8 bg-white px-5 py-3 shadow-elevated-lg">
-          <button type="button" onClick={selectAll} className="text-xs font-semibold text-forest-800 hover:text-forest-900">
-            Select all {filtered.length}
-          </button>
+          {selectedIds.size < filtered.length ? (
+            <button type="button" onClick={selectAll} className="text-xs font-semibold text-forest-800 hover:text-forest-900">
+              Select all {filtered.length}
+            </button>
+          ) : (
+            <span className="text-xs font-semibold text-forest-800">All items selected</span>
+          )}
           <span className="text-xs text-navy-900/50">{selectedIds.size} selected</span>
           <button
             type="button"

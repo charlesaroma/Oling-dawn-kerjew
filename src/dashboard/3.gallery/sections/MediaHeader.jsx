@@ -6,6 +6,7 @@ const SORT_OPTIONS = [
   { value: 'oldest', label: 'Oldest first' },
   { value: 'name-asc', label: 'Name A–Z' },
   { value: 'name-desc', label: 'Name Z–A' },
+  { value: 'largest', label: 'Largest' },
 ];
 
 export default function MediaHeader({
