@@ -2,7 +2,6 @@ import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { AdminProvider } from './context/AdminContext';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import { UploadProvider } from './dashboard/3.gallery/contexts/UploadContext';
