@@ -155,7 +155,8 @@ export default function ProfileForm({ initial, onSubmit }) {
             value={formik.values.photo}
             onChange={(value) => formik.setFieldValue('photo', value)}
             onBlur={formik.handleBlur}
-            placeholder="/profiles/photo.jpg"
+            placeholder="Paste a URL, or choose a file to upload"
+            tag="profiles"
           />
           <div>
             <label className={LABEL}>Notes</label>

@@ -6,11 +6,16 @@ import Button from '../../components/common/Button';
 import ProfileListHeader from './sections/ProfileListHeader';
 import ProfileTable from './sections/ProfileTable';
 import ProfileForm from './sections/ProfileForm';
-import { useAdmin } from '../../context/AdminContext';
+import { useProfiles, useCreateProfile, useUpdateProfile, useDeleteProfile } from '../../services/profileQueries';
+import { useToast } from '../../context/useToast';
 import { exportProfilesCSV, exportProfilesPDF } from '../utils/exportProfiles';
 
 export default function ProfileList() {
-  const { profiles, addProfile, updateProfile, deleteProfile } = useAdmin();
+  const { data: profiles, isLoading } = useProfiles();
+  const createProfile = useCreateProfile();
+  const updateProfile = useUpdateProfile();
+  const deleteProfile = useDeleteProfile();
+  const { addToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
@@ -55,7 +60,11 @@ export default function ProfileList() {
         />
       </div>
 
-      <ProfileTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
+      {isLoading ? (
+        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+      ) : (
+        <ProfileTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
+      )}
 
       <Modal
         isOpen={!!modalItem}
@@ -72,8 +81,12 @@ export default function ProfileList() {
         <ProfileForm
           initial={modalItem?.item}
           onSubmit={(data) => {
-            if (modalItem?.item) updateProfile(modalItem.item.id, data);
-            else addProfile(data);
+            const onSettled = {
+              onSuccess: () => addToast(modalItem?.item ? 'Profile updated' : 'Profile registered', 'success'),
+              onError: (err) => addToast(err.message || 'Failed to save profile', 'error'),
+            };
+            if (modalItem?.item) updateProfile.mutate({ id: modalItem.item.id, ...data }, onSettled);
+            else createProfile.mutate(data, onSettled);
             setModalItem(null);
           }}
         />
@@ -82,7 +95,13 @@ export default function ProfileList() {
       <ConfirmModal
         isOpen={!!confirmId}
         onClose={() => setConfirmId(null)}
-        onConfirm={() => { deleteProfile(confirmId); setConfirmId(null); }}
+        onConfirm={() => {
+          deleteProfile.mutate(confirmId, {
+            onSuccess: () => addToast('Profile deleted', 'success'),
+            onError: (err) => addToast(err.message || 'Failed to delete profile', 'error'),
+          });
+          setConfirmId(null);
+        }}
         title="Delete profile"
         message={confirmTarget ? `Delete "${confirmTarget.fullName}"? This cannot be undone.` : ''}
         confirmLabel="Delete"
