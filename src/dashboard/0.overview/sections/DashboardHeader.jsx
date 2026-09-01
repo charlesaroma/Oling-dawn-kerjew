@@ -1,8 +1,8 @@
 import { formatDate } from '../../../utils/formatDate';
-import { useSiteConfig } from '../../../services/siteConfigQueries';
+import { DATA } from '../../../services/jsonDataLoader';
 
 export default function DashboardHeader() {
-  const { data: siteConfig } = useSiteConfig();
+  const siteConfig = DATA.siteConfig;
 
   return (
     <header className="mb-8">

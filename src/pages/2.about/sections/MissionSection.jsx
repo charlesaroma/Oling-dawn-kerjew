@@ -1,11 +1,10 @@
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
 import MediaImage from '../../../components/media/MediaImage';
-import { useSiteConfig } from '../../../services/siteConfigQueries';
+import { DATA } from '../../../services/jsonDataLoader';
 
 export default function MissionSection() {
-  const { data: siteConfig } = useSiteConfig();
-  const { description, registeredYear } = siteConfig;
+  const { description, registeredYear } = DATA.siteConfig;
 
   return (
     <section className="py-20">

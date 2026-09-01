@@ -23,7 +23,7 @@ const SECTIONS = [
     label: 'System',
     items: [
       { to: '/dashboard/search', label: 'Search', icon: Search },
-      { to: '/dashboard/settings', label: 'Settings', icon: Settings },
+      { to: '/dashboard/settings', label: 'Account', icon: Settings },
     ],
   },
 ];

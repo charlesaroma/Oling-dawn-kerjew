@@ -35,7 +35,13 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const value = { user, isAuthenticated: !!user, isLoading, login, logout };
+  // Called with the fresh user row returned by PATCH /api/users/me, so the
+  // sidebar/header initials update immediately without a full refetch.
+  const updateUser = useCallback((patch) => {
+    setUser((prev) => (prev ? { ...prev, ...patch } : prev));
+  }, []);
+
+  const value = { user, isAuthenticated: !!user, isLoading, login, logout, updateUser };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
