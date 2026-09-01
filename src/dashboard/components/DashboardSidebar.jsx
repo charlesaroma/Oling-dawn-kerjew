@@ -6,6 +6,7 @@ import {
   LayoutDashboard, Users, FolderKanban, Images, Newspaper, UsersRound, Search, Settings, LogOut, X, ChevronRight,
 } from 'lucide-react';
 import { logout, getSession } from '../../services/authService';
+import { DATA } from '../../services/jsonDataLoader';
 
 const SECTIONS = [
   {
@@ -29,13 +30,14 @@ const SECTIONS = [
 ];
 
 function Brand() {
+  const { orgName, wordmark, division } = DATA.siteConfig;
   return (
     <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
       <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-surface/20" />
-      <div className="flex flex-col leading-[1.1]">
-        <span className="font-display text-[15px] text-surface">Oling Dawn Kerjew</span>
-        <span className="font-display text-[15px] italic text-gold-500">Projects</span>
-        <span className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.22em] text-surface/35">Admin Console</span>
+      <div className="flex flex-col leading-[1.1]" title={orgName}>
+        <span className="font-display text-[15px] text-surface">{wordmark}</span>
+        <span className="font-display text-[15px] italic text-gold-500">{division}</span>
+        <span className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.22em] text-surface/55">Admin Console</span>
       </div>
     </Link>
   );

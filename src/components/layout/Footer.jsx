@@ -4,10 +4,10 @@ import SocialIcon from '../common/SocialIcon';
 import { DATA } from '../../services/jsonDataLoader';
 
 export default function Footer() {
-  const { orgName, tagline, emails, phones, registeredAddress, postalAddress, navLinks, socialLinks } = DATA.siteConfig;
-  const nameWords = orgName.split(' ');
-  const nameLastWord = nameWords.pop();
-  const nameLead = nameWords.join(' ');
+  const {
+    orgName, wordmark, division, tagline, emails, phones,
+    registeredAddress, postalAddress, navLinks, socialLinks,
+  } = DATA.siteConfig;
 
   return (
     <footer className="bg-ink-900 text-surface/70">
@@ -16,11 +16,15 @@ export default function Footer() {
           <Link to="/" className="flex items-center gap-3">
             <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-full ring-1 ring-surface/15" />
             <span className="flex flex-col font-display text-lg leading-[1.05]">
-              <span className="text-surface">{nameLead}</span>
-              <span className="italic text-gold-500">{nameLastWord}</span>
+              <span className="text-surface">{wordmark}</span>
+              <span className="italic text-gold-500">{division}</span>
             </span>
           </Link>
-          <p className="mt-6 max-w-[34ch] font-display text-xl italic leading-snug text-surface/80">{tagline}</p>
+
+          {/* The registered entity in full — the wordmark above is the
+              Projects arm this site covers, not the legal name. */}
+          <p className="mt-6 max-w-[34ch] text-sm leading-relaxed text-surface/55">{orgName}</p>
+          <p className="mt-4 max-w-[34ch] font-display text-xl italic leading-snug text-surface/80">{tagline}</p>
 
           {socialLinks?.length > 0 && (
             <div className="mt-8 flex gap-2.5">

@@ -1,24 +1,59 @@
 {
-  "orgName": "Oling Dawn Kerjew Projects",
-  "shortName": "ODKP",
+  "orgName": "Oling Dawn Kerjew Humanitarian and Charities NGO",
+  "division": "Projects",
+  "wordmark": "Oling Dawn Kerjew",
+  "shortName": "ODKHC",
   "tagline": "Service to humanity, for God and mankind.",
-  "description": "Oling Dawn Kerjew Projects is a registered NGO delivering low-cost, non-profit construction of hospitals, schools, roads and bridges for the nation, alongside sustainable education, healthcare, women's empowerment and community development to underprivileged populations across Uganda, with special focus on needy children, women and girls, and the families of Uganda's security personnel.",
-  "emails": ["info@olingdawnkerjew.org", "odkhumanitarianandcharities@gmail.com"],
-  "phones": ["+256 772 888 566", "+256 772 375 736"],
+  "description": "Oling Dawn Kerjew Humanitarian and Charities NGO is a registered Ugandan NGO. Through its Projects arm it delivers low-cost, non-profit construction of hospitals, schools, roads and bridges, alongside education, healthcare, women's empowerment and community development for underprivileged populations across Uganda — with particular focus on needy children, women and girls, and the families of Uganda's security personnel.",
+  "emails": [
+    "info@olingdawnkerjew.org",
+    "odkhumanitarianandcharities@gmail.com"
+  ],
+  "phones": [
+    "+256 772 888 566",
+    "+256 772 375 736"
+  ],
   "registeredAddress": "Adebe Cell, Western Ward, Kamdini Town Council, Oyam South County, Oyam District, Northern Uganda",
   "postalAddress": "P.O. Box 331793, Lira, Uganda",
   "registeredYear": "2025",
   "navLinks": [
-    { "label": "Home", "path": "/" },
-    { "label": "About", "path": "/about" },
-    { "label": "Projects", "path": "/projects" },
-    { "label": "Gallery", "path": "/gallery" },
-    { "label": "Blog", "path": "/blog" },
-    { "label": "Contact", "path": "/contact" }
+    {
+      "label": "Home",
+      "path": "/"
+    },
+    {
+      "label": "About",
+      "path": "/about"
+    },
+    {
+      "label": "Projects",
+      "path": "/projects"
+    },
+    {
+      "label": "Gallery",
+      "path": "/gallery"
+    },
+    {
+      "label": "Blog",
+      "path": "/blog"
+    },
+    {
+      "label": "Contact",
+      "path": "/contact"
+    }
   ],
   "socialLinks": [
-    { "label": "X", "url": "https://x.com/ODKHC_NGO" },
-    { "label": "Instagram", "url": "https://www.instagram.com/odk_humanitarianandcharities/" },
-    { "label": "TikTok", "url": "https://www.tiktok.com/@odkhc_ngo" }
+    {
+      "label": "X",
+      "url": "https://x.com/ODKHC_NGO"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/odk_humanitarianandcharities/"
+    },
+    {
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@odkhc_ngo"
+    }
   ]
 }

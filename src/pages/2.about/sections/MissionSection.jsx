@@ -3,7 +3,7 @@ import MediaImage from '../../../components/media/MediaImage';
 import { DATA } from '../../../services/jsonDataLoader';
 
 export default function MissionSection() {
-  const { description, registeredYear, registeredAddress } = DATA.siteConfig;
+  const { orgName, description, registeredYear, registeredAddress } = DATA.siteConfig;
 
   return (
     <section className="bg-surface py-20 sm:py-28">
@@ -22,8 +22,9 @@ export default function MissionSection() {
 
           <dl className="mt-10 grid gap-6 border-t border-ink-900/10 pt-8 sm:grid-cols-2">
             <div>
-              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">Registered</dt>
-              <dd className="mt-2 font-display text-2xl text-forest-900 tabular-nums">{registeredYear}</dd>
+              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">Registered entity</dt>
+              <dd className="mt-2 text-[15px] leading-relaxed text-forest-900">{orgName}</dd>
+              <dd className="mt-1 font-mono text-xs text-ink-500 tabular-nums">Since {registeredYear}</dd>
             </div>
             <div>
               <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">Based in</dt>

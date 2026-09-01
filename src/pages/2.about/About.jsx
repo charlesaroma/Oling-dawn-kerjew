@@ -7,7 +7,7 @@ import { useSEO } from '../../hooks/useSEO';
 export default function About() {
   useSEO({
     title: 'About Us',
-    description: 'Why Oling Dawn Kerjew Projects serves, and who we serve alongside — our mission, focus areas, and team across Uganda.',
+    description: 'Oling Dawn Kerjew Humanitarian and Charities NGO — why we serve, and who we serve alongside. Mission, focus areas and team across Uganda.',
   });
 
   return (
@@ -15,7 +15,7 @@ export default function About() {
       <PageHeader
         eyebrow="Who we are"
         title="Service, built to last."
-        subtitle="A registered Ugandan NGO working in construction, education, healthcare and community development — alongside the people who use what we build."
+        subtitle="Oling Dawn Kerjew Humanitarian and Charities NGO — a registered Ugandan NGO. This site covers its Projects arm: construction, education, healthcare and community development, alongside the people who use what we build."
       />
       <MissionSection />
       <PillarsSection />

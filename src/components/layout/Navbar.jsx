@@ -9,10 +9,7 @@ import { DATA } from '../../services/jsonDataLoader';
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { orgName, navLinks } = DATA.siteConfig;
-  const nameWords = orgName.split(' ');
-  const nameLastWord = nameWords.pop();
-  const nameLead = nameWords.join(' ');
+  const { orgName, wordmark, division, navLinks } = DATA.siteConfig;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -43,9 +40,9 @@ export default function Navbar() {
               solid ? 'h-9 w-9 ring-1 ring-ink-900/10' : 'h-10 w-10 ring-1 ring-surface/25'
             }`}
           />
-          <span className="flex flex-col font-display text-base leading-[1.05] sm:text-lg">
-            <span className={solid ? 'text-forest-900' : 'text-surface'}>{nameLead}</span>
-            <span className="italic text-gold-500">{nameLastWord}</span>
+          <span className="flex flex-col font-display text-base leading-[1.05] sm:text-lg" title={orgName}>
+            <span className={solid ? 'text-forest-900' : 'text-surface'}>{wordmark}</span>
+            <span className="italic text-gold-500">{division}</span>
           </span>
         </NavLink>
 

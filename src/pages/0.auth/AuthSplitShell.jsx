@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import MediaImage from '../../components/media/MediaImage';
+import { DATA } from '../../services/jsonDataLoader';
 
 /* Full-screen split for the staff portal — rendered outside SiteLayout (see
    App.jsx), so it carries its own brand mark and has no public nav/footer. */
 export default function AuthSplitShell({ kicker, title, blurb, children }) {
+  const { orgName, wordmark, division } = DATA.siteConfig;
+
   return (
     <div className="grid min-h-screen lg:grid-cols-[1.05fr_1fr]">
       {/* Photography panel — the same editorial treatment as the public hero */}
@@ -38,11 +41,11 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
       {/* Form panel */}
       <div className="flex flex-col justify-center bg-surface px-6 py-16 sm:px-12 lg:px-16 xl:px-24">
         <div className="mx-auto w-full max-w-[26rem]">
-          <Link to="/" className="mb-14 flex items-center gap-3" aria-label="Oling Dawn Kerjew Projects home">
+          <Link to="/" className="mb-14 flex items-center gap-3" aria-label={`${orgName} home`}>
             <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-full ring-1 ring-ink-900/8" />
-            <span className="flex flex-col font-display text-lg leading-[1.05]">
-              <span className="text-forest-900">Oling Dawn Kerjew</span>
-              <span className="italic text-gold-600">Projects</span>
+            <span className="flex flex-col font-display text-lg leading-[1.05]" title={orgName}>
+              <span className="text-forest-900">{wordmark}</span>
+              <span className="italic text-gold-600">{division}</span>
             </span>
           </Link>
           {children}

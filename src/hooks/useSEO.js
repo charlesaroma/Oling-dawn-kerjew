@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 const SITE_NAME = 'Oling Dawn Kerjew Projects';
+const LEGAL_NAME = 'Oling Dawn Kerjew Humanitarian and Charities NGO';
 
 function setMetaTag(attr, value, content) {
   let tag = document.querySelector(`meta[${attr}="${value}"]`);
@@ -23,6 +24,7 @@ export function useSEO({ title, description, image }) {
     if (title) {
       document.title = title === SITE_NAME ? title : `${title} — ${SITE_NAME}`;
       setMetaTag('property', 'og:title', document.title);
+      setMetaTag('property', 'og:site_name', LEGAL_NAME);
     }
     if (description) {
       setMetaTag('name', 'description', description);
