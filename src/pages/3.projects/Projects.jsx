@@ -27,14 +27,14 @@ export default function Projects() {
         title="Every initiative, on the record."
         subtitle="Construction, education, healthcare and community initiatives carried out alongside the people we serve."
       />
-      <section className="py-16">
-        <Container className="flex flex-col gap-10">
+      <section className="bg-surface-alt py-20 sm:py-28">
+        <Container className="flex flex-col gap-12">
           <CategoryFilterBar categories={categories} active={category} onChange={setCategory} />
 
           {projects.length === 0 ? (
             <EmptyState title="No projects in this category yet" message="Check back soon, or explore another category." />
           ) : (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}

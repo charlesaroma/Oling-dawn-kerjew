@@ -1,6 +1,7 @@
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import BlogCard from '../../components/cards/BlogCard';
+import EmptyState from '../../components/common/EmptyState';
 import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts } from '../../services/blogService';
 import { useSEO } from '../../hooks/useSEO';
@@ -21,11 +22,20 @@ export default function Blog() {
         title="Notes from the field."
         subtitle="Updates, stories and lessons from the districts where we work."
       />
-      <section className="py-16">
-        <Container className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+      <section className="bg-surface-alt py-20 sm:py-28">
+        <Container>
+          {posts.length === 0 ? (
+            <EmptyState
+              title="The first stories are being written"
+              message="We're documenting the work as it happens. Field notes and project updates will appear here."
+            />
+          ) : (
+            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+          )}
         </Container>
       </section>
     </>

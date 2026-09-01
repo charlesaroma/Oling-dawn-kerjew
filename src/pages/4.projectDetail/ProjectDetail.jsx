@@ -22,17 +22,35 @@ export default function ProjectDetail() {
 
   return (
     <>
-      <section className="bg-surface-alt py-16">
-        <Container className="flex flex-col gap-2">
-          <span className="font-mono text-sm uppercase tracking-widest text-gold-700">
+      <section className="relative overflow-hidden bg-ink-900">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-[8%] -top-[60%] h-[min(60vw,520px)] w-[min(60vw,520px)] rounded-full opacity-70"
+          style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.14) 0%, transparent 66%)' }}
+        />
+        <Container className="relative pb-16 pt-32 sm:pb-20 sm:pt-40">
+          <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">
             {project.category} · {project.location}
-          </span>
-          <h1 className="text-3xl italic sm:text-4xl">{project.title}</h1>
+          </p>
+          <h1 className="max-w-[18ch] font-display text-[clamp(2.2rem,5.4vw,4rem)] leading-[0.98] tracking-[-0.02em] text-surface text-balance">
+            {project.title}
+          </h1>
+          {project.summary && (
+            <p className="mt-6 max-w-[52ch] text-base leading-relaxed text-surface/60">{project.summary}</p>
+          )}
         </Container>
+        <div
+          aria-hidden="true"
+          className="h-1.5"
+          style={{
+            background:
+              'repeating-linear-gradient(90deg, var(--color-gold-500) 0 28px, var(--color-bronze-600) 28px 56px, var(--color-forest-700) 56px 84px)',
+          }}
+        />
       </section>
 
-      <section className="py-16">
-        <Container className="flex flex-col gap-12">
+      <section className="bg-surface py-20 sm:py-24">
+        <Container className="flex flex-col gap-14">
           <div className="aspect-21/9 overflow-hidden rounded-3xl shadow-elevated-lg">
             <MediaImage
               src={project.coverImage}
