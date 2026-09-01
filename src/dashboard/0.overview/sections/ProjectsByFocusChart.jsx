@@ -13,7 +13,7 @@ export default function ProjectsByFocusChart() {
       <h2 className="font-display text-lg text-forest-900">Projects by Focus Area</h2>
       {stats.length ? (
         <>
-          <p className="mb-5 mt-1 text-sm text-ink-900/50">
+          <p className="mb-5 mt-1 text-sm text-ink-500">
             {projects.length} active project{projects.length === 1 ? '' : 's'} across {stats.length} focus area{stats.length === 1 ? '' : 's'}
           </p>
           <div className="space-y-5">

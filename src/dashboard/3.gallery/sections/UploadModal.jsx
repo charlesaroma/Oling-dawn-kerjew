@@ -145,7 +145,7 @@ export default function UploadModal() {
                 type="button"
                 onClick={minimise}
                 aria-label="Minimise"
-                className="rounded-full p-2 text-ink-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800"
+                className="rounded-full p-2 text-ink-500 transition-colors hover:bg-forest-50 hover:text-forest-800"
               >
                 <Minus size={18} />
               </button>
@@ -154,7 +154,7 @@ export default function UploadModal() {
                 onClick={handleClose}
                 disabled={uploading}
                 aria-label="Close"
-                className="rounded-full p-2 text-ink-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800 disabled:opacity-40"
+                className="rounded-full p-2 text-ink-500 transition-colors hover:bg-forest-50 hover:text-forest-800 disabled:opacity-40"
               >
                 <X size={20} />
               </button>
@@ -182,7 +182,7 @@ export default function UploadModal() {
             >
               <UploadIcon size={22} className="text-forest-700" />
               <span className="text-sm font-semibold text-forest-900">Click to upload</span>
-              <span className="text-xs text-ink-900/50">PNG, JPEG, or WEBP — up to 25MB each</span>
+              <span className="text-xs text-ink-500">PNG, JPEG, or WEBP — up to 25MB each</span>
               <input
                 ref={inputRef}
                 type="file"
@@ -216,12 +216,12 @@ export default function UploadModal() {
                             />
                           </div>
                         ) : (
-                          <p className="text-[11px] text-ink-900/40">{(file.size / 1024).toFixed(0)} KB</p>
+                          <p className="text-[11px] text-ink-500">{(file.size / 1024).toFixed(0)} KB</p>
                         )}
                       </div>
                       {failed && <AlertCircle size={16} className="shrink-0 text-error" />}
                       {!uploading && !succeeded && (
-                        <button type="button" onClick={() => removeFile(idx)} aria-label="Remove" className="shrink-0 text-ink-900/40 hover:text-error">
+                        <button type="button" onClick={() => removeFile(idx)} aria-label="Remove" className="shrink-0 text-ink-500 hover:text-error">
                           <X size={16} />
                         </button>
                       )}

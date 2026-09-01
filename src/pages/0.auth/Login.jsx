@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
-import Button from '../../components/common/Button';
 import AuthSplitShell from './AuthSplitShell';
 import FloatingInput from './FloatingInput';
 import { login } from '../../services/authService';
@@ -43,16 +42,18 @@ export default function Login() {
 
   return (
     <AuthSplitShell
-      kicker="Staff Portal"
-      title={<>Serving with <br /> accountability.</>}
-      blurb="Sign in to register and manage the community profiles behind every Oling Dawn Kerjew Projects initiative."
+      kicker="Staff portal"
+      title="Serving with accountability."
+      blurb="Every profile, project and photograph on the public site is registered and maintained from here."
     >
-      <div className="mb-10 text-center lg:text-left">
-        <h1 className="mb-3 font-display text-3xl italic font-semibold text-forest-900 lg:text-4xl">Sign in</h1>
-        <p className="text-sm text-ink-900/60">Access the Oling Dawn Kerjew Projects admin dashboard.</p>
+      <div className="mb-12">
+        <h1 className="font-display text-[2.5rem] leading-none tracking-[-0.02em] text-forest-900">Sign in</h1>
+        <p className="mt-4 text-[15px] leading-relaxed text-ink-500">
+          Access the Oling Dawn Kerjew Projects admin console.
+        </p>
       </div>
 
-      <form onSubmit={submit} noValidate className="space-y-6">
+      <form onSubmit={submit} noValidate className="space-y-7">
         <FloatingInput
           id="email"
           label="Email"
@@ -76,7 +77,7 @@ export default function Login() {
               type="button"
               onClick={() => setShowPassword((v) => !v)}
               aria-label={showPassword ? 'Hide password' : 'Show password'}
-              className="p-1 text-ink-900/40 transition-colors hover:text-forest-800"
+              className="p-1.5 text-ink-400 transition-colors hover:text-forest-800"
             >
               {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
@@ -84,13 +85,26 @@ export default function Login() {
         />
 
         {error && (
-          <p className="rounded border border-error/30 bg-error/5 px-4 py-3 text-xs text-error" role="alert">
+          <p className="rounded-xl border border-error/20 bg-error/5 px-4 py-3 text-[13px] leading-relaxed text-error" role="alert">
             {error}
           </p>
         )}
 
-        <Button type="submit" variant="primary" className="w-full">Sign In</Button>
+        <button
+          type="submit"
+          className="w-full rounded-full bg-forest-800 px-7 py-4 text-sm font-semibold text-surface transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+        >
+          Sign in
+        </button>
       </form>
+
+      <p className="mt-10 border-t border-ink-900/8 pt-6 text-xs leading-relaxed text-ink-400">
+        This console is for Oling Dawn Kerjew Projects staff. If you need access, contact the
+        administrator at{' '}
+        <a href="mailto:info@olingdawnkerjew.org" className="text-bronze-700 underline underline-offset-2 hover:text-bronze-800">
+          info@olingdawnkerjew.org
+        </a>.
+      </p>
     </AuthSplitShell>
   );
 }

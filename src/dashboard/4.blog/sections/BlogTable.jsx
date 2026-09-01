@@ -6,7 +6,7 @@ const columns = [
   { key: 'title', label: 'Title', render: (r) => (
     <div>
       <p className="font-medium text-forest-900">{r.title}</p>
-      <p className="font-mono text-[10px] text-ink-900/40">{r.slug}</p>
+      <p className="font-mono text-[10px] text-ink-500">{r.slug}</p>
     </div>
   ) },
   { key: 'author', label: 'Author' },
@@ -21,7 +21,7 @@ export default function BlogTable({ rows, onTogglePublish, onEdit, onDelete }) {
         {(row.publishStatus ?? 'published') === 'draft' ? 'Publish' : 'Unpublish'}
       </button>
       <button type="button" onClick={() => onEdit(row)} className="text-gold-700 hover:text-gold-800">Edit</button>
-      <button type="button" onClick={() => onDelete(row.id)} className="text-ink-900/40 transition-colors hover:text-error">Delete</button>
+      <button type="button" onClick={() => onDelete(row.id)} className="text-ink-500 transition-colors hover:text-error">Delete</button>
     </div>
   );
 

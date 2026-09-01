@@ -122,7 +122,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
             ) : (
               <div className="min-w-0 flex-1">
                 <span className="block text-sm text-forest-900">{item.name}</span>
-                {item.description && <p className="truncate text-xs text-ink-900/50">{item.description}</p>}
+                {item.description && <p className="truncate text-xs text-ink-500">{item.description}</p>}
               </div>
             )}
             {editingId === item.id ? (
@@ -130,7 +130,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
                 <Save size={15} />
               </button>
             ) : (
-              <button type="button" onClick={() => startEdit(item)} aria-label="Rename" className="mt-1 shrink-0 text-ink-900/40 hover:text-forest-800">
+              <button type="button" onClick={() => startEdit(item)} aria-label="Rename" className="mt-1 shrink-0 text-ink-500 hover:text-forest-800">
                 <Pencil size={15} />
               </button>
             )}
@@ -141,7 +141,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
                 onError: (err) => addToast(err.message || 'Failed to delete category', 'error'),
               })}
               aria-label="Delete"
-              className="mt-1 shrink-0 text-ink-900/40 hover:text-error"
+              className="mt-1 shrink-0 text-ink-500 hover:text-error"
             >
               <Trash2 size={15} />
             </button>
@@ -150,7 +150,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
       </Reorder.Group>
 
       {items.length === 0 && (
-        <p className="py-8 text-center text-sm text-ink-900/40">No categories yet — add one above.</p>
+        <p className="py-8 text-center text-sm text-ink-500">No categories yet — add one above.</p>
       )}
     </Modal>
   );

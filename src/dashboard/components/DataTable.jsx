@@ -36,20 +36,20 @@ export default function DataTable({ columns = [], rows = [], keyField = 'id', ac
 
   if (!rows.length) {
     return (
-      <div className="rounded-2xl border border-dashed border-ink-900/15 bg-white px-6 py-16 text-center text-sm text-ink-900/50">
+      <div className="rounded-2xl border border-dashed border-ink-900/12 bg-white px-6 py-20 text-center text-sm text-ink-500">
         {emptyMessage}
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-ink-900/8 bg-white shadow-elevated">
+    <div className="overflow-x-auto rounded-2xl border border-ink-900/8 bg-white">
       <table className="w-full min-w-[640px] text-sm">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="border-b border-ink-900/8 bg-surface-alt/60 text-left font-mono text-[10px] uppercase tracking-widest text-ink-900/50">
+            <tr key={headerGroup.id} className="border-b border-ink-900/8 bg-surface/60 text-left font-mono text-[10px] uppercase tracking-[0.14em] text-ink-500">
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="whitespace-nowrap px-4 py-3.5 first:rounded-tl-2xl last:rounded-tr-2xl">
+                <th key={header.id} className="whitespace-nowrap px-5 py-4 first:rounded-tl-2xl last:rounded-tr-2xl">
                   {header.isPlaceholder ? null : header.column.getCanSort() ? (
                     <button
                       type="button"
@@ -72,9 +72,9 @@ export default function DataTable({ columns = [], rows = [], keyField = 'id', ac
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="border-b border-ink-900/5 transition-colors last:border-0 hover:bg-surface-alt/50">
+            <tr key={row.id} className="border-b border-ink-900/6 transition-colors last:border-0 hover:bg-surface/70">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className={`px-4 py-3.5 align-middle text-ink-900/80 ${cell.column.id === '__actions' ? 'text-right' : ''}`}>
+                <td key={cell.id} className={`px-5 py-4 align-middle text-ink-700 ${cell.column.id === '__actions' ? 'text-right' : ''}`}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

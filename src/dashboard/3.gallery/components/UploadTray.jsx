@@ -43,7 +43,7 @@ export default function UploadTray() {
               onClick={(e) => { e.stopPropagation(); closeModal(); }}
               onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); closeModal(); } }}
               aria-label="Dismiss"
-              className="shrink-0 rounded-full p-1 text-ink-900/40 hover:text-error"
+              className="shrink-0 rounded-full p-1 text-ink-500 hover:text-error"
             >
               <X size={14} />
             </span>

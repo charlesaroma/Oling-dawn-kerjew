@@ -15,7 +15,7 @@ export default function ProfilesByCategoryChart() {
       <h2 className="font-display text-lg text-forest-900">Profiles by Category</h2>
       {stats.length ? (
         <>
-          <p className="mb-5 mt-1 text-sm text-ink-900/50">
+          <p className="mb-5 mt-1 text-sm text-ink-500">
             {profiles.length} profile{profiles.length === 1 ? '' : 's'} across {stats.length} categor{stats.length === 1 ? 'y' : 'ies'}
           </p>
           <ThemeProvider theme={muiTheme}>

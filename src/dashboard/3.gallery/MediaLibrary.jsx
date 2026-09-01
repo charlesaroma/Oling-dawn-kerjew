@@ -98,7 +98,7 @@ export default function MediaLibrary() {
       />
 
       {isLoading ? (
-        <p className="py-16 text-center text-sm text-ink-900/50">Loading…</p>
+        <p className="py-16 text-center text-sm text-ink-500">Loading…</p>
       ) : isError ? (
         <p className="py-16 text-center text-sm text-error">Failed to load media. Try refreshing the page.</p>
       ) : (
@@ -113,7 +113,7 @@ export default function MediaLibrary() {
 
           {filtered.length > 0 && (
             <div className="mt-6 flex flex-col items-center gap-3">
-              <p className="text-xs text-ink-900/50">
+              <p className="text-xs text-ink-500">
                 Showing {pageItems.length} of {filtered.length} item{filtered.length === 1 ? '' : 's'}
                 {activeTag ? ` in ${activeTag}` : ''}
               </p>
@@ -133,7 +133,7 @@ export default function MediaLibrary() {
                       type="button"
                       onClick={() => setPage(p)}
                       className={`h-8 w-8 rounded-lg text-xs font-semibold transition-colors ${
-                        p === page ? 'bg-gold-500 text-ink-900' : 'text-ink-900/50 hover:bg-forest-50'
+                        p === page ? 'bg-gold-500 text-ink-900' : 'text-ink-500 hover:bg-forest-50'
                       }`}
                     >
                       {p}
@@ -163,7 +163,7 @@ export default function MediaLibrary() {
           ) : (
             <span className="text-xs font-semibold text-forest-800">All items selected</span>
           )}
-          <span className="text-xs text-ink-900/50">{selectedIds.size} selected</span>
+          <span className="text-xs text-ink-500">{selectedIds.size} selected</span>
           <button
             type="button"
             onClick={() => setConfirmBulk(true)}

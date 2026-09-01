@@ -47,7 +47,7 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
                     {item.tag}
                   </span>
                 )}
-                {item.size && <span className="shrink-0 text-[10px] text-ink-900/40">{item.size}</span>}
+                {item.size && <span className="shrink-0 text-[10px] text-ink-500">{item.size}</span>}
               </div>
               <div className="flex gap-2">
                 <button
@@ -61,7 +61,7 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
                   type="button"
                   onClick={() => onDeleteOne(item.id)}
                   aria-label="Delete"
-                  className="flex shrink-0 items-center justify-center rounded-lg border border-ink-900/10 px-2.5 text-ink-900/40 transition-colors hover:border-error/30 hover:text-error"
+                  className="flex shrink-0 items-center justify-center rounded-lg border border-ink-900/10 px-2.5 text-ink-500 transition-colors hover:border-error/30 hover:text-error"
                 >
                   <Trash2 size={13} />
                 </button>

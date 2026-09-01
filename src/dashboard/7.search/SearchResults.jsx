@@ -29,7 +29,7 @@ export default function SearchResults() {
       </header>
 
       {q && total === 0 && (
-        <div className="rounded-2xl border border-ink-900/8 bg-white px-6 py-16 text-center text-sm text-ink-900/50 shadow-elevated">
+        <div className="rounded-2xl border border-ink-900/8 bg-white px-6 py-16 text-center text-sm text-ink-500 shadow-elevated">
           No matches found.
         </div>
       )}
@@ -40,7 +40,7 @@ export default function SearchResults() {
           items={matchedProfiles}
           renderRow={(p) => (
             <button type="button" onClick={() => goToEdit('/dashboard/profiles', p.id)} className="text-forest-900 hover:text-gold-700">
-              {p.fullName} <span className="text-ink-900/40">· {p.category}</span>
+              {p.fullName} <span className="text-ink-500">· {p.category}</span>
             </button>
           )}
         />
@@ -49,7 +49,7 @@ export default function SearchResults() {
           items={matchedProjects}
           renderRow={(p) => (
             <button type="button" onClick={() => goToEdit('/dashboard/projects', p.id)} className="text-forest-900 hover:text-gold-700">
-              {p.title} <span className="text-ink-900/40">· {p.category}</span>
+              {p.title} <span className="text-ink-500">· {p.category}</span>
             </button>
           )}
         />

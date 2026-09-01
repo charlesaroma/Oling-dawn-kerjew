@@ -12,7 +12,7 @@ export default function RecentActivity() {
         {items.slice(0, 8).map((a) => (
           <li key={a.id} className="flex items-center justify-between px-5 py-3.5 text-sm">
             <span className="text-ink-900/80">{a.action}</span>
-            <span className="shrink-0 pl-4 font-mono text-[11px] text-ink-900/40">{formatDate(a.createdAt)}</span>
+            <span className="shrink-0 pl-4 font-mono text-[11px] text-ink-500">{formatDate(a.createdAt)}</span>
           </li>
         ))}
       </ul>

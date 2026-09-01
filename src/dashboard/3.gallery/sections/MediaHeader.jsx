@@ -68,7 +68,7 @@ export default function MediaHeader({
         <button
           type="button"
           onClick={onManageCategories}
-          className="flex items-center gap-1.5 rounded-full border border-dashed border-ink-900/15 px-3.5 py-1.5 text-xs font-semibold text-ink-900/50 transition-colors hover:border-ink-900/30 hover:text-ink-900/70"
+          className="flex items-center gap-1.5 rounded-full border border-dashed border-ink-900/15 px-3.5 py-1.5 text-xs font-semibold text-ink-500 transition-colors hover:border-ink-900/30 hover:text-ink-900/70"
         >
           <Settings size={12} /> Manage
         </button>

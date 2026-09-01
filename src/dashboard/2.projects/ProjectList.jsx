@@ -51,7 +51,7 @@ export default function ProjectList() {
       </div>
 
       {isLoading ? (
-        <p className="py-16 text-center text-sm text-ink-900/50">Loading…</p>
+        <p className="py-16 text-center text-sm text-ink-500">Loading…</p>
       ) : (
         <ProjectTable
           rows={rows}

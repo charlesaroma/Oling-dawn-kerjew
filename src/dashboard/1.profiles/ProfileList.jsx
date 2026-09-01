@@ -61,7 +61,7 @@ export default function ProfileList() {
       </div>
 
       {isLoading ? (
-        <p className="py-16 text-center text-sm text-ink-900/50">Loading…</p>
+        <p className="py-16 text-center text-sm text-ink-500">Loading…</p>
       ) : (
         <ProfileTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
       )}

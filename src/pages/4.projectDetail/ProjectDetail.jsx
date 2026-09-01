@@ -73,15 +73,15 @@ export default function ProjectDetail() {
 
             <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-ink-900/8 bg-white p-6 shadow-elevated">
               <div>
-                <p className="font-mono text-xs uppercase tracking-wide text-ink-900/50">Status</p>
+                <p className="font-mono text-xs uppercase tracking-wide text-ink-500">Status</p>
                 <p className="font-semibold text-forest-900">{project.status}</p>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-wide text-ink-900/50">Year</p>
+                <p className="font-mono text-xs uppercase tracking-wide text-ink-500">Year</p>
                 <p className="font-semibold text-forest-900">{project.year}</p>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-wide text-ink-900/50">Location</p>
+                <p className="font-mono text-xs uppercase tracking-wide text-ink-500">Location</p>
                 <p className="font-semibold text-forest-900">{project.location}</p>
               </div>
               <Button to="/contact" variant="primary" className="mt-2 w-full">Support This Work</Button>

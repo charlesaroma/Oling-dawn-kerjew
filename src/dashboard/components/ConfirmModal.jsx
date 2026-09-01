@@ -46,7 +46,7 @@ export default function ConfirmModal({ isOpen, onClose, onConfirm, title, messag
                 type="button"
                 onClick={onClose}
                 aria-label="Close"
-                className="shrink-0 rounded-full p-2 text-ink-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800"
+                className="shrink-0 rounded-full p-2 text-ink-500 transition-colors hover:bg-forest-50 hover:text-forest-800"
               >
                 <X size={18} />
               </button>

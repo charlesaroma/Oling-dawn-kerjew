@@ -19,7 +19,7 @@ export default function HighlightsPanel() {
   return (
     <section className="rounded-2xl border border-ink-900/8 bg-white p-6 shadow-elevated">
       <h2 className="font-display text-lg text-forest-900">Highlights</h2>
-      <p className="mb-5 mt-1 text-sm text-ink-900/50">Read on the numbers above</p>
+      <p className="mb-5 mt-1 text-sm text-ink-500">Read on the numbers above</p>
       <ul className="space-y-4">
         {highlights.map((h) => {
           const Icon = ICONS[h.icon];
