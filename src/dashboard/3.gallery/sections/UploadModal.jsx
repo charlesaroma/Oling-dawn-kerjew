@@ -7,6 +7,7 @@ import Button from '../../../components/common/Button';
 import api from '../../../services/api';
 import { useImageCategories } from '../../../services/imageCategoryQueries';
 import { useUpload } from '../contexts/useUpload';
+import { useToast } from '../../../context/useToast';
 
 const FOLDER = '/oling-dawn-kerjew-projects/media';
 const BATCH_SIZE = 3;
@@ -45,6 +46,7 @@ export default function UploadModal() {
   const { isOpen, isMinimised, closeModal, minimise } = useUpload();
   const { data: categories = [] } = useImageCategories();
   const queryClient = useQueryClient();
+  const { addToast } = useToast();
   const inputRef = useRef(null);
 
   const [files, setFiles] = useState([]);
@@ -113,6 +115,14 @@ export default function UploadModal() {
     setDone(true);
     setErrors(newErrors);
     queryClient.invalidateQueries({ queryKey: ['media'] });
+
+    if (newErrors.length === 0) {
+      addToast(`${files.length} file${files.length === 1 ? '' : 's'} uploaded successfully`, 'success');
+    } else if (newErrors.length === files.length) {
+      addToast('Upload failed', 'error');
+    } else {
+      addToast(`${files.length - newErrors.length} of ${files.length} files uploaded`, 'warning');
+    }
   };
 
   return (

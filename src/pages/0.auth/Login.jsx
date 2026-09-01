@@ -4,10 +4,13 @@ import Button from '../../components/common/Button';
 import AuthSplitShell from './AuthSplitShell';
 import FloatingInput from './FloatingInput';
 import { login } from '../../services/authService';
-import api from '../../services/api';
+import { useAuth } from '../../context/useAuth';
+import { useToast } from '../../context/useToast';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login: apiLogin } = useAuth();
+  const { addToast } = useToast();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
@@ -21,15 +24,16 @@ export default function Login() {
       // A failure here shouldn't block access to the rest of the dashboard,
       // which still runs entirely on localStorage.
       try {
-        const { data } = await api.post('/api/auth/login', { email: form.email, password: form.password });
-        localStorage.setItem('accessToken', data.accessToken);
+        await apiLogin({ email: form.email, password: form.password });
       } catch (apiErr) {
         console.error('Backend login failed — Gallery will be unavailable until this succeeds:', apiErr);
       }
 
+      addToast('Welcome back! Signed in successfully.', 'success');
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);
+      addToast(err.message, 'error');
     }
   };
 

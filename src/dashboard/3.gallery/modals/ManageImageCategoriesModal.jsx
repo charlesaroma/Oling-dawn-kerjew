@@ -6,6 +6,7 @@ import Button from '../../../components/common/Button';
 import {
   useImageCategories, useCreateImageCategory, useUpdateImageCategory, useDeleteImageCategory, useReorderImageCategories,
 } from '../../../services/imageCategoryQueries';
+import { useToast } from '../../../context/useToast';
 
 export default function ManageImageCategoriesModal({ isOpen, onClose }) {
   const { data: categories = [] } = useImageCategories();
@@ -13,6 +14,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
   const updateCategory = useUpdateImageCategory();
   const deleteCategory = useDeleteImageCategory();
   const reorderCategories = useReorderImageCategories();
+  const { addToast } = useToast();
 
   const [items, setItems] = useState(categories);
   const [prevCategories, setPrevCategories] = useState(categories);
@@ -28,7 +30,13 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
   const handleAdd = (e) => {
     e.preventDefault();
     if (!newName.trim()) return;
-    createCategory.mutate({ name: newName.trim() });
+    createCategory.mutate(
+      { name: newName.trim() },
+      {
+        onSuccess: () => addToast('Category added', 'success'),
+        onError: (err) => addToast(err.message || 'Failed to add category', 'error'),
+      },
+    );
     setNewName('');
   };
 
@@ -39,7 +47,13 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
 
   const saveEdit = () => {
     if (editingName.trim()) {
-      updateCategory.mutate({ id: editingId, name: editingName.trim() });
+      updateCategory.mutate(
+        { id: editingId, name: editingName.trim() },
+        {
+          onSuccess: () => addToast('Category updated', 'success'),
+          onError: (err) => addToast(err.message || 'Failed to update category', 'error'),
+        },
+      );
     }
     setEditingId(null);
   };
@@ -93,7 +107,10 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
             )}
             <button
               type="button"
-              onClick={() => deleteCategory.mutate(item.id)}
+              onClick={() => deleteCategory.mutate(item.id, {
+                onSuccess: () => addToast('Category deleted', 'success'),
+                onError: (err) => addToast(err.message || 'Failed to delete category', 'error'),
+              })}
               aria-label="Delete"
               className="shrink-0 text-navy-900/40 hover:text-error"
             >

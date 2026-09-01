@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 import { DATA, STORAGE_KEYS, loadJSON, saveJSON } from '../services/jsonDataLoader';
+import { useToast } from './useToast';
 
 const AdminContext = createContext(null);
 
@@ -19,6 +20,7 @@ const SEED = {
 const SEED_VERSION = 3;
 
 export function AdminProvider({ children }) {
+  const { addToast } = useToast();
   const [state, setState] = useState(() => {
     const cached = loadJSON(STORAGE_KEYS.admin, null);
     if (!cached || cached.seedVersion !== SEED_VERSION) {
@@ -46,18 +48,21 @@ export function AdminProvider({ children }) {
         const next = { ...item, id };
         setState((s) => ({ ...s, [domain]: [next, ...s[domain]] }));
         logActivity(`${label} added: "${next[nameField]}"`);
+        addToast(`${label} added`, 'success');
         return next;
       },
       update: (id, patch) => {
         setState((s) => ({ ...s, [domain]: s[domain].map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
         logActivity(`${label} updated: ${patch[nameField] || id}`);
+        addToast(`${label} updated`, 'success');
       },
       remove: (id) => {
         setState((s) => ({ ...s, [domain]: s[domain].filter((x) => x.id !== id) }));
         logActivity(`${label} deleted: ${id}`);
+        addToast(`${label} deleted`, 'success');
       },
     }),
-    [logActivity],
+    [logActivity, addToast],
   );
 
   const profileCrud = useMemo(() => makeCrud('profiles', 'pro', 'Profile', 'fullName'), [makeCrud]);
@@ -70,8 +75,9 @@ export function AdminProvider({ children }) {
     (patch) => {
       setState((s) => ({ ...s, siteConfig: { ...s.siteConfig, ...patch } }));
       logActivity('Site settings updated');
+      addToast('Site settings updated', 'success');
     },
-    [logActivity],
+    [logActivity, addToast],
   );
 
   const resetToDefaults = useCallback(() => {

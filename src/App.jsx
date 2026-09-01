@@ -2,6 +2,8 @@ import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
 
 import { AdminProvider } from './context/AdminContext';
+import { AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './context/ToastContext';
 import { UploadProvider } from './dashboard/3.gallery/contexts/UploadContext';
 import { getSession } from './services/authService';
 
@@ -142,9 +144,13 @@ function Shell() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AdminProvider>
-        <Shell />
-      </AdminProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <AdminProvider>
+            <Shell />
+          </AdminProvider>
+        </AuthProvider>
+      </ToastProvider>
     </BrowserRouter>
   );
 }

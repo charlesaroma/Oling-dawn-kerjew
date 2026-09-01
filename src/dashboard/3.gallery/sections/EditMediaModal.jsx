@@ -3,10 +3,12 @@ import Button from '../../../components/common/Button';
 import Modal from '../../components/Modal';
 import { useImageCategories } from '../../../services/imageCategoryQueries';
 import { useUpdateMedia } from '../../../services/mediaQueries';
+import { useToast } from '../../../context/useToast';
 
 export default function EditMediaModal({ item, onClose }) {
   const { data: categories = [] } = useImageCategories();
   const updateMedia = useUpdateMedia();
+  const { addToast } = useToast();
   const [tag, setTag] = useState(item?.tag || '');
   const [alt, setAlt] = useState(item?.alt || '');
 
@@ -14,7 +16,16 @@ export default function EditMediaModal({ item, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMedia.mutate({ id: item.id, tag, alt }, { onSuccess: onClose });
+    updateMedia.mutate(
+      { id: item.id, tag, alt },
+      {
+        onSuccess: () => {
+          addToast('Media updated', 'success');
+          onClose();
+        },
+        onError: (err) => addToast(err.message || 'Failed to update media', 'error'),
+      },
+    );
   };
 
   return (

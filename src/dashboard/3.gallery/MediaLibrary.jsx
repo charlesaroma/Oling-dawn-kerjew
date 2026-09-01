@@ -8,6 +8,7 @@ import ManageImageCategoriesModal from './modals/ManageImageCategoriesModal';
 import { useMedia, useDeleteMedia } from '../../services/mediaQueries';
 import { useImageCategories } from '../../services/imageCategoryQueries';
 import { useUpload } from './contexts/useUpload';
+import { useToast } from '../../context/useToast';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -17,6 +18,7 @@ export default function MediaLibrary() {
   const { data: categories = [] } = useImageCategories();
   const deleteMedia = useDeleteMedia();
   const { openModal } = useUpload();
+  const { addToast } = useToast();
 
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('newest');
@@ -61,9 +63,18 @@ export default function MediaLibrary() {
   const confirmTarget = confirmId ? items.find((i) => i.id === confirmId) : null;
 
   const handleBulkDelete = async () => {
-    await Promise.all([...selectedIds].map((id) => deleteMedia.mutateAsync(id)));
+    const ids = [...selectedIds];
+    const results = await Promise.allSettled(ids.map((id) => deleteMedia.mutateAsync(id)));
+    const failed = results.filter((r) => r.status === 'rejected').length;
     clearSelection();
     setConfirmBulk(false);
+    if (failed === 0) {
+      addToast(`${ids.length} item${ids.length === 1 ? '' : 's'} deleted`, 'success');
+    } else if (failed === ids.length) {
+      addToast('Failed to delete selected items', 'error');
+    } else {
+      addToast(`${ids.length - failed} of ${ids.length} items deleted`, 'warning');
+    }
   };
 
   return (
@@ -135,7 +146,13 @@ export default function MediaLibrary() {
       <ConfirmModal
         isOpen={!!confirmId}
         onClose={() => setConfirmId(null)}
-        onConfirm={() => { deleteMedia.mutate(confirmId); setConfirmId(null); }}
+        onConfirm={() => {
+          deleteMedia.mutate(confirmId, {
+            onSuccess: () => addToast('Media deleted', 'success'),
+            onError: (err) => addToast(err.message || 'Failed to delete media', 'error'),
+          });
+          setConfirmId(null);
+        }}
         title="Delete media"
         message={confirmTarget ? `Delete "${confirmTarget.alt || 'this item'}"? This cannot be undone.` : ''}
         confirmLabel="Delete"
