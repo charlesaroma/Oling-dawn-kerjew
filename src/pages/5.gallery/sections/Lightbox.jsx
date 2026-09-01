@@ -1,9 +1,11 @@
 import { X } from 'lucide-react';
 import MediaImage from '../../../components/media/MediaImage';
 import MediaVideo from '../../../components/media/MediaVideo';
+import { isVideoUrl } from '../../../utils/isVideoUrl';
 
 export default function Lightbox({ item, onClose }) {
   if (!item) return null;
+  const isVideo = isVideoUrl(item.url);
 
   return (
     <div
@@ -21,12 +23,12 @@ export default function Lightbox({ item, onClose }) {
         <X size={20} />
       </button>
       <div className="max-h-[85vh] w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
-        {item.type === 'video' ? (
-          <MediaVideo src={item.src} className="max-h-[85vh] w-full rounded-2xl shadow-elevated-lg" />
+        {isVideo ? (
+          <MediaVideo src={item.url} className="max-h-[85vh] w-full rounded-2xl shadow-elevated-lg" />
         ) : (
-          <MediaImage src={item.src} alt={item.caption} width={1200} height={800} className="max-h-[85vh] w-full rounded-2xl object-contain shadow-elevated-lg" />
+          <MediaImage src={item.url} alt={item.alt} width={1200} height={800} className="max-h-[85vh] w-full rounded-2xl object-contain shadow-elevated-lg" />
         )}
-        {item.caption && <p className="mt-4 text-center text-sm text-gold-100/80">{item.caption}</p>}
+        {item.alt && <p className="mt-4 text-center text-sm text-gold-100/80">{item.alt}</p>}
       </div>
     </div>
   );

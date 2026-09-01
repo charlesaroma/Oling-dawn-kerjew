@@ -3,11 +3,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { PieChart } from '@mui/x-charts/PieChart';
 import EmptyState from '../../../components/common/EmptyState';
 import muiTheme, { CHART_COLORS, CHART_AXIS_SX } from '../../muiTheme';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProfiles } from '../../../services/profileQueries';
 import { countBy } from '../../../utils/countBy';
 
 export default function ProfilesByCategoryChart() {
-  const { profiles } = useAdmin();
+  const { data: profiles } = useProfiles();
   const stats = countBy(profiles, 'category');
 
   return (

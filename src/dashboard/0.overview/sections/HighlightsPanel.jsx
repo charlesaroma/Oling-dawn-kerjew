@@ -1,11 +1,19 @@
 import { TrendingUp, LayoutGrid, Clock, UserCheck } from 'lucide-react';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProfiles } from '../../../services/profileQueries';
+import { useProjects } from '../../../services/projectQueries';
+import { useMedia } from '../../../services/mediaQueries';
+import { useBlogPosts } from '../../../services/blogQueries';
+import { useTeam } from '../../../services/teamQueries';
 import { buildHighlights } from '../../../utils/buildHighlights';
 
 const ICONS = { trend: TrendingUp, library: LayoutGrid, pending: Clock, people: UserCheck };
 
 export default function HighlightsPanel() {
-  const { profiles, projects, galleryItems, blogPosts, team } = useAdmin();
+  const { data: profiles } = useProfiles();
+  const { data: projects } = useProjects();
+  const { data: galleryItems } = useMedia();
+  const { data: blogPosts } = useBlogPosts();
+  const { data: team } = useTeam();
   const highlights = buildHighlights({ profiles, projects, galleryItems, blogPosts, team });
 
   return (

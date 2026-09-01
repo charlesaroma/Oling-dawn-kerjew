@@ -1,10 +1,18 @@
 import { Users, FolderKanban, Images, Newspaper, UsersRound } from 'lucide-react';
 import StatCard from '../../components/StatCard';
 import { CHART_COLORS } from '../../muiTheme';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProfiles } from '../../../services/profileQueries';
+import { useProjects } from '../../../services/projectQueries';
+import { useBlogPosts } from '../../../services/blogQueries';
+import { useMedia } from '../../../services/mediaQueries';
+import { useTeam } from '../../../services/teamQueries';
 
 export default function StatsGrid() {
-  const { profiles, projects, blogPosts, galleryItems, team } = useAdmin();
+  const { data: profiles } = useProfiles();
+  const { data: projects } = useProjects();
+  const { data: blogPosts } = useBlogPosts();
+  const { data: galleryItems } = useMedia();
+  const { data: team } = useTeam();
 
   const focusAreaCount = new Set(projects.map((p) => p.category).filter(Boolean)).size;
   const publishedPosts = blogPosts.filter((p) => (p.publishStatus ?? 'published') === 'published').length;

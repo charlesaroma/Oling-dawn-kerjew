@@ -2,11 +2,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { LineChart } from '@mui/x-charts/LineChart';
 import EmptyState from '../../../components/common/EmptyState';
 import muiTheme, { CHART_COLORS, CHART_AXIS_SX } from '../../muiTheme';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProfiles } from '../../../services/profileQueries';
 import { buildRegistrationsTrend } from '../../../utils/registrationsTrend';
 
 export default function RegistrationsTrendChart() {
-  const { profiles } = useAdmin();
+  const { data: profiles } = useProfiles();
   const trend = buildRegistrationsTrend(profiles);
 
   return (

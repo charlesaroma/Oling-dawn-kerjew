@@ -2,12 +2,16 @@ import { ThemeProvider } from '@mui/material/styles';
 import { PieChart } from '@mui/x-charts/PieChart';
 import EmptyState from '../../../components/common/EmptyState';
 import muiTheme, { CHART_COLORS } from '../../muiTheme';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
+import { useMedia } from '../../../services/mediaQueries';
+import { useBlogPosts } from '../../../services/blogQueries';
 
 const SIZE = 200;
 
 export default function ContentLibraryChart() {
-  const { projects, galleryItems, blogPosts } = useAdmin();
+  const { data: projects } = useProjects();
+  const { data: galleryItems } = useMedia();
+  const { data: blogPosts } = useBlogPosts();
 
   const items = [
     { label: 'Projects', value: projects.length, color: CHART_COLORS[3] },

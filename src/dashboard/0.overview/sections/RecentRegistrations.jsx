@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import DataTable from '../../components/DataTable';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProfiles } from '../../../services/profileQueries';
 import { formatDate } from '../../../utils/formatDate';
 
 const columns = [
@@ -12,7 +12,7 @@ const columns = [
 ];
 
 export default function RecentRegistrations() {
-  const { profiles } = useAdmin();
+  const { data: profiles } = useProfiles();
   const recent = [...profiles].sort((a, b) => new Date(b.registeredDate) - new Date(a.registeredDate)).slice(0, 6);
 
   return (

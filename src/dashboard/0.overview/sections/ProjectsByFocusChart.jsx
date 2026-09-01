@@ -1,10 +1,10 @@
 import EmptyState from '../../../components/common/EmptyState';
 import { CHART_COLORS } from '../../muiTheme';
-import { useAdmin } from '../../../context/AdminContext';
+import { useProjects } from '../../../services/projectQueries';
 import { countBy } from '../../../utils/countBy';
 
 export default function ProjectsByFocusChart() {
-  const { projects } = useAdmin();
+  const { data: projects } = useProjects();
   const stats = countBy(projects, 'category');
   const max = stats.length ? Math.max(...stats.map((d) => d.value)) : 0;
 
