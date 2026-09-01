@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
 
 import { AdminProvider } from './context/AdminContext';
+import { UploadProvider } from './dashboard/3.gallery/contexts/UploadContext';
 import { getSession } from './services/authService';
 
 import Navbar from './components/layout/Navbar';
@@ -27,7 +28,7 @@ const DashboardLayout = lazy(() => import('./dashboard/components/DashboardLayou
 const DashboardHome = lazy(() => import('./dashboard/0.overview/DashboardHome'));
 const ProfileList = lazy(() => import('./dashboard/1.profiles/ProfileList'));
 const ProjectList = lazy(() => import('./dashboard/2.projects/ProjectList'));
-const GalleryItemList = lazy(() => import('./dashboard/3.gallery/GalleryItemList'));
+const MediaLibrary = lazy(() => import('./dashboard/3.gallery/MediaLibrary'));
 const BlogPostList = lazy(() => import('./dashboard/4.blog/BlogPostList'));
 const TeamList = lazy(() => import('./dashboard/5.team/TeamList'));
 const SiteSettings = lazy(() => import('./dashboard/6.settings/SiteSettings'));
@@ -116,16 +117,18 @@ function Shell() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Suspense fallback={<DashboardLoading />}>
-                <DashboardLayout />
-              </Suspense>
+              <UploadProvider>
+                <Suspense fallback={<DashboardLoading />}>
+                  <DashboardLayout />
+                </Suspense>
+              </UploadProvider>
             </ProtectedRoute>
           }
         >
           <Route index element={<DashboardHome />} />
           <Route path="profiles" element={<ProfileList />} />
           <Route path="projects" element={<ProjectList />} />
-          <Route path="gallery" element={<GalleryItemList />} />
+          <Route path="gallery" element={<MediaLibrary />} />
           <Route path="blog" element={<BlogPostList />} />
           <Route path="team" element={<TeamList />} />
           <Route path="settings" element={<SiteSettings />} />

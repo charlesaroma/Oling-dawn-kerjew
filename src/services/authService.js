@@ -24,6 +24,7 @@ export function getSession() {
 export function logout() {
   try {
     window.localStorage.removeItem(STORAGE_KEYS.session);
+    window.localStorage.removeItem('accessToken');
   } catch {
     /* noop */
   }

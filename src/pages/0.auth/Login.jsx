@@ -4,16 +4,29 @@ import Button from '../../components/common/Button';
 import AuthSplitShell from './AuthSplitShell';
 import FloatingInput from './FloatingInput';
 import { login } from '../../services/authService';
+import api from '../../services/api';
 
 export default function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     try {
       login(form);
+
+      // Best-effort: also sign in against the real backend so Gallery's media
+      // library (the only feature wired to it so far) has a token to work with.
+      // A failure here shouldn't block access to the rest of the dashboard,
+      // which still runs entirely on localStorage.
+      try {
+        const { data } = await api.post('/api/auth/login', { email: form.email, password: form.password });
+        localStorage.setItem('accessToken', data.accessToken);
+      } catch (apiErr) {
+        console.error('Backend login failed — Gallery will be unavailable until this succeeds:', apiErr);
+      }
+
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);
