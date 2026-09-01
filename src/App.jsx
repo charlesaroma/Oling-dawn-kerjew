@@ -152,9 +152,7 @@ export default function App() {
       <BrowserRouter>
         <ToastProvider>
           <AuthProvider>
-            <AdminProvider>
-              <Shell />
-            </AdminProvider>
+            <Shell />
           </AuthProvider>
         </ToastProvider>
       </BrowserRouter>

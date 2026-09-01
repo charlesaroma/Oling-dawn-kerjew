@@ -1,7 +1,7 @@
 /*
   Pure functions over a projects array — callers pull the live array from
-  useAdmin() (dashboard + public pages both read the same AdminContext
-  store) and pass it in here, so this file has no data source of its own.
+  useProjects() (dashboard + public pages both read the same backend data)
+  and pass it in here, so this file has no data source of its own.
 */
 export function getPublishedProjects(projects) {
   return projects.filter((p) => (p.publishStatus ?? 'published') !== 'draft');
