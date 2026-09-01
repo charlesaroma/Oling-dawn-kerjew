@@ -16,7 +16,11 @@ export default function Blog() {
 
   return (
     <>
-      <PageHeader title="Blog & Articles" subtitle="Updates, stories, and lessons from the field." />
+      <PageHeader
+        eyebrow="Journal"
+        title="Notes from the field."
+        subtitle="Updates, stories and lessons from the districts where we work."
+      />
       <section className="py-16">
         <Container className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (

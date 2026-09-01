@@ -22,7 +22,11 @@ export default function Projects() {
 
   return (
     <>
-      <PageHeader title="Our Projects" subtitle="Construction, education, healthcare, and community initiatives carried out alongside the people we serve." />
+      <PageHeader
+        eyebrow="Our work"
+        title="Every initiative, on the record."
+        subtitle="Construction, education, healthcare and community initiatives carried out alongside the people we serve."
+      />
       <section className="py-16">
         <Container className="flex flex-col gap-10">
           <CategoryFilterBar categories={categories} active={category} onChange={setCategory} />

@@ -12,7 +12,11 @@ export default function About() {
 
   return (
     <>
-      <PageHeader title="About Oling Dawn Kerjew Projects" subtitle="Why we serve, and who we serve alongside." />
+      <PageHeader
+        eyebrow="Who we are"
+        title="Service, built to last."
+        subtitle="A registered Ugandan NGO working in construction, education, healthcare and community development — alongside the people who use what we build."
+      />
       <MissionSection />
       <PillarsSection />
       <TeamSection />
