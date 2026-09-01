@@ -11,38 +11,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://olingdawnkerjewprojects.org/projects</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://olingdawnkerjewprojects.org/construction</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://olingdawnkerjewprojects.org/projects/sudanese-refugee-food-aid</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/projects/arova-high-school-scholastic-materials</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/projects/afghan-refugee-support</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/projects/kamdini-grinding-mill</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/projects/digital-marketplace-partnership</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/construction</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://olingdawnkerjewprojects.org/projects</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
@@ -53,25 +28,58 @@
   <url>
     <loc>https://olingdawnkerjewprojects.org/blog</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/blog/why-clean-water-changes-everything</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/blog/building-with-the-community-not-for-it</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://olingdawnkerjewprojects.org/blog/2025-year-in-review</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://olingdawnkerjewprojects.org/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/roads-bridges-drainage</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/schools-and-teaching-blocks</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/health-centres-and-clinics</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/refugee-resettlement-housing</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/hairdressing-skills-training</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/farming-tools-distribution</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/arova-high-school-scholastic-materials</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olingdawnkerjewprojects.org/projects/kamdini-grinding-mill</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
