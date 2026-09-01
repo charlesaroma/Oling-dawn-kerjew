@@ -25,8 +25,8 @@ export default function TeamSection() {
               </div>
               <div>
                 <p className="font-semibold text-forest-900">{member.name}</p>
-                <p className="text-sm text-navy-900/60">{member.role}</p>
-                {member.bio && <p className="mt-1 text-xs text-navy-900/50">{member.bio}</p>}
+                <p className="text-sm text-ink-900/60">{member.role}</p>
+                {member.bio && <p className="mt-1 text-xs text-ink-900/50">{member.bio}</p>}
               </div>
             </div>
           ))}

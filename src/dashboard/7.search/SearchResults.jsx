@@ -23,13 +23,13 @@ export default function SearchResults() {
     <div>
       <header className="mb-8">
         <h1 className="font-display text-3xl text-forest-900">Search</h1>
-        <p className="mt-1 text-sm text-navy-900/60">
+        <p className="mt-1 text-sm text-ink-900/60">
           {q ? `${total} result${total === 1 ? '' : 's'} for "${q}"` : 'Type a search term in the header above.'}
         </p>
       </header>
 
       {q && total === 0 && (
-        <div className="rounded-2xl border border-navy-900/8 bg-white px-6 py-16 text-center text-sm text-navy-900/50 shadow-elevated">
+        <div className="rounded-2xl border border-ink-900/8 bg-white px-6 py-16 text-center text-sm text-ink-900/50 shadow-elevated">
           No matches found.
         </div>
       )}
@@ -40,7 +40,7 @@ export default function SearchResults() {
           items={matchedProfiles}
           renderRow={(p) => (
             <button type="button" onClick={() => goToEdit('/dashboard/profiles', p.id)} className="text-forest-900 hover:text-gold-700">
-              {p.fullName} <span className="text-navy-900/40">· {p.category}</span>
+              {p.fullName} <span className="text-ink-900/40">· {p.category}</span>
             </button>
           )}
         />
@@ -49,7 +49,7 @@ export default function SearchResults() {
           items={matchedProjects}
           renderRow={(p) => (
             <button type="button" onClick={() => goToEdit('/dashboard/projects', p.id)} className="text-forest-900 hover:text-gold-700">
-              {p.title} <span className="text-navy-900/40">· {p.category}</span>
+              {p.title} <span className="text-ink-900/40">· {p.category}</span>
             </button>
           )}
         />

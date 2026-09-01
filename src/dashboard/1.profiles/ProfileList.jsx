@@ -56,12 +56,12 @@ export default function ProfileList() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search by name, category, or location…"
-          className="w-full max-w-xs rounded-xl border border-navy-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+          className="w-full max-w-xs rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
         />
       </div>
 
       {isLoading ? (
-        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+        <p className="py-16 text-center text-sm text-ink-900/50">Loading…</p>
       ) : (
         <ProfileTable rows={rows} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
       )}

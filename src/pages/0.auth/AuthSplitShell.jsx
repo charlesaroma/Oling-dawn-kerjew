@@ -14,7 +14,7 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
           height={1080}
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/95 via-navy-900/40 to-navy-900/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-900/95 via-ink-900/40 to-ink-900/10" />
         <div className="absolute bottom-12 left-12 right-12 text-white">
           <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">{kicker}</p>
           <h2 className="mb-4 font-display text-4xl italic leading-tight xl:text-5xl">{title}</h2>

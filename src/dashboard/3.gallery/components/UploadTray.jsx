@@ -28,7 +28,7 @@ export default function UploadTray() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
-          className="fixed bottom-6 right-6 z-100 w-72 overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-elevated-lg"
+          className="fixed bottom-6 right-6 z-100 w-72 overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-elevated-lg"
         >
           <button
             type="button"
@@ -43,13 +43,13 @@ export default function UploadTray() {
               onClick={(e) => { e.stopPropagation(); closeModal(); }}
               onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); closeModal(); } }}
               aria-label="Dismiss"
-              className="shrink-0 rounded-full p-1 text-navy-900/40 hover:text-error"
+              className="shrink-0 rounded-full p-1 text-ink-900/40 hover:text-error"
             >
               <X size={14} />
             </span>
           </button>
           {uploading && (
-            <div className="h-1 w-full overflow-hidden bg-navy-900/8">
+            <div className="h-1 w-full overflow-hidden bg-ink-900/8">
               <div
                 className="h-full rounded-full bg-gold-500 transition-all duration-300"
                 style={{ width: `${Math.max((doneCount / files.length) * 100, 5)}%` }}

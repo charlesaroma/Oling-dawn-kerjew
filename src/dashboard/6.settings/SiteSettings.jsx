@@ -68,7 +68,7 @@ export default function SiteSettings() {
     <div className="max-w-2xl">
       <header className="mb-8">
         <h1 className="font-display text-3xl text-forest-900">Account</h1>
-        <p className="mt-1 text-sm text-navy-900/60">Manage your name, email, and password.</p>
+        <p className="mt-1 text-sm text-ink-900/60">Manage your name, email, and password.</p>
       </header>
 
       <div className="space-y-8">

@@ -35,7 +35,7 @@ export default function TeamList() {
       <TeamListHeader count={team.length} onAdd={() => setModalItem({ item: null })} />
 
       {isLoading ? (
-        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+        <p className="py-16 text-center text-sm text-ink-900/50">Loading…</p>
       ) : (
         <TeamTable rows={team} onEdit={(row) => setModalItem({ item: row })} onDelete={(id) => setConfirmId(id)} />
       )}

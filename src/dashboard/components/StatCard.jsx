@@ -2,7 +2,7 @@ export default function StatCard({ title, value, caption, icon: Icon, accent = f
   return (
     <div
       className={`group relative overflow-hidden rounded-2xl border p-3.5 shadow-elevated transition-all duration-200 hover:-translate-y-0.5 hover:shadow-elevated-lg ${
-        accent ? 'border-gold-300 bg-gradient-to-br from-gold-50 to-gold-100/60' : 'border-navy-900/8 bg-white'
+        accent ? 'border-gold-300 bg-gradient-to-br from-gold-50 to-gold-100/60' : 'border-ink-900/8 bg-white'
       }`}
     >
       <div className="flex items-center gap-3">
@@ -15,11 +15,11 @@ export default function StatCard({ title, value, caption, icon: Icon, accent = f
           </span>
         )}
         <div className="min-w-0">
-          <p className="truncate font-mono text-[10px] uppercase tracking-[0.2em] text-navy-900/50">{title}</p>
+          <p className="truncate font-mono text-[10px] uppercase tracking-[0.2em] text-ink-900/50">{title}</p>
           <p className="font-mono text-xl leading-tight text-bronze-700">{value}</p>
         </div>
       </div>
-      {caption && <p className="mt-2 truncate text-xs text-navy-900/50">{caption}</p>}
+      {caption && <p className="mt-2 truncate text-xs text-ink-900/50">{caption}</p>}
     </div>
   );
 }

@@ -82,18 +82,18 @@ function NavSections({ dense, onNavigate }) {
               onClick={onNavigate}
               className={({ isActive }) =>
                 `group relative flex items-center gap-3 rounded-lg px-3.5 text-sm transition-all duration-150 ${dense ? 'py-3' : 'py-2.5'} ${
-                  isActive ? 'bg-gold-500 font-semibold text-navy-900' : 'text-gold-100/70 hover:bg-white/5 hover:text-white'
+                  isActive ? 'bg-gold-500 font-semibold text-ink-900' : 'text-gold-100/70 hover:bg-white/5 hover:text-white'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  <Icon size={dense ? 18 : 17} strokeWidth={2} className={isActive ? 'text-navy-900' : 'text-gold-100/50 group-hover:text-gold-300'} />
+                  <Icon size={dense ? 18 : 17} strokeWidth={2} className={isActive ? 'text-ink-900' : 'text-gold-100/50 group-hover:text-gold-300'} />
                   {item.label}
                   {!dense && (
                     <ChevronRight
                       size={14}
-                      className={`ml-auto opacity-0 transition-opacity group-hover:opacity-100 ${isActive ? 'text-navy-900/50' : 'text-gold-100/40'}`}
+                      className={`ml-auto opacity-0 transition-opacity group-hover:opacity-100 ${isActive ? 'text-ink-900/50' : 'text-gold-100/40'}`}
                     />
                   )}
                 </>
@@ -126,7 +126,7 @@ export default function DashboardSidebar({ open, onClose }) {
   return (
     <>
       {/* DESKTOP RAIL */}
-      <aside className="fixed inset-y-0 left-0 z-50 hidden h-screen w-[var(--sidebar-w)] shrink-0 flex-col border-r border-white/5 bg-navy-900 text-gold-100 lg:flex">
+      <aside className="fixed inset-y-0 left-0 z-50 hidden h-screen w-[var(--sidebar-w)] shrink-0 flex-col border-r border-white/5 bg-ink-900 text-gold-100 lg:flex">
         <div className="border-b border-white/5 px-6 py-5">
           <Brand />
         </div>
@@ -147,14 +147,14 @@ export default function DashboardSidebar({ open, onClose }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={onClose}
-                className="absolute inset-0 bg-navy-900/60 backdrop-blur-sm"
+                className="absolute inset-0 bg-ink-900/60 backdrop-blur-sm"
               />
               <motion.div
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 exit={{ y: '100%' }}
                 transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-                className="absolute bottom-0 left-0 right-0 flex max-h-[88dvh] flex-col overflow-hidden rounded-t-3xl bg-navy-900 text-gold-100 shadow-elevated-lg"
+                className="absolute bottom-0 left-0 right-0 flex max-h-[88dvh] flex-col overflow-hidden rounded-t-3xl bg-ink-900 text-gold-100 shadow-elevated-lg"
               >
                 <div className="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-white/15" />
                 <div className="flex items-center justify-between border-b border-white/5 px-6 py-4">

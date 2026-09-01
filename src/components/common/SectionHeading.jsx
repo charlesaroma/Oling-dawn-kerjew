@@ -10,7 +10,7 @@ export default function SectionHeading({ eyebrow, title, subtitle, align = 'left
         </span>
       )}
       <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
-      {subtitle && <p className="max-w-2xl text-navy-900/70">{subtitle}</p>}
+      {subtitle && <p className="max-w-2xl text-ink-900/70">{subtitle}</p>}
     </div>
   );
 }

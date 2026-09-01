@@ -41,30 +41,30 @@ function DashboardShell() {
       <DashboardSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="lg:pl-[var(--sidebar-w)]">
-        <header className="sticky top-0 z-30 flex items-center gap-4 border-b border-navy-900/8 bg-white/90 px-6 py-3 backdrop-blur-sm lg:px-10">
+        <header className="sticky top-0 z-30 flex items-center gap-4 border-b border-ink-900/8 bg-white/90 px-6 py-3 backdrop-blur-sm lg:px-10">
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}
-            className="text-navy-900/60 hover:text-forest-800 lg:hidden"
+            className="text-ink-900/60 hover:text-forest-800 lg:hidden"
             aria-label="Open menu"
           >
             <Menu size={22} />
           </button>
           <form onSubmit={submitSearch} className="relative max-w-sm flex-1">
-            <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-navy-900/30" />
+            <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-900/30" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search profiles, projects, posts…"
-              className="w-full rounded-full border border-navy-900/10 bg-gold-50 py-2 pl-9 pr-3 text-sm outline-none transition-colors focus:border-gold-500 focus:bg-white"
+              className="w-full rounded-full border border-ink-900/10 bg-gold-50 py-2 pl-9 pr-3 text-sm outline-none transition-colors focus:border-gold-500 focus:bg-white"
             />
           </form>
           <div className="ml-auto flex items-center gap-3">
-            <span className="hidden items-center gap-2 rounded-full border border-gold-300/60 bg-gold-50 px-4 py-1.5 font-mono text-xs text-navy-900/70 sm:flex">
+            <span className="hidden items-center gap-2 rounded-full border border-gold-300/60 bg-gold-50 px-4 py-1.5 font-mono text-xs text-ink-900/70 sm:flex">
               {today}
             </span>
             {session && (
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 font-mono text-xs font-semibold text-gold-300">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink-900 font-mono text-xs font-semibold text-gold-300">
                 {getInitials(session.name) || 'A'}
               </span>
             )}

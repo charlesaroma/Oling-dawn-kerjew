@@ -9,7 +9,7 @@ export default function Lightbox({ item, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-100 flex items-center justify-center bg-navy-900/90 p-6 backdrop-blur-sm"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-ink-900/90 p-6 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"

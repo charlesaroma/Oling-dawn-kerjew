@@ -24,14 +24,14 @@ export default function ConfirmModal({ isOpen, onClose, onConfirm, title, messag
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-navy-900/50 backdrop-blur-sm"
+            className="fixed inset-0 bg-ink-900/50 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.15 }}
-            className="relative w-full max-w-md rounded-2xl border border-navy-900/8 bg-white p-6 shadow-elevated-lg"
+            className="relative w-full max-w-md rounded-2xl border border-ink-900/8 bg-white p-6 shadow-elevated-lg"
             role="alertdialog"
             aria-modal="true"
           >
@@ -46,13 +46,13 @@ export default function ConfirmModal({ isOpen, onClose, onConfirm, title, messag
                 type="button"
                 onClick={onClose}
                 aria-label="Close"
-                className="shrink-0 rounded-full p-2 text-navy-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800"
+                className="shrink-0 rounded-full p-2 text-ink-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800"
               >
                 <X size={18} />
               </button>
             </div>
 
-            <p className="mb-6 text-sm leading-relaxed text-navy-900/70">
+            <p className="mb-6 text-sm leading-relaxed text-ink-900/70">
               {message || 'Are you sure you want to proceed? This cannot be undone.'}
             </p>
 
@@ -60,7 +60,7 @@ export default function ConfirmModal({ isOpen, onClose, onConfirm, title, messag
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 rounded-xl border border-navy-900/12 py-2.5 text-sm font-semibold text-navy-900/70 transition-colors hover:bg-surface-alt"
+                className="flex-1 rounded-xl border border-ink-900/12 py-2.5 text-sm font-semibold text-ink-900/70 transition-colors hover:bg-surface-alt"
               >
                 Cancel
               </button>

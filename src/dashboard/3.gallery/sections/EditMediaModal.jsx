@@ -43,23 +43,23 @@ export default function EditMediaModal({ item, onClose }) {
       )}
     >
       <form id="edit-media-form" onSubmit={handleSubmit} className="space-y-5">
-        <img src={item.url} alt={item.alt || ''} className="aspect-video w-full rounded-xl border border-navy-900/8 object-cover" />
+        <img src={item.url} alt={item.alt || ''} className="aspect-video w-full rounded-xl border border-ink-900/8 object-cover" />
         <div>
-          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-navy-900/60">Category</label>
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-900/60">Category</label>
           <select
             value={tag}
             onChange={(e) => setTag(e.target.value)}
-            className="w-full rounded-xl border border-navy-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+            className="w-full rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
           >
             {categories.map((c) => <option key={c.id} value={c.name}>{c.name}</option>)}
           </select>
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-navy-900/60">Alt text</label>
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-900/60">Alt text</label>
           <input
             value={alt}
             onChange={(e) => setAlt(e.target.value)}
-            className="w-full rounded-xl border border-navy-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+            className="w-full rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
           />
         </div>
       </form>

@@ -98,7 +98,7 @@ export default function MediaLibrary() {
       />
 
       {isLoading ? (
-        <p className="py-16 text-center text-sm text-navy-900/50">Loading…</p>
+        <p className="py-16 text-center text-sm text-ink-900/50">Loading…</p>
       ) : isError ? (
         <p className="py-16 text-center text-sm text-error">Failed to load media. Try refreshing the page.</p>
       ) : (
@@ -113,7 +113,7 @@ export default function MediaLibrary() {
 
           {filtered.length > 0 && (
             <div className="mt-6 flex flex-col items-center gap-3">
-              <p className="text-xs text-navy-900/50">
+              <p className="text-xs text-ink-900/50">
                 Showing {pageItems.length} of {filtered.length} item{filtered.length === 1 ? '' : 's'}
                 {activeTag ? ` in ${activeTag}` : ''}
               </p>
@@ -123,7 +123,7 @@ export default function MediaLibrary() {
                     type="button"
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
                     disabled={page <= 1}
-                    className="rounded-lg border border-navy-900/10 px-3 py-1.5 text-xs font-semibold text-navy-900/60 transition-colors hover:bg-forest-50 disabled:opacity-30"
+                    className="rounded-lg border border-ink-900/10 px-3 py-1.5 text-xs font-semibold text-ink-900/60 transition-colors hover:bg-forest-50 disabled:opacity-30"
                   >
                     Previous
                   </button>
@@ -133,7 +133,7 @@ export default function MediaLibrary() {
                       type="button"
                       onClick={() => setPage(p)}
                       className={`h-8 w-8 rounded-lg text-xs font-semibold transition-colors ${
-                        p === page ? 'bg-gold-500 text-navy-900' : 'text-navy-900/50 hover:bg-forest-50'
+                        p === page ? 'bg-gold-500 text-ink-900' : 'text-ink-900/50 hover:bg-forest-50'
                       }`}
                     >
                       {p}
@@ -143,7 +143,7 @@ export default function MediaLibrary() {
                     type="button"
                     onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                     disabled={page >= totalPages}
-                    className="rounded-lg border border-navy-900/10 px-3 py-1.5 text-xs font-semibold text-navy-900/60 transition-colors hover:bg-forest-50 disabled:opacity-30"
+                    className="rounded-lg border border-ink-900/10 px-3 py-1.5 text-xs font-semibold text-ink-900/60 transition-colors hover:bg-forest-50 disabled:opacity-30"
                   >
                     Next
                   </button>
@@ -155,7 +155,7 @@ export default function MediaLibrary() {
       )}
 
       {selectedIds.size > 0 && (
-        <div className="fixed inset-x-0 bottom-6 z-40 mx-auto flex w-fit items-center gap-4 rounded-full border border-navy-900/8 bg-white px-5 py-3 shadow-elevated-lg">
+        <div className="fixed inset-x-0 bottom-6 z-40 mx-auto flex w-fit items-center gap-4 rounded-full border border-ink-900/8 bg-white px-5 py-3 shadow-elevated-lg">
           {selectedIds.size < filtered.length ? (
             <button type="button" onClick={selectAll} className="text-xs font-semibold text-forest-800 hover:text-forest-900">
               Select all {filtered.length}
@@ -163,7 +163,7 @@ export default function MediaLibrary() {
           ) : (
             <span className="text-xs font-semibold text-forest-800">All items selected</span>
           )}
-          <span className="text-xs text-navy-900/50">{selectedIds.size} selected</span>
+          <span className="text-xs text-ink-900/50">{selectedIds.size} selected</span>
           <button
             type="button"
             onClick={() => setConfirmBulk(true)}

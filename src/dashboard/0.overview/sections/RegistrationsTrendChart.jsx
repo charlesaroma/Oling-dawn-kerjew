@@ -10,7 +10,7 @@ export default function RegistrationsTrendChart() {
   const trend = buildRegistrationsTrend(profiles);
 
   return (
-    <section className="mt-10 rounded-2xl border border-navy-900/8 bg-white p-6 shadow-elevated">
+    <section className="mt-10 rounded-2xl border border-ink-900/8 bg-white p-6 shadow-elevated">
       <h2 className="mb-5 font-display text-lg text-forest-900">Registrations Over Time</h2>
       {trend.length ? (
         <ThemeProvider theme={muiTheme}>

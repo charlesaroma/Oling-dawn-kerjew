@@ -33,14 +33,14 @@ export default function MediaListField({ label, items = [], onChange, tag }) {
 
   return (
     <div>
-      {label && <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-navy-900/60">{label}</label>}
+      {label && <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-900/60">{label}</label>}
       <div className="mb-3 flex gap-2">
         <input
           value={path}
           onChange={(e) => setPath(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } }}
           placeholder="Paste a URL…"
-          className="flex-1 rounded-xl border border-navy-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+          className="flex-1 rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
         />
         <button
           type="button"
@@ -53,7 +53,7 @@ export default function MediaListField({ label, items = [], onChange, tag }) {
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="flex shrink-0 items-center gap-1.5 rounded-xl border border-navy-900/12 px-3.5 text-xs font-semibold text-forest-700 transition-colors hover:border-forest-800 hover:bg-forest-50 disabled:opacity-50"
+          className="flex shrink-0 items-center gap-1.5 rounded-xl border border-ink-900/12 px-3.5 text-xs font-semibold text-forest-700 transition-colors hover:border-forest-800 hover:bg-forest-50 disabled:opacity-50"
         >
           {uploading ? <Loader2 size={14} className="animate-spin" /> : 'Upload'}
         </button>
@@ -64,7 +64,7 @@ export default function MediaListField({ label, items = [], onChange, tag }) {
       {items.length > 0 && (
         <div className="grid grid-cols-4 gap-2">
           {items.map((src, i) => (
-            <div key={src + i} className="group relative overflow-hidden rounded-xl border border-navy-900/10 shadow-elevated transition-transform hover:-translate-y-0.5">
+            <div key={src + i} className="group relative overflow-hidden rounded-xl border border-ink-900/10 shadow-elevated transition-transform hover:-translate-y-0.5">
               <img
                 src={src}
                 alt=""
@@ -74,7 +74,7 @@ export default function MediaListField({ label, items = [], onChange, tag }) {
               <button
                 type="button"
                 onClick={() => onChange(items.filter((_, idx) => idx !== i))}
-                className="absolute right-1 top-1 hidden h-6 w-6 items-center justify-center rounded-full bg-navy-900/80 text-xs text-white group-hover:flex"
+                className="absolute right-1 top-1 hidden h-6 w-6 items-center justify-center rounded-full bg-ink-900/80 text-xs text-white group-hover:flex"
               >
                 ✕
               </button>

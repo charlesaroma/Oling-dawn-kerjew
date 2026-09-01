@@ -29,27 +29,27 @@ export default function Modal({ isOpen, onClose, title, description, size = 'lg'
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-navy-900/50 backdrop-blur-sm"
+            className="fixed inset-0 bg-ink-900/50 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.15 }}
-            className={`relative flex max-h-[85dvh] w-full ${maxWidth} flex-col overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-elevated-lg`}
+            className={`relative flex max-h-[85dvh] w-full ${maxWidth} flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-elevated-lg`}
             role="dialog"
             aria-modal="true"
           >
-            <div className="flex flex-none items-start justify-between gap-4 rounded-t-2xl border-b border-navy-900/8 px-6 py-5 xl:px-8">
+            <div className="flex flex-none items-start justify-between gap-4 rounded-t-2xl border-b border-ink-900/8 px-6 py-5 xl:px-8">
               <div>
                 <h3 className="font-display text-xl text-forest-900">{title}</h3>
-                {description && <p className="mt-1 text-sm text-navy-900/60">{description}</p>}
+                {description && <p className="mt-1 text-sm text-ink-900/60">{description}</p>}
               </div>
               <button
                 type="button"
                 onClick={onClose}
                 aria-label="Close"
-                className="shrink-0 rounded-full p-2 text-navy-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800"
+                className="shrink-0 rounded-full p-2 text-ink-900/50 transition-colors hover:bg-forest-50 hover:text-forest-800"
               >
                 <X size={20} />
               </button>
@@ -58,7 +58,7 @@ export default function Modal({ isOpen, onClose, title, description, size = 'lg'
               {children}
             </div>
             {footer && (
-              <div className="flex flex-none items-center justify-end gap-3 rounded-b-2xl border-t border-navy-900/8 px-6 py-4 xl:px-8">
+              <div className="flex flex-none items-center justify-end gap-3 rounded-b-2xl border-t border-ink-900/8 px-6 py-4 xl:px-8">
                 {footer}
               </div>
             )}

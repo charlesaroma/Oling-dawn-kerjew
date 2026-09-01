@@ -40,7 +40,7 @@ export default function BlogPost() {
           <MediaImage src={post.coverImage} alt={post.title} width={960} height={540} className="h-full w-full object-cover" />
         </div>
 
-        <div className="flex flex-col gap-4 text-navy-900/80">
+        <div className="flex flex-col gap-4 text-ink-900/80">
           {post.content.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

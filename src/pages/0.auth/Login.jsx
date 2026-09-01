@@ -49,7 +49,7 @@ export default function Login() {
     >
       <div className="mb-10 text-center lg:text-left">
         <h1 className="mb-3 font-display text-3xl italic font-semibold text-forest-900 lg:text-4xl">Sign in</h1>
-        <p className="text-sm text-navy-900/60">Access the Oling Dawn Kerjew Projects admin dashboard.</p>
+        <p className="text-sm text-ink-900/60">Access the Oling Dawn Kerjew Projects admin dashboard.</p>
       </div>
 
       <form onSubmit={submit} noValidate className="space-y-6">
@@ -76,7 +76,7 @@ export default function Login() {
               type="button"
               onClick={() => setShowPassword((v) => !v)}
               aria-label={showPassword ? 'Hide password' : 'Show password'}
-              className="p-1 text-navy-900/40 transition-colors hover:text-forest-800"
+              className="p-1 text-ink-900/40 transition-colors hover:text-forest-800"
             >
               {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>

@@ -14,7 +14,7 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
         const selected = selectedIds.has(item.id);
         const isVideo = isVideoUrl(item.url);
         return (
-          <div key={item.id} className="group relative overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-elevated">
+          <div key={item.id} className="group relative overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-elevated">
             <button
               type="button"
               onClick={() => onToggleSelect(item.id)}
@@ -27,7 +27,7 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
             </button>
             <div className="aspect-square overflow-hidden bg-forest-50">
               {isVideo ? (
-                <div className="flex h-full w-full items-center justify-center bg-navy-900/5">
+                <div className="flex h-full w-full items-center justify-center bg-ink-900/5">
                   <Play size={28} className="text-forest-400" />
                 </div>
               ) : (
@@ -47,13 +47,13 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
                     {item.tag}
                   </span>
                 )}
-                {item.size && <span className="shrink-0 text-[10px] text-navy-900/40">{item.size}</span>}
+                {item.size && <span className="shrink-0 text-[10px] text-ink-900/40">{item.size}</span>}
               </div>
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => onEdit(item)}
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-navy-900/10 py-1.5 text-xs font-semibold text-forest-800 transition-colors hover:bg-forest-50"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-ink-900/10 py-1.5 text-xs font-semibold text-forest-800 transition-colors hover:bg-forest-50"
                 >
                   <Pencil size={12} /> Edit
                 </button>
@@ -61,7 +61,7 @@ export default function MediaGrid({ items, selectedIds, onToggleSelect, onEdit, 
                   type="button"
                   onClick={() => onDeleteOne(item.id)}
                   aria-label="Delete"
-                  className="flex shrink-0 items-center justify-center rounded-lg border border-navy-900/10 px-2.5 text-navy-900/40 transition-colors hover:border-error/30 hover:text-error"
+                  className="flex shrink-0 items-center justify-center rounded-lg border border-ink-900/10 px-2.5 text-ink-900/40 transition-colors hover:border-error/30 hover:text-error"
                 >
                   <Trash2 size={13} />
                 </button>

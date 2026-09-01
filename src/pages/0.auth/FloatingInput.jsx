@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-const FIELD = 'w-full border-b border-navy-900/20 bg-transparent px-0 py-3 text-sm text-navy-900 outline-none transition-colors focus:border-gold-500';
+const FIELD = 'w-full border-b border-ink-900/20 bg-transparent px-0 py-3 text-sm text-ink-900 outline-none transition-colors focus:border-gold-500';
 
 export default function FloatingInput({ id, label, type = 'text', value, onChange, error, autoComplete, required, rightSlot }) {
   const autoId = useId();
@@ -12,7 +12,7 @@ export default function FloatingInput({ id, label, type = 'text', value, onChang
       <label
         htmlFor={inputId}
         className={`pointer-events-none absolute top-3 text-[11px] font-medium uppercase tracking-widest transition-all duration-200 ${
-          filled ? '-translate-y-5 text-[10px] text-navy-900/50' : 'text-navy-900/40'
+          filled ? '-translate-y-5 text-[10px] text-ink-900/50' : 'text-ink-900/40'
         }`}
       >
         {label}

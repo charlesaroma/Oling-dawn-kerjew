@@ -80,7 +80,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             placeholder="New category name…"
-            className="flex-1 rounded-xl border border-navy-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+            className="flex-1 rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-sm outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
           />
           <Button type="submit" variant="outline" disabled={!newName.trim() || createCategory.isPending}>
             <Plus size={16} /> Add
@@ -90,7 +90,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
           value={newDescription}
           onChange={(e) => setNewDescription(e.target.value)}
           placeholder="Description (optional)…"
-          className="w-full rounded-xl border border-navy-900/12 bg-white px-3.5 py-2 text-xs outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+          className="w-full rounded-xl border border-ink-900/12 bg-white px-3.5 py-2 text-xs outline-none transition-all focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
         />
       </form>
 
@@ -99,9 +99,9 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
           <Reorder.Item
             key={item.id}
             value={item}
-            className="flex items-start gap-2 rounded-xl border border-navy-900/8 bg-white px-3 py-2.5"
+            className="flex items-start gap-2 rounded-xl border border-ink-900/8 bg-white px-3 py-2.5"
           >
-            <GripVertical size={16} className="mt-1 shrink-0 cursor-grab text-navy-900/30 active:cursor-grabbing" />
+            <GripVertical size={16} className="mt-1 shrink-0 cursor-grab text-ink-900/30 active:cursor-grabbing" />
             {editingId === item.id ? (
               <div className="flex-1 space-y-1.5">
                 <input
@@ -116,13 +116,13 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
                   onChange={(e) => setEditingDescription(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') saveEdit(); }}
                   placeholder="Description (optional)…"
-                  className="w-full rounded-lg border border-navy-900/12 px-2 py-1 text-xs outline-none focus:border-gold-500"
+                  className="w-full rounded-lg border border-ink-900/12 px-2 py-1 text-xs outline-none focus:border-gold-500"
                 />
               </div>
             ) : (
               <div className="min-w-0 flex-1">
                 <span className="block text-sm text-forest-900">{item.name}</span>
-                {item.description && <p className="truncate text-xs text-navy-900/50">{item.description}</p>}
+                {item.description && <p className="truncate text-xs text-ink-900/50">{item.description}</p>}
               </div>
             )}
             {editingId === item.id ? (
@@ -130,7 +130,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
                 <Save size={15} />
               </button>
             ) : (
-              <button type="button" onClick={() => startEdit(item)} aria-label="Rename" className="mt-1 shrink-0 text-navy-900/40 hover:text-forest-800">
+              <button type="button" onClick={() => startEdit(item)} aria-label="Rename" className="mt-1 shrink-0 text-ink-900/40 hover:text-forest-800">
                 <Pencil size={15} />
               </button>
             )}
@@ -141,7 +141,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
                 onError: (err) => addToast(err.message || 'Failed to delete category', 'error'),
               })}
               aria-label="Delete"
-              className="mt-1 shrink-0 text-navy-900/40 hover:text-error"
+              className="mt-1 shrink-0 text-ink-900/40 hover:text-error"
             >
               <Trash2 size={15} />
             </button>
@@ -150,7 +150,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
       </Reorder.Group>
 
       {items.length === 0 && (
-        <p className="py-8 text-center text-sm text-navy-900/40">No categories yet — add one above.</p>
+        <p className="py-8 text-center text-sm text-ink-900/40">No categories yet — add one above.</p>
       )}
     </Modal>
   );

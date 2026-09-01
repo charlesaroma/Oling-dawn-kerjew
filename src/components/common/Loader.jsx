@@ -1,7 +1,7 @@
 export default function Loader({ label = 'Loading…' }) {
   return (
-    <div className="flex items-center justify-center gap-3 py-16 text-navy-900/60">
-      <span className="h-4 w-4 animate-spin rounded-full border-2 border-navy-900/15 border-t-gold-500" />
+    <div className="flex items-center justify-center gap-3 py-16 text-ink-900/60">
+      <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink-900/15 border-t-gold-500" />
       <span>{label}</span>
     </div>
   );

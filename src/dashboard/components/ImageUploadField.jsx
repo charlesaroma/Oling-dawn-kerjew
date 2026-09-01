@@ -48,7 +48,7 @@ export default function ImageUploadField({ label, name, value, onChange, onBlur,
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="flex shrink-0 items-center gap-1.5 rounded-xl border border-navy-900/12 px-3.5 py-2.5 text-xs font-semibold text-forest-700 transition-colors hover:border-forest-800 hover:bg-forest-50 disabled:opacity-50"
+          className="flex shrink-0 items-center gap-1.5 rounded-xl border border-ink-900/12 px-3.5 py-2.5 text-xs font-semibold text-forest-700 transition-colors hover:border-forest-800 hover:bg-forest-50 disabled:opacity-50"
         >
           {uploading ? <Loader2 size={14} className="animate-spin" /> : 'Choose file'}
         </button>
@@ -60,7 +60,7 @@ export default function ImageUploadField({ label, name, value, onChange, onBlur,
         <img
           src={value}
           alt=""
-          className="mt-2 h-20 w-20 rounded-xl border border-navy-900/10 bg-forest-50 object-cover shadow-elevated"
+          className="mt-2 h-20 w-20 rounded-xl border border-ink-900/10 bg-forest-50 object-cover shadow-elevated"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
       )}

@@ -1,78 +1,81 @@
 /*
    FONTS — via Google Fonts
-   Fraunces (variable, display/headlines — use italic + 500/600 weight,
-   sparingly); Public Sans (body/UI, USWDS civic-trust workhorse);
-   IBM Plex Mono (stats, dates, eyebrow labels — "measured/reported" feel).
+   Instrument Serif (display/headlines — the motto and page titles carry the
+   design, so the serif does the heavy lifting); Bricolage Grotesque (body/UI,
+   a warm modern grotesque with an optical-size axis so it reads at both 14px
+   and 40px); IBM Plex Mono (stats, dates, eyebrow labels).
 */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /*
-   THEME — color palette + font families
-   Palette follows design-system.md's dawn/day/growth/night concept, drawn
-   from the Oling Dawn Kerjew Projects seal (dawn-night split, water, earth, globe quadrants).
+   THEME — "Editorial Earth"
+   Editorial Bold's structure (deep ground, type as the hero, restraint)
+   grounded in Ugandan Earth's palette: palm green, clay red, ochre and sand.
+   Neutrals carry a deliberate green-brown bias so nothing reads as stock grey.
 */
 @theme {
-  /* Forest — headings, nav, brand voice (~15-20% of every page) */
-  --color-forest-50:  #F1F7F1;
-  --color-forest-100: #DCEBDC;
-  --color-forest-200: #B9D7B8;
-  --color-forest-300: #8FBD8D;
-  --color-forest-400: #66A164;
-  --color-forest-500: #4A8548;
-  --color-forest-600: #3A6B39;
-  --color-forest-700: #2F5730;
-  --color-forest-800: #26452A;
-  --color-forest-900: #1B3220;
+  /* Forest — palm green. Headings, nav, brand voice. */
+  --color-forest-50:  #F0F6F2;
+  --color-forest-100: #DCEBE1;
+  --color-forest-200: #B7D6C2;
+  --color-forest-300: #8ABBA0;
+  --color-forest-400: #5D9C7C;
+  --color-forest-500: #3F7F5F;
+  --color-forest-600: #2F6549;
+  --color-forest-700: #26503B;
+  --color-forest-800: #1E4032;
+  --color-forest-900: #163025;
 
-  /* Gold — dawn sun; buttons/links/the one CTA band (~5-8%, always intentional) */
-  --color-gold-50:  #FFFCF2;
-  --color-gold-100: #FDF3D6;
-  --color-gold-200: #FAE4A8;
-  --color-gold-300: #F6D077;
-  --color-gold-400: #F0BB4C;
-  --color-gold-500: #E5A526;
-  --color-gold-600: #C6871A;
-  --color-gold-700: #9C6913;
-  --color-gold-800: #744E10;
-  --color-gold-900: #4D340B;
+  /* Gold — ochre. Buttons, links, the one CTA band (always intentional). */
+  --color-gold-50:  #FDF8EC;
+  --color-gold-100: #FAEECB;
+  --color-gold-200: #F5DC98;
+  --color-gold-300: #EEC65F;
+  --color-gold-400: #E7B13A;
+  --color-gold-500: #DFA126;
+  --color-gold-600: #C0851B;
+  --color-gold-700: #9A6717;
+  --color-gold-800: #7A5116;
+  --color-gold-900: #5C3D13;
 
-  /* Bronze — texture, not structure: badges, dividers, mono accents (<5%) */
-  --color-bronze-50:  #FBF3EE;
-  --color-bronze-100: #F1DDCD;
-  --color-bronze-200: #E3BEA0;
-  --color-bronze-300: #D29A6E;
-  --color-bronze-400: #BC7A48;
-  --color-bronze-500: #A15F30;
-  --color-bronze-600: #834B25;
-  --color-bronze-700: #683B1E;
-  --color-bronze-800: #4E2C17;
-  --color-bronze-900: #351D0F;
+  /* Bronze — clay red. Eyebrows, markers, the kitenge band (<5%). */
+  --color-bronze-50:  #FCF2ED;
+  --color-bronze-100: #F7DFD3;
+  --color-bronze-200: #EDBEA8;
+  --color-bronze-300: #E09877;
+  --color-bronze-400: #D0744C;
+  --color-bronze-500: #BC5730;
+  --color-bronze-600: #A84420;
+  --color-bronze-700: #8A371A;
+  --color-bronze-800: #6B2B15;
+  --color-bronze-900: #4D1F10;
 
-  /* Navy — night sky; footer + the single dark CTA band only */
-  --color-navy-50:  #EEF1F5;
-  --color-navy-100: #CDD6E2;
-  --color-navy-200: #9DAFC6;
-  --color-navy-300: #6C87A9;
-  --color-navy-400: #48678C;
-  --color-navy-500: #2F4C6E;
-  --color-navy-600: #223A56;
-  --color-navy-700: #1A2C42;
-  --color-navy-800: #121F2F;
-  --color-navy-900: #0B141F;
+  /* Ink — warm green-charcoal. Body text, the dark hero + footer ground. */
+  --color-ink-50:  #F2F5F3;
+  --color-ink-100: #E3E8E5;
+  --color-ink-200: #C9D1CC;
+  --color-ink-300: #A3B0A8;
+  --color-ink-400: #7A8C81;
+  --color-ink-500: #556B5E;
+  --color-ink-600: #3D5548;
+  --color-ink-700: #2C4034;
+  --color-ink-800: #1F2E25;
+  --color-ink-900: #0F1611;
 
-  /* Functional / status */
-  --color-success: #1B7A43;
-  --color-warning: #9C6913;
+  /* Functional / status — tuned to sit inside the palette, but each still
+     clearly distinct from the brand accents (error is never mistaken for clay). */
+  --color-success: #2F7A52;
+  --color-warning: #C0851B;
   --color-error:   #B3261E;
-  --color-info:    #223A56;
+  --color-info:    #2E6470;
 
   /* Semantic surfaces — named by purpose, so section backgrounds read as
-     intent, not raw color. Follow the dawn -> day -> growth -> night arc. */
-  --color-surface:      var(--color-gold-50);   /* default bright canvas */
-  --color-surface-alt:  var(--color-forest-50); /* alternating "growth" tint */
+     intent, not raw color. Sand canvas -> deeper sand tint -> ochre CTA -> ink. */
+  --color-surface:      #F8F3EA;                /* warm sand canvas */
+  --color-surface-alt:  #EFE6D6;                /* alternating deeper sand tint */
   --color-surface-cta:  var(--color-gold-500);  /* the one bold donate/CTA band */
-  --color-surface-dark: var(--color-navy-900);  /* footer — closes the arc */
+  --color-surface-dark: var(--color-ink-900);   /* hero + footer ground */
 
   /* Dashboard chrome — single source of truth for the fixed sidebar's width,
      shared by DashboardSidebar.jsx (w-[var(--sidebar-w)]) and
@@ -80,15 +83,16 @@
   --sidebar-w: 18rem;
 
   /* Fonts */
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-body:    "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-body:    "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
 /* BASE */
 @layer base {
   body {
-    @apply bg-surface font-body text-navy-900 antialiased;
+    @apply bg-surface font-body text-ink-800 antialiased;
+    font-optical-sizing: auto;
   }
   h1, h2, h3, h4 {
     @apply font-display text-forest-900;
@@ -116,7 +120,7 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-navy-900);
+    background-color: var(--color-ink-900);
     opacity: 0.15;
     border-radius: 999px;
     border: 2px solid transparent;
@@ -124,7 +128,7 @@
   }
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-navy-300) transparent;
+    scrollbar-color: var(--color-ink-300) transparent;
   }
 }
 

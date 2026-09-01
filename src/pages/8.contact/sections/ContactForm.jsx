@@ -4,7 +4,7 @@ import Button from '../../../components/common/Button';
 import { submitContactMessage } from '../../../services/contactService';
 
 const initialState = { name: '', email: '', message: '' };
-const FIELD = 'rounded-xl border border-navy-900/12 px-4 py-2.5 outline-none transition-all duration-150 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10';
+const FIELD = 'rounded-xl border border-ink-900/12 px-4 py-2.5 outline-none transition-all duration-150 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10';
 
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
