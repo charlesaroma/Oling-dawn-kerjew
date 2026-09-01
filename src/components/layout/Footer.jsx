@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Container from '../common/Container';
 import SocialIcon from '../common/SocialIcon';
-import { useSiteConfig } from '../../services/siteConfigQueries';
+import { DATA } from '../../services/jsonDataLoader';
 
 export default function Footer() {
-  const { data: siteConfig } = useSiteConfig();
-  const { orgName, tagline, emails, phones, registeredAddress, postalAddress, navLinks, socialLinks } = siteConfig;
+  const { orgName, tagline, emails, phones, registeredAddress, postalAddress, navLinks, socialLinks } = DATA.siteConfig;
   const nameWords = orgName.split(' ');
   const nameLastWord = nameWords.pop();
   const nameLead = nameWords.join(' ');

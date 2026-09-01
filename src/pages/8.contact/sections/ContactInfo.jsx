@@ -1,10 +1,9 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
 import SocialIcon from '../../../components/common/SocialIcon';
-import { useSiteConfig } from '../../../services/siteConfigQueries';
+import { DATA } from '../../../services/jsonDataLoader';
 
 export default function ContactInfo() {
-  const { data: siteConfig } = useSiteConfig();
-  const { emails, phones, registeredAddress, postalAddress, socialLinks } = siteConfig;
+  const { emails, phones, registeredAddress, postalAddress, socialLinks } = DATA.siteConfig;
 
   return (
     <div className="flex flex-col gap-6 rounded-2xl border border-navy-900/8 bg-white p-6 shadow-elevated">
