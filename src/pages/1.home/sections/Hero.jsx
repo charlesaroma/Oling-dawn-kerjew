@@ -43,7 +43,7 @@ export default function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-navy-900/8 bg-white px-5 py-4 shadow-elevated-lg sm:block">
+          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-[var(--color-surface)]/30 bg-[var(--color-surface)] px-5 py-4 shadow-elevated-lg sm:block">
             <p className="font-mono text-2xl text-bronze-700">{activeCount}</p>
             <p className="text-xs text-navy-900/60">Active initiatives</p>
           </div>

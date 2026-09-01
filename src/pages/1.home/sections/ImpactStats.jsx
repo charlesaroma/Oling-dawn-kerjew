@@ -16,11 +16,11 @@ export default function ImpactStats() {
   ];
 
   return (
-    <section className="bg-surface-alt py-16">
+<section className="bg-surface-alt py-16">
       <Container>
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-2 rounded-2xl bg-white/60 py-6 text-center">
+            <div key={stat.label} className="flex flex-col items-center gap-2 rounded-xl bg-[var(--color-surface)] py-6 text-center border border-[var(--color-surface)]/30 shadow-elevated">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-500/15 text-gold-700">
                 <stat.icon size={18} strokeWidth={2} />
               </span>

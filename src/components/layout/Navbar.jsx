@@ -18,7 +18,7 @@ export default function Navbar() {
   const nameLead = nameWords.join(' ');
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy-900/6 bg-white/90 shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-navy-900/6 bg-[var(--color-surface)] shadow-elevated-lg backdrop-blur-md">
       <Container className="flex items-center justify-between gap-4 py-3">
         <NavLink to="/" className="flex min-w-0 items-center gap-3">
           <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-navy-900/5" />

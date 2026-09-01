@@ -11,7 +11,7 @@ export default function FeaturedProjects() {
   const projects = getFeaturedProjects(allProjects, 3);
 
   return (
-    <section className="py-20">
+    <section className="bg-surface-alt py-20">
       <Container className="flex flex-col gap-10">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading
