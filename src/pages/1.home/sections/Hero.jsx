@@ -1,21 +1,20 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Container from '../../../components/common/Container';
 import { useProjects } from '../../../services/projectQueries';
 import { DATA } from '../../../services/jsonDataLoader';
-import { getPublishedProjects } from '../../../services/projectsService';
 
 const IK = 'https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-';
 
-/* Field photography for the strip along the base of the hero. Requested at
-   grid size with ImageKit transforms rather than full resolution — these are
-   ~180px tall on screen and were 1.5MB originals. */
-const STRIP = [
-  { src: `${IK}/distributing_agricultural_tools_hoes_MG_7659.JPG?tr=w-560,h-420,fo-auto,q-70`, alt: 'Distributing agricultural tools to farming households' },
-  { src: `${IK}/NGO_secondary_school_20250811_120553.jpg?tr=w-560,h-420,fo-auto,q-70`, alt: 'Students at a secondary school we support' },
-  { src: `${IK}/distributing_scholarstic_materials_to_under_priviledged_students_20250811_121004.jpg?tr=w-560,h-420,fo-auto,q-70`, alt: 'Scholastic materials handed to students in Oyam District' },
-  { src: `${IK}/ladies_hairdressing_training_20250812_123723.jpg?tr=w-560,h-420,fo-auto,q-70`, alt: "Women's vocational training in hairdressing" },
+const SLIDES = [
+  { src: `${IK}/distributing_agricultural_tools_hoes_MG_7659.JPG?tr=w-1200,q-72`, alt: 'Distributing agricultural tools to farming households in Oyam District' },
+  { src: `${IK}/NGO_secondary_school_20250811_120553.jpg?tr=w-1200,q-72`, alt: 'Students at a secondary school supported by the organisation' },
+  { src: `${IK}/distributing_scholarstic_materials_to_under_priviledged_students_20250811_121004.jpg?tr=w-1200,q-72`, alt: 'Scholastic materials handed to students' },
+  { src: `${IK}/ladies_hairdressing_training_20250812_123723.jpg?tr=w-1200,q-72`, alt: "Women's vocational training in hairdressing" },
 ];
+
+const INTERVAL = 5500;
 
 /* The motto is the design here, so it gets typeset rather than printed: the
    clause after the first comma carries the emphasis. Falls back to plain
@@ -34,42 +33,76 @@ function Motto({ text }) {
 export default function Hero() {
   const { data: projects } = useProjects();
   const { tagline, description } = DATA.siteConfig;
-  const activeCount = getPublishedProjects(projects).length;
+  const initiativeCount = projects.length;
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const id = setInterval(() => setActive((i) => (i + 1) % SLIDES.length), INTERVAL);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section className="relative overflow-hidden bg-ink-900">
-      {/* Ambient warmth off the top-right, so the ground isn't a flat black slab */}
+      {/* Photography sits behind the copy on the right and dissolves into the
+          ground before it reaches the text column. */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[62%]">
+        {SLIDES.map((slide, i) => (
+          <img
+            key={slide.src}
+            src={slide.src}
+            alt={slide.alt}
+            aria-hidden={i !== active}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-in-out ${
+              i === active ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+        {/* Left-facing fade into the ground, plus a top/bottom settle */}
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/85 to-ink-900/20 lg:via-ink-900/55 lg:to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-ink-900/60" />
+      </div>
+
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[10%] -top-[30%] h-[min(70vw,680px)] w-[min(70vw,680px)] rounded-full opacity-70"
-        style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.16) 0%, transparent 66%)' }}
+        className="pointer-events-none absolute -left-[6%] top-1/3 h-[min(50vw,460px)] w-[min(50vw,460px)] rounded-full opacity-70"
+        style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.13) 0%, transparent 68%)' }}
       />
 
       <Container className="relative">
-        <div className="flex min-h-[70vh] flex-col justify-center py-20 lg:py-28">
+        <div className="flex min-h-[86vh] max-w-[46rem] flex-col justify-center py-32 lg:min-h-[88vh] lg:py-36">
           <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">
             Registered NGO · Oyam District, Northern Uganda
           </p>
 
-          <h1 className="max-w-[13ch] font-display text-[clamp(2.6rem,8vw,6.5rem)] font-normal leading-[0.94] tracking-[-0.025em] text-surface text-balance">
+          <h1 className="max-w-[15ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-normal leading-[1.02] tracking-[-0.02em] text-surface text-balance">
             <Motto text={tagline} />
           </h1>
 
-          <div className="mt-10 flex flex-wrap items-end gap-x-12 gap-y-8">
-            <p className="max-w-[42ch] text-[15px] leading-relaxed text-surface/60 sm:text-base">
-              {description}
-            </p>
+          <p className="mt-7 max-w-[46ch] text-[15px] leading-relaxed text-surface/65 sm:text-base">
+            {description}
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
             <Link
               to="/projects"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
             >
-              See what we've built <ArrowRight size={16} />
+              See what we&apos;ve built
+              <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              to="/contact"
+              className="rounded-full border border-surface/25 px-7 py-3.5 text-sm font-semibold text-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-surface/60 hover:bg-surface/10"
+            >
+              Partner with us
             </Link>
           </div>
 
-          <dl className="mt-14 flex flex-wrap gap-x-14 gap-y-6">
+          <dl className="mt-14 flex flex-wrap gap-x-12 gap-y-6">
             {[
-              [activeCount || '5', 'Active initiatives'],
+              [initiativeCount || '—', 'Initiatives'],
               ['2025', 'Registered'],
               ['Oyam', 'Home district'],
             ].map(([value, label]) => (
@@ -79,34 +112,35 @@ export default function Hero() {
               </div>
             ))}
           </dl>
+
+          {/* Slide markers double as controls */}
+          <div className="mt-12 flex items-center gap-2.5">
+            {SLIDES.map((slide, i) => (
+              <button
+                key={slide.src}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={`Show image ${i + 1} of ${SLIDES.length}`}
+                aria-current={i === active}
+                className={`h-0.5 rounded-full transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-ink-900 ${
+                  i === active ? 'w-10 bg-gold-500' : 'w-5 bg-surface/25 hover:bg-surface/50'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </Container>
 
-      {/* Kitenge band — woven-textile stripe carried over from the earth palette,
-          doing real work as the rule between the type block and the photographs. */}
+      {/* Kitenge band — woven-textile stripe from the earth palette, doing real
+          work as the rule between the hero and the page. */}
       <div
         aria-hidden="true"
-        className="relative h-2"
+        className="relative h-1.5"
         style={{
           background:
             'repeating-linear-gradient(90deg, var(--color-gold-500) 0 28px, var(--color-bronze-600) 28px 56px, var(--color-forest-700) 56px 84px)',
         }}
       />
-
-      {/* Photographs sit desaturated and warm-toned so the words stay dominant */}
-      <div className="relative grid grid-cols-2 sm:grid-cols-4">
-        {STRIP.map((photo) => (
-          <img
-            key={photo.src}
-            src={photo.src}
-            alt={photo.alt}
-            loading="lazy"
-            width={560}
-            height={420}
-            className="h-28 w-full object-cover opacity-55 saturate-[0.35] transition-all duration-500 hover:opacity-90 hover:saturate-100 sm:h-36"
-          />
-        ))}
-      </div>
     </section>
   );
 }

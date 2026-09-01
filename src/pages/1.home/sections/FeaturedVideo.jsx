@@ -10,15 +10,16 @@ export default function FeaturedVideo() {
   if (!featured) return null;
 
   return (
-    <section className="bg-surface-alt py-20">
-      <Container className="flex flex-col gap-10">
+    <section className="bg-ink-900 py-20 sm:py-28">
+      <Container className="flex flex-col gap-12">
         <SectionHeading
-          eyebrow="See It For Yourself"
+          eyebrow="See it for yourself"
           title={`Inside ${featured.title}`}
           subtitle={featured.summary}
           align="center"
+          tone="dark"
         />
-        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-3xl shadow-elevated-lg">
+        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-2xl border border-surface/10">
           <MediaVideo src={featured.video} className="aspect-video w-full bg-black" />
         </div>
       </Container>

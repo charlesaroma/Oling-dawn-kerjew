@@ -12,9 +12,13 @@ export default function Contact() {
 
   return (
     <>
-      <PageHeader title="Contact Us" subtitle="Questions, partnerships, or ways to get involved. We'd love to hear from you." />
-      <section className="py-16">
-        <Container className="grid gap-12 lg:grid-cols-2">
+      <PageHeader
+        eyebrow="Get in touch"
+        title="Start a conversation."
+        subtitle="Partnerships, volunteering, media requests or a question about the work — this reaches the people who can answer it."
+      />
+      <section className="bg-surface-alt py-20 sm:py-28">
+        <Container className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
           <ContactForm />
           <ContactInfo />
         </Container>

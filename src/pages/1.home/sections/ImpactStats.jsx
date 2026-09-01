@@ -1,31 +1,35 @@
-import { Flame, LayoutGrid, MapPinned, Globe2 } from 'lucide-react';
 import Container from '../../../components/common/Container';
 import { useProjects } from '../../../services/projectQueries';
-import { getPublishedProjects, getProjectCategories } from '../../../services/projectsService';
+import { getProjectCategories } from '../../../services/projectsService';
 
+/* Counts every initiative the organisation runs, not only the ones with a
+   published page — a project in draft is still real work on the ground. */
 export default function ImpactStats() {
-  const { data: allProjects } = useProjects();
-  const projects = getPublishedProjects(allProjects);
-  const districts = new Set(projects.map((p) => p.location.split(',')[0].trim()));
+  const { data: projects } = useProjects();
+  const districts = new Set(
+    projects.map((p) => p.location?.split(',')[0].trim()).filter(Boolean),
+  );
 
   const stats = [
-    { value: String(projects.length), label: 'Active Initiatives', icon: Flame },
-    { value: String(getProjectCategories(projects).length), label: 'Focus Areas', icon: LayoutGrid },
-    { value: String(districts.size), label: 'Districts Reached', icon: MapPinned },
-    { value: 'Uganda', label: 'Where We Work', icon: Globe2 },
+    { value: String(projects.length), label: 'Initiatives' },
+    { value: String(getProjectCategories(projects).length), label: 'Focus areas' },
+    { value: String(districts.size), label: 'Districts reached' },
+    { value: '2025', label: 'Registered' },
   ];
 
   return (
-<section className="bg-surface-alt py-16">
+    <section className="bg-surface py-20 sm:py-24">
       <Container>
-        <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-2 rounded-xl bg-[var(--color-surface)] py-6 text-center border border-[var(--color-surface)]/30 shadow-elevated">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-500/15 text-gold-700">
-                <stat.icon size={18} strokeWidth={2} />
-              </span>
-              <span className="font-mono text-3xl text-bronze-700 sm:text-4xl">{stat.value}</span>
-              <span className="text-sm text-forest-800">{stat.label}</span>
+        <div className="grid grid-cols-2 gap-y-12 sm:grid-cols-4 sm:gap-y-0">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`px-2 sm:px-8 ${i > 0 ? 'sm:border-l sm:border-ink-900/10' : ''} ${i === 0 ? 'sm:pl-0' : ''}`}
+            >
+              <p className="font-display text-[clamp(2.6rem,5vw,4rem)] leading-[0.9] tracking-[-0.02em] text-forest-900 tabular-nums">
+                {stat.value}
+              </p>
+              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">{stat.label}</p>
             </div>
           ))}
         </div>
