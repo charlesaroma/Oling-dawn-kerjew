@@ -1,23 +1,18 @@
 import { STORAGE_KEYS, loadJSON, saveJSON } from './jsonDataLoader';
 
 /*
-  Local gate for dashboard access — Login.jsx and ProtectedRoute (App.jsx)
-  only depend on the login()/getSession()/logout() contract below, not this
-  constant. Kept in sync with the real backend's seeded admin (prisma/seed.js
-  in oling-dawn-kerjew-backend) so both login paths accept the same credentials.
-*/
-const ADMIN = {
-  email: 'charlesaroma9@gmail.com',
-  password: 'Dev@2026!',
-  name: 'Charles Aroma',
-  role: 'Software Developer',
-};
+  The backend is the only authority on credentials — see AuthContext.login,
+  which posts to /api/auth/login. This module only mirrors the authenticated
+  user into localStorage, so the synchronous dashboard guard (ProtectedRoute
+  in App.jsx) and the sidebar/header chrome can read a session on first paint,
+  before AuthContext has finished revalidating the stored token.
 
-export function login({ email, password }) {
-  if (email.trim().toLowerCase() !== ADMIN.email || password !== ADMIN.password) {
-    throw new Error('Invalid email or password.');
-  }
-  const session = { name: ADMIN.name, email: ADMIN.email, role: ADMIN.role };
+  It deliberately holds no credentials of its own. It used to compare against a
+  hardcoded email/password pair, which silently rejected every account except
+  that one — including the organisation's own seeded admin.
+*/
+export function setSession({ name, email, role }) {
+  const session = { name, email, role };
   saveJSON(STORAGE_KEYS.session, session);
   return session;
 }
