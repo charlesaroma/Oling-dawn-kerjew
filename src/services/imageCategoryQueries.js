@@ -3,7 +3,10 @@ import api from '../api/axios';
 
 // A stable reference so consumers destructuring `data: categories = EMPTY`
 // don't get a fresh array (and a spurious "changed" signal) on every render
-// while the query is still pending.
+// while the query is still pending. It has to be `placeholderData`, not
+// `initialData`: initialData is written into the cache as if it had just been
+// fetched, so paired with the staleTime below it would count as fresh and the
+// list would never actually load — leaving the gallery with no category chips.
 const EMPTY = [];
 
 export function useImageCategories() {
@@ -13,7 +16,7 @@ export function useImageCategories() {
       const { data } = await api.get('/api/image-categories');
       return data;
     },
-    initialData: EMPTY,
+    placeholderData: EMPTY,
     enabled: !!localStorage.getItem('accessToken'),
     staleTime: 5 * 60 * 1000,
   });

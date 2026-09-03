@@ -1,11 +1,28 @@
 import DataTable from '../../components/DataTable';
 import StatusPill from '../../components/StatusPill';
+import MediaImage from '../../../components/media/MediaImage';
+import { isVideoUrl } from '../../../utils/isVideoUrl';
+
+// Cover image if there is one, else the first still from the gallery — a
+// video can't be shown as a thumbnail, so it falls through to MediaImage's
+// own "no image yet" placeholder.
+const thumbnailOf = (project) =>
+  project.coverImage || (project.gallery || []).find((url) => !isVideoUrl(url)) || '';
 
 const columns = [
   { key: 'title', label: 'Title', render: (r) => (
-    <div>
-      <p className="font-medium text-forest-900">{r.title}</p>
-      <p className="font-mono text-[10px] text-ink-500">{r.slug}</p>
+    <div className="flex items-center gap-3">
+      <MediaImage
+        src={thumbnailOf(r)}
+        alt={r.title}
+        width={56}
+        height={56}
+        className="h-14 w-14 shrink-0 rounded-xl object-cover"
+      />
+      <div className="min-w-0">
+        <p className="font-medium text-forest-900">{r.title}</p>
+        <p className="font-mono text-[10px] text-ink-500">{r.slug}</p>
+      </div>
     </div>
   ) },
   { key: 'category', label: 'Category' },
