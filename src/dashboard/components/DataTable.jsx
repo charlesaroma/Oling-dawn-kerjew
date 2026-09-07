@@ -100,7 +100,6 @@ export default function DataTable({
   }, [filters, rows]);
 
   const activeFilters = columnFilters.filter((f) => f.value);
-  const hasToolbar = searchable || filters.length > 0 || columns.some((c) => c.hideable !== false);
   const hiddenCount = Object.values(columnVisibility).filter((v) => v === false).length;
   const setFilter = (key, value) =>
     setColumnFilters((prev) => [...prev.filter((f) => f.id !== key), ...(value ? [{ id: key, value }] : [])]);
@@ -110,59 +109,68 @@ export default function DataTable({
 
   return (
     <div className="flex flex-col gap-4">
-      {hasToolbar && (
-        <div className="flex flex-wrap items-center gap-2.5">
-          {searchable && (
-            <div className="relative min-w-[200px] flex-1 sm:max-w-xs">
-              <Search size={15} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
-              <input
-                value={globalFilter}
-                onChange={(e) => setGlobalFilter(e.target.value)}
-                placeholder={searchPlaceholder}
-                aria-label={searchPlaceholder}
-                className={`${CONTROL} w-full pl-10 ${globalFilter ? 'pr-9' : ''}`}
-              />
-              {globalFilter && (
-                <button
-                  type="button"
-                  onClick={() => setGlobalFilter('')}
-                  aria-label="Clear search"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-400 transition-colors hover:text-error"
-                >
-                  <X size={14} />
-                </button>
-              )}
-            </div>
-          )}
-
-          {filters.map((key) => {
-            const col = columns.find((c) => c.key === key);
-            const current = columnFilters.find((f) => f.id === key)?.value ?? '';
-            return (
-              <select
-                key={key}
-                value={current}
-                onChange={(e) => setFilter(key, e.target.value)}
-                aria-label={`Filter by ${col?.label ?? key}`}
-                className={`${CONTROL} ${current ? 'border-gold-500/50 text-forest-800' : ''}`}
+      <div className="flex flex-wrap items-center gap-2.5">
+        {searchable && (
+          <div className="relative min-w-[200px] flex-1 sm:max-w-xs">
+            <Search size={15} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
+            <input
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+              placeholder={searchPlaceholder}
+              aria-label={searchPlaceholder}
+              className={`${CONTROL} w-full pl-10 ${globalFilter ? 'pr-9' : ''}`}
+            />
+            {globalFilter && (
+              <button
+                type="button"
+                onClick={() => setGlobalFilter('')}
+                aria-label="Clear search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-400 transition-colors hover:text-error"
               >
-                <option value="">All {col?.label?.toLowerCase() ?? key}</option>
-                {filterOptions[key]?.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
-              </select>
-            );
-          })}
+                <X size={14} />
+              </button>
+            )}
+          </div>
+        )}
 
-          {activeFilters.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setColumnFilters([])}
-              className="text-xs font-semibold text-ink-500 underline underline-offset-4 transition-colors hover:text-error"
+        {filters.map((key) => {
+          const col = columns.find((c) => c.key === key);
+          const current = columnFilters.find((f) => f.id === key)?.value ?? '';
+          return (
+            <select
+              key={key}
+              value={current}
+              onChange={(e) => setFilter(key, e.target.value)}
+              aria-label={`Filter by ${col?.label ?? key}`}
+              className={`${CONTROL} ${current ? 'border-gold-500/50 text-forest-800' : ''}`}
             >
-              Clear filters
-            </button>
-          )}
+              <option value="">All {col?.label?.toLowerCase() ?? key}</option>
+              {filterOptions[key]?.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+          );
+        })}
 
-          <div ref={columnsRef} className="relative ml-auto">
+        {activeFilters.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setColumnFilters([])}
+            className="text-xs font-semibold text-ink-500 underline underline-offset-4 transition-colors hover:text-error"
+          >
+            Clear filters
+          </button>
+        )}
+
+        <div className="ml-auto flex items-center gap-2.5">
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => table.setPageSize(Number(e.target.value))}
+            aria-label="Rows per page"
+            className={CONTROL}
+          >
+            {PAGE_SIZES.map((n) => <option key={n} value={n}>{n} rows</option>)}
+          </select>
+
+          <div ref={columnsRef} className="relative">
             <button
               type="button"
               onClick={() => setColumnsOpen((v) => !v)}
@@ -207,7 +215,7 @@ export default function DataTable({
             )}
           </div>
         </div>
-      )}
+      </div>
 
       {filteredCount === 0 ? (
         <div className="rounded-2xl border border-dashed border-ink-900/12 bg-white px-6 py-20 text-center text-sm text-ink-500">
@@ -297,18 +305,6 @@ export default function DataTable({
               {filteredCount} {filteredCount === 1 ? 'record' : 'records'}
               {filteredCount !== rows.length && <span className="text-ink-400"> of {rows.length}</span>}
             </p>
-
-            <label className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-500">
-              Rows
-              <select
-                value={table.getState().pagination.pageSize}
-                onChange={(e) => table.setPageSize(Number(e.target.value))}
-                aria-label="Rows per page"
-                className="rounded-lg border border-ink-900/10 bg-white px-2 py-1 font-mono text-[11px] text-ink-700 outline-none focus:border-gold-500"
-              >
-                {PAGE_SIZES.map((n) => <option key={n} value={n}>{n}</option>)}
-              </select>
-            </label>
 
             {table.getPageCount() > 1 && (
               <div className="ml-auto flex items-center gap-1.5">

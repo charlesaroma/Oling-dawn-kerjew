@@ -5,8 +5,7 @@ export default function SectionHeading({ eyebrow, title, subtitle, align = 'left
   return (
     <div className={`flex flex-col ${alignment}`}>
       {eyebrow && (
-        <span className={`flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] ${dark ? 'text-bronze-400' : 'text-bronze-600'}`}>
-          <span className={`h-px w-7 ${dark ? 'bg-bronze-400/50' : 'bg-bronze-600/40'}`} />
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.2em] ${dark ? 'text-bronze-400' : 'text-bronze-600'}`}>
           {eyebrow}
         </span>
       )}

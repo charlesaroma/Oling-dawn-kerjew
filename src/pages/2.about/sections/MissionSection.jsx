@@ -9,8 +9,7 @@ export default function MissionSection() {
     <section className="bg-surface py-20 sm:py-28">
       <Container className="grid gap-14 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-20">
         <div>
-          <span className="flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-600">
-            <span className="h-px w-7 bg-bronze-600/40" />
+          <span className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-600">
             Our mission
           </span>
 
