@@ -18,7 +18,7 @@ export default function ImpactStats() {
   ];
 
   return (
-    <section className="bg-surface py-20 sm:py-24">
+    <section className="bg-surface-alt py-20 sm:py-24">
       <Container>
         <div className="grid grid-cols-2 gap-y-12 sm:grid-cols-4 sm:gap-y-0">
           {stats.map((stat, i) => (

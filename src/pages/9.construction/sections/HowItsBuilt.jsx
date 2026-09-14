@@ -30,7 +30,7 @@ export default function HowItsBuilt() {
           />
           <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map(({ n, title, note, img }) => (
-              <li key={n} className="flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-white">
+              <li key={n} className="flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
                 <img
                   src={img}
                   alt={`${title} — ${note}`}
@@ -77,7 +77,7 @@ export default function HowItsBuilt() {
               { src: '/construction/modular-storeys.jpg', cap: 'Storeys stack: modular units assembled to three floors.' },
               { src: '/construction/modular-row.jpg', cap: 'Row housing assembled from repeated units.' },
             ].map(({ src, cap }) => (
-              <figure key={src} className="overflow-hidden rounded-2xl border border-ink-900/8 bg-white">
+              <figure key={src} className="overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
                 <img src={src} alt={cap} loading="lazy" width={1200} height={800} className="aspect-3/2 w-full object-cover saturate-[0.85]" />
                 <figcaption className="px-5 py-4 text-xs leading-relaxed text-ink-500">{cap}</figcaption>
               </figure>

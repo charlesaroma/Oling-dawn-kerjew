@@ -25,7 +25,9 @@ function Motto({ text }) {
   return (
     <>
       {text.slice(0, comma + 1)}{' '}
-      <em className="italic text-gold-400">{text.slice(comma + 1).trim()}</em>
+      <span className="font-semibold text-gold-400 underline decoration-gold-500/50 decoration-2 underline-offset-4">
+        {text.slice(comma + 1).trim()}
+      </span>
     </>
   );
 }
@@ -76,7 +78,7 @@ export default function Hero() {
             Registered NGO · Oyam District, Northern Uganda
           </p>
 
-          <h1 className="max-w-[15ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-normal leading-[1.02] tracking-[-0.02em] text-surface text-balance">
+          <h1 className="max-w-[15ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-medium leading-[1.02] tracking-[-0.02em] text-surface text-balance">
             <Motto text={tagline} />
           </h1>
 

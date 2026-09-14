@@ -22,6 +22,8 @@ export default function Gallery() {
         eyebrow="From the field"
         title="What the work looks like."
         subtitle="Photographs and video from across our project sites in Northern Uganda."
+        image="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/NGO_secondary_school_20250811_120553.jpg?tr=w-1600,q-72"
+        imageAlt="Students at a secondary school supported by the organisation"
       />
       <section className="bg-surface-alt py-20 sm:py-28">
         <Container>

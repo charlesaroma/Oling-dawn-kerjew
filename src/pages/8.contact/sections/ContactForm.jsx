@@ -8,7 +8,7 @@ const SUBJECTS = ['General enquiry', 'Partnership', 'Volunteering', 'Donation', 
 
 const LABEL = 'mb-2 block font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-ink-500';
 const FIELD =
-  'w-full rounded-xl border border-ink-900/10 bg-surface/60 px-4 py-3.5 text-[15px] text-ink-800 outline-none transition-all duration-200 placeholder:text-ink-300 focus:border-gold-500 focus:bg-white focus:ring-4 focus:ring-gold-500/10';
+  'w-full rounded-xl border border-ink-900/10 bg-surface/60 px-4 py-3.5 text-[15px] text-ink-800 outline-none transition-all duration-200 placeholder:text-ink-300 focus:border-gold-500 focus:bg-surface-card focus:ring-4 focus:ring-gold-500/10';
 
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
@@ -30,7 +30,7 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-start rounded-2xl border border-ink-900/8 bg-white p-10">
+      <div className="flex flex-col items-start rounded-2xl border border-ink-900/8 bg-surface-card p-10">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-success/10 text-success">
           <CheckCircle2 size={22} strokeWidth={1.75} />
         </span>
@@ -50,7 +50,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-ink-900/8 bg-white p-7 sm:p-9">
+    <form onSubmit={handleSubmit} className="rounded-2xl border border-ink-900/8 bg-surface-card p-7 sm:p-9">
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-bronze-600">Send a message</p>
       <h3 className="mt-3 font-display text-3xl leading-[1.05] text-forest-900">
         Tell us what you have in mind.

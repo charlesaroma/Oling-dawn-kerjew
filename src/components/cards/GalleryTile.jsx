@@ -22,7 +22,7 @@ export default function GalleryTile({ item, onClick }) {
       )}
       {isVideo && (
         <span className="absolute inset-0 flex items-center justify-center bg-ink-900/20 transition-colors group-hover:bg-ink-900/30">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-forest-800 shadow-elevated">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-card/90 text-forest-800 shadow-elevated">
             <Play size={18} fill="currentColor" className="ml-0.5" />
           </span>
         </span>

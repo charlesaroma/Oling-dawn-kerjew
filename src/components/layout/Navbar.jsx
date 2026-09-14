@@ -21,17 +21,17 @@ export default function Navbar() {
   const solid = scrolled || open;
 
   const linkClasses = ({ isActive }) =>
-    `relative py-1 text-sm font-medium transition-colors duration-200 after:absolute after:-bottom-1 after:left-0 after:h-px after:rounded-full after:bg-gold-500 after:transition-all after:duration-200 ${
-      isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full'
+    `relative py-1 text-sm font-medium transition-colors duration-200 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:rounded-full after:bg-gold-500 after:transition-opacity after:duration-200 ${
+      isActive ? 'after:opacity-100' : 'after:opacity-0 hover:after:opacity-100'
     } ${solid ? (isActive ? 'text-forest-900' : 'text-ink-700 hover:text-forest-900') : (isActive ? 'text-surface' : 'text-surface/70 hover:text-surface')}`;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        solid ? 'border-b border-ink-900/8 bg-surface/85 backdrop-blur-xl' : 'border-b border-transparent bg-transparent'
+        solid ? 'border-b border-ink-900/8 bg-surface/90 shadow-elevated backdrop-blur-xl' : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <Container className={`flex items-center justify-between gap-4 transition-all duration-300 ${solid ? 'py-3' : 'py-5'}`}>
+      <Container className={`flex items-center justify-between gap-4 transition-all duration-300 ${solid ? 'py-2.5' : 'py-4'}`}>
         <NavLink to="/" className="flex min-w-0 items-center gap-3">
           <img
             src="/apple-touch-icon.png"
@@ -40,13 +40,13 @@ export default function Navbar() {
               solid ? 'h-9 w-9 ring-1 ring-ink-900/10' : 'h-10 w-10 ring-1 ring-surface/25'
             }`}
           />
-          <span className="flex flex-col font-display text-base leading-[1.05] sm:text-lg" title={orgName}>
-            <span className={solid ? 'text-forest-900' : 'text-surface'}>{wordmark}</span>
-            <span className="italic text-gold-500">{division}</span>
+          <span className="flex flex-col font-display text-base leading-[1.05] tracking-tight sm:text-lg" title={orgName}>
+            <span className={`font-semibold ${solid ? 'text-forest-900' : 'text-surface'}`}>{wordmark}</span>
+            <span className="text-[11px] font-semibold tracking-wide text-gold-500 sm:text-xs">{division}</span>
           </span>
         </NavLink>
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <NavLink key={link.path} to={link.path} className={linkClasses} end={link.path === '/'}>
               {link.label}
@@ -56,7 +56,7 @@ export default function Navbar() {
 
         <NavLink
           to="/contact"
-          className={`hidden shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 md:inline-flex ${
+          className={`hidden shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 md:inline-flex ${
             solid ? 'bg-forest-800 text-surface hover:bg-forest-900' : 'bg-gold-500 text-ink-900 hover:bg-gold-400'
           }`}
         >

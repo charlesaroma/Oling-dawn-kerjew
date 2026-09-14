@@ -14,7 +14,10 @@ export default function MissionSection() {
           </span>
 
           <h2 className="mt-5 max-w-[16ch] font-display text-[clamp(1.9rem,3.6vw,2.9rem)] leading-[1.04] tracking-[-0.02em] text-forest-900 text-balance">
-            Sustainable support for Uganda&apos;s most <em className="italic text-bronze-700">vulnerable communities.</em>
+            Sustainable support for Uganda&apos;s most{' '}
+            <span className="font-semibold text-bronze-700 underline decoration-bronze-300 decoration-2 underline-offset-4">
+              vulnerable communities.
+            </span>
           </h2>
 
           <p className="mt-7 max-w-[52ch] leading-relaxed text-ink-600">{description}</p>

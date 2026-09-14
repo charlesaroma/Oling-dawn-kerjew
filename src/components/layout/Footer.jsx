@@ -17,14 +17,14 @@ export default function Footer() {
             <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-full ring-1 ring-surface/15" />
             <span className="flex flex-col font-display text-lg leading-[1.05]">
               <span className="text-surface">{wordmark}</span>
-              <span className="italic text-gold-500">{division}</span>
+              <span className="font-semibold tracking-wide text-gold-500">{division}</span>
             </span>
           </Link>
 
           {/* The registered entity in full — the wordmark above is the
               Projects arm this site covers, not the legal name. */}
           <p className="mt-6 max-w-[34ch] text-sm leading-relaxed text-surface/55">{orgName}</p>
-          <p className="mt-4 max-w-[34ch] font-display text-xl italic leading-snug text-surface/80">{tagline}</p>
+          <p className="mt-4 max-w-[34ch] font-display text-xl font-semibold leading-snug text-surface underline decoration-gold-500/50 decoration-2 underline-offset-4">{tagline}</p>
 
           {socialLinks?.length > 0 && (
             <div className="mt-8 flex gap-2.5">

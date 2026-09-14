@@ -6,7 +6,7 @@ export default function BlogCard({ post }) {
   return (
     <Link
       to={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-ink-900/16 hover:shadow-elevated-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card transition-all duration-300 hover:-translate-y-1 hover:border-ink-900/16 hover:shadow-elevated-lg"
     >
       <div className="aspect-16/9 overflow-hidden bg-forest-50">
         <MediaImage

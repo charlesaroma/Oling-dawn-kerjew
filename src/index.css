@@ -1,11 +1,11 @@
 /*
    FONTS — via Google Fonts
-   Instrument Serif (display/headlines — the motto and page titles carry the
-   design, so the serif does the heavy lifting); Bricolage Grotesque (body/UI,
-   a warm modern grotesque with an optical-size axis so it reads at both 14px
-   and 40px); IBM Plex Mono (stats, dates, eyebrow labels).
+   Fraunces (display/headlines — a warm, hand-finished serif; only upright
+   weights are requested, no italic axis, so emphasis never falls back to a
+   slanted cut); Public Sans (body/UI, a civic-grade humanist sans built for
+   legibility); IBM Plex Mono (stats, dates, eyebrow labels).
 */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /*
@@ -71,9 +71,13 @@
   --color-info:    #2E6470;
 
   /* Semantic surfaces — named by purpose, so section backgrounds read as
-     intent, not raw color. Sand canvas -> deeper sand tint -> ochre CTA -> ink. */
-  --color-surface:      #F8F3EA;                /* warm sand canvas */
-  --color-surface-alt:  #EFE6D6;                /* alternating deeper sand tint */
+     intent, not raw color. Crisp near-white canvas -> light warm-grey tint ->
+     ochre CTA -> ink. Color is carried by photography, gold accents and
+     section-level blocks (CTA, PageHeader, Pillars) rather than by a heavy
+     tint across every section — that read as dated/beige at higher chroma. */
+  --color-surface:      #FDFCF9;                /* crisp, barely-warm near-white canvas */
+  --color-surface-alt:  #F5F1E8;                /* light warm-grey tint, alternating sections */
+  --color-surface-card: #FFFFFF;                /* raised card fill — brighter than the canvas it sits on */
   --color-surface-cta:  var(--color-gold-500);  /* the one bold donate/CTA band */
   --color-surface-dark: var(--color-ink-900);   /* hero + footer ground */
 
@@ -83,8 +87,8 @@
   --sidebar-w: 18rem;
 
   /* Fonts */
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-body:    "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body:    "Public Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
@@ -95,7 +99,7 @@
     font-optical-sizing: auto;
   }
   h1, h2, h3, h4 {
-    @apply font-display text-forest-900;
+    @apply font-display font-medium text-forest-900;
   }
   ::selection {
     background-color: var(--color-gold-200);

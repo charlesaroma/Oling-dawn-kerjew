@@ -1,156 +1,158 @@
 # Oling Dawn Kerjew — Design System Guide
 
-This extends `color-palette.md` with the *why* and *where*: typography,
-which color plays which role, and how to handle a bright base background
-with optional section backgrounds — without it turning into visual noise.
+This documents the system as implemented in `src/index.css` ("Editorial Earth"):
+typography, which color plays which role, how section backgrounds vary without
+turning into noise, and the pictorial-header pattern used across the site.
 
 ## The concept
 
-Your logo already tells a story: a **dawn/night split** (moon and stars vs.
-sun and hills), water, earth, and globe — the four quadrants. The name
-"Oling Dawn" reinforces it. Rather than a generic NGO template (cream bg +
-serif headline + orange accent, which is what most AI-generated charity
-sites default to), the system below leans into that **dawn → day → earth →
-night** arc as you scroll: pages open bright and warm, settle into calm
-green "growth" sections, and ground out in navy at the footer, echoing the
-logo's night sky.
+The logo tells a dawn/night story: a moon-and-stars vs. sun-and-hills split,
+water, earth, and globe. "Oling Dawn" reinforces it. Rather than a generic
+NGO template (cream bg + serif headline + orange accent), the system leans
+into a **dawn → day → earth → night** arc as you scroll: pages open bright
+and warm, settle into calm content sections, and ground out in a deep ink
+band at hero/footer, echoing the logo's night sky.
 
 ---
 
 ## Typography
 
-Avoid the generic "Inter for everything" approach — pair a face with real
-character for headlines against a quiet, highly-legible workhorse for body
-copy.
-
 | Role | Typeface | Why |
 |---|---|---|
-| **Display** (H1, hero headline, pull quotes) | **Fraunces** (variable, use italic + weight 500–600) | A warm, slightly hand-finished serif — soft edges instead of a corporate slab. Reads as sincere and human, not institutional-cold. Use it big, and use it sparingly. |
-| **Body** (paragraphs, nav, buttons, forms) | **Public Sans** | Built for government/civic use (US Web Design System) — exceptionally legible, neutral, trustworthy. Fits a transparency-and-accountability NGO tone without being boring. |
-| **Utility** (stats, dates, labels, impact counters — "12,400 meals delivered") | **IBM Plex Mono** | Numbers in mono read as *measured/reported* rather than marketed. Great for donation counters, dates, and eyebrow labels. |
+| **Display** (H1, hero headline, section titles) | **Fraunces** (upright weights 500/600 only — no italic axis is imported) | A warm, slightly hand-finished serif — soft edges instead of a corporate slab. Emphasis within display text is carried by weight/underline, never a slanted cut. |
+| **Body** (paragraphs, nav, buttons, forms) | **Public Sans** | A civic-grade humanist sans built for legibility — trustworthy without being boring. |
+| **Utility** (stats, dates, labels, eyebrows) | **IBM Plex Mono** | Numbers read as *measured/reported* rather than marketed. Used for donation counters, dates, and eyebrow labels. |
 
-Both Fraunces and Public Sans are free on Google Fonts / Fontsource.
+Loaded via a single Google Fonts `@import` at the top of `src/index.css`:
 
-```bash
-npm install @fontsource-variable/fraunces @fontsource/public-sans @fontsource/ibm-plex-mono
-```
-
-```js
-// main.jsx
-import '@fontsource-variable/fraunces';
-import '@fontsource/public-sans/400.css';
-import '@fontsource/public-sans/600.css';
-import '@fontsource/ibm-plex-mono/500.css';
+```css
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 ```
 
 ```css
 @theme {
-  --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
-  --font-body: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body:    "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 ```
 
+**No italics, anywhere.** Only upright weights are requested from Google
+Fonts, so there's no italic cut to fall back to. Where a phrase needs
+emphasis, use weight + an underline rendered as a short, deliberately-colored
+bottom rule — never `italic` or `<em>`:
+
 ```jsx
-<h1 className={clsx('font-display', 'italic', 'text-5xl', 'font-semibold', 'text-forest-800')}>
-  Bringing dawn to every doorstep
-</h1>
-<p className={clsx('font-body', 'text-navy-900/80')}>
-  Since 2015, we've worked alongside communities to build lasting change.
-</p>
-<span className={clsx('font-mono', 'text-sm', 'text-bronze-700', 'uppercase', 'tracking-wide')}>
-  Impact Report — 2026
+<span className="font-semibold text-gold-400 underline decoration-gold-500/50 decoration-2 underline-offset-4">
+  next dawn.
 </span>
 ```
 
-**Type scale** (Tailwind v4 defaults work fine — just apply consistently):
-`text-sm` (labels/mono) → `text-base` (body) → `text-xl`/`2xl` (subheads) →
-`text-4xl`–`6xl` (hero, display font only). Don't use the display face below
-`text-xl` — it loses its personality at small sizes and hurts legibility.
+Pick the decoration color for contrast against whatever it sits on (e.g. a
+dark decoration on a gold background, not gold-on-gold). Short 1–2 word
+wordmark labels (like the "{division}" suffix under the org name in
+Navbar/Footer) skip the underline entirely — `font-semibold tracking-wide`
+only — since underlining something that short reads as a broken link.
+
+**Type scale**: `text-sm` (labels/mono) → `text-base` (body) → `text-xl`/`2xl`
+(subheads) → `text-4xl`–`6xl` (hero, display font only). Don't use the display
+face below `text-xl` — it loses its personality at small sizes.
 
 ---
 
 ## Color roles — where each one actually goes
 
-The mistake most sites make is treating primary/secondary/accent as
-interchangeable "brand colors." They're not — they're a **hierarchy**:
-
 | Role | Color | Amount of use | Where |
 |---|---|---|---|
-| **Background (canvas)** | Bright warm ivory `gold-50` (`#fdfbf3`, brightened to `#fffcf2` if you want it punchier) | ~70% of every page | Default `<body>` background, card fills |
-| **Secondary** | Forest green `forest-700`/`forest-800` | ~15–20% | Headings, nav bar, body-text-on-light, primary brand voice — this is your *most-seen* color after the background |
-| **Primary** | Gold `gold-500` | ~5–8%, always intentional | Buttons, links, active states, focus rings, the hero accent underline, icons. Primary = "click me" / "look here," never a background fill for large areas |
-| **Accent** | Bronze `bronze-500`/`600` | <5% | Badges, dividers, hover alternates, small decorative elements, quote marks — texture, not structure |
-| **Contrast/dark** | Navy `navy-800`/`900` | Footer + 1 dark CTA band only | Footer, a single "donate" band, dark-mode surface |
+| **Background (canvas)** | Crisp near-white `--color-surface` (`#FDFCF9`) | ~70% of every page | Default `<body>` background, most section fills. Barely warm — color is carried by photography and accents, not a heavy tint |
+| **Secondary surface** | Light warm-grey tint `--color-surface-alt` (`#F5F1E8`) | Alternating sections | Used for tonal rhythm between `surface` bands (stat strips, listing pages) |
+| **Card surface** | `--color-surface-card` (`#FFFFFF`) | Raised cards/panels only | Brighter than the canvas it sits on, so a card still reads as lifted even though the base canvas is now near-white too |
+| **Forest** (green) | `forest-700`/`800`/`900` | ~15–20% | Headings, nav bar, body-text-on-light — the most-seen color after the background |
+| **Gold** (ochre) | `gold-500` | ~5–8%, always intentional | Buttons, links, active states, focus rings — the one CTA band. Never a large background fill. |
+| **Bronze** (clay) | `bronze-500`/`600`/`700` | <5% | Eyebrows, badges, emphasis-underline accents — texture, not structure |
+| **Ink** (dark) | `ink-900` | Hero + footer + PageHeader ground, one CTA-adjacent context | The "night" end of the dawn→night arc |
 
-**Rule of thumb:** if you're reaching for gold to fill more than a button
-or a thin accent line, use forest or the bright background instead. Gold
-as a *large* fill (full section background) fights the "bright, airy"
-feel you want and fails text-contrast — save full-strength gold for small,
-high-purpose elements.
+**Rule of thumb:** if you're reaching for gold to fill more than a button or a
+thin accent, use forest or a surface token instead. Gold as a *large* fill
+fights the "bright, airy" feel and fails text-contrast — save full-strength
+gold for small, high-purpose elements and the one CTA band.
 
 ---
 
-## Bright background, with optional section variety
+## Bright near-white background, color carried by photography and accents
 
-Your instinct to keep the base bright is right for a hope-forward NGO —
-but an entire site on one flat color goes flat *visually*. Use **tonal
-banding**: keep every section bright/light, but shift the tint section to
-section so scrolling has rhythm, without ever introducing a jarring
-contrast jump.
+The canvas itself stays crisp and barely-tinted — color comes from real
+photography (never stock), the gold accent, and section-level blocks (the
+CTA band, PageHeader photos, the Pillars tiles), not from a heavy color wash
+across every section. A sand/cream canvas was tried and dropped — at enough
+chroma to read as intentional it also read as dated/sepia, which fought the
+"bright" brief more than a flat white would have.
 
 ```
-┌─────────────────────────────┐
-│  HERO — gold-50 → gold-100   │  "dawn" — brightest point on the page
-│  gradient, gold-500 accents  │
-├─────────────────────────────┤
-│  Content — bg-white/cream    │  neutral reading section
-├─────────────────────────────┤
-│  Impact stats — forest-50    │  "growth" — pale green tint
-├─────────────────────────────┤
-│  Content — bg-white/cream    │
-├─────────────────────────────┤
-│  Donate CTA — gold-500 block │  ONE bold saturated band — earns the
-│  navy-900 text               │  full-strength color because it's the
-│                               │  single most important action on the page
-├─────────────────────────────┤
-│  Footer — navy-900            │  "night" — closes the dawn→night arc
-└─────────────────────────────┘
+┌──────────────────────────────┐
+│  HERO — ink-900 + full-bleed  │  "night" ground, real field photography
+│  photo carousel, gold accents │
+├──────────────────────────────┤
+│  Content — surface            │  crisp near-white, neutral reading section
+├──────────────────────────────┤
+│  Content — surface-alt        │  light warm-grey tint, tonal rhythm
+├──────────────────────────────┤
+│  Donate CTA — gold-500 block  │  ONE bold saturated band, low-opacity
+│  + low-opacity photo texture  │  photo texture behind it — never a second
+│                                │  competing full-strength image
+├──────────────────────────────┤
+│  Footer — ink-900              │  "night" — closes the dawn→night arc
+└──────────────────────────────┘
 ```
-
-Add these semantic surface tokens alongside your color scales so section
-backgrounds are named by *purpose*, not by raw color:
 
 ```css
 @theme {
-  --color-surface: #fffcf2;       /* default bright canvas */
-  --color-surface-alt: var(--color-forest-50);  /* alternating section tint */
-  --color-surface-cta: var(--color-gold-500);   /* one bold donate/CTA band */
-  --color-surface-dark: var(--color-navy-900);  /* footer, dark band */
+  --color-surface:      #FDFCF9;  /* crisp, barely-warm near-white canvas */
+  --color-surface-alt:  #F5F1E8;  /* light warm-grey tint, alternating sections */
+  --color-surface-card: #FFFFFF;  /* raised card fill — brighter than the canvas */
+  --color-surface-cta:  var(--color-gold-500);  /* the one bold donate/CTA band */
+  --color-surface-dark: var(--color-ink-900);   /* hero + footer ground */
 }
 ```
 
-```jsx
-<body className="bg-surface">
-  <section className="bg-surface">…</section>
-  <section className="bg-surface-alt">…</section>
-  <section className={clsx('bg-surface-cta', 'text-navy-900')}>
-    <h2 className={clsx('font-display', 'italic')}>Help bring the next dawn.</h2>
-    <button className={clsx('bg-navy-900', 'text-gold-400')}>Donate now</button>
-  </section>
-  <footer className={clsx('bg-surface-dark', 'text-gold-300')}>…</footer>
-</body>
-```
-
-**Guardrails:**
-- Never stack two saturated bands back to back (e.g. gold CTA directly
-  above/below another strong color) — always separate bold bands with a
-  neutral or tinted-light section.
+**Guardrails (unchanged from the original brief):**
+- Never stack two saturated bands back to back — always separate bold bands
+  with a neutral or tinted-light section.
 - Only **one** full-saturation gold band per page. If everything is
   emphasized, nothing is.
-- Body copy always sits on `surface`, `surface-alt`, or `white` — never
-  directly on `gold-500` or `navy-900` without checking contrast (use
-  `navy-900` text on gold, `gold-300`/`white` text on navy).
+- Body copy always sits on `surface`, `surface-alt`, or `surface-card` — never
+  directly on `gold-500` or `ink-900` without checking contrast.
+- Prefer a real photo over a flat color fill wherever the content allows one —
+  reuse an existing verified image (ImageKit-hosted field photo or a file in
+  `public/construction/`) rather than inventing or sourcing stock imagery.
+
+---
+
+## The pictorial-header pattern
+
+`src/components/common/PageHeader.jsx` is the canonical "how to make a
+section pictorial" component — it's reused by every inner page (About,
+Projects, Construction, Gallery, Blog, Contact) and by `ProjectDetail`/
+`BlogPost` (which pass a dynamic `title`/`image` per item). Pass an optional
+`image`/`imageAlt` to turn the dark band into a full-bleed photo header; the
+existing radial gold glow and bottom gradient stripe layer on top as accents.
+Omitting `image` renders the plain dark band, unchanged.
+
+```jsx
+<PageHeader
+  eyebrow="Get in touch"
+  title="Start a conversation."
+  subtitle="…"
+  image="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/…jpg?tr=w-1600,q-72"
+  imageAlt="Distributing agricultural tools to farming households in Oyam District"
+/>
+```
+
+The same photo + dark gradient-wash math (full-bleed `object-cover` image,
+`bg-gradient-to-t from-ink-900 via-ink-900/75 to-ink-900/30` overlay) is
+applied inline wherever a section isn't a page-opener but still benefits from
+a photographic background — e.g. the "pillar" tiles on the About page, or a
+low-opacity texture layer behind the gold CTA band.
 
 ---
 
@@ -158,23 +160,25 @@ backgrounds are named by *purpose*, not by raw color:
 
 ```jsx
 // Nav
-<nav className={clsx('bg-surface', 'border-b', 'border-gold-200')}>
-  <span className={clsx('font-display', 'italic', 'text-forest-800')}>Oling Dawn Kerjew</span>
-  <a className={clsx('font-body', 'text-forest-700', 'hover:text-gold-600')}>Our Work</a>
+<nav className="bg-surface/85 backdrop-blur-xl border-b border-ink-900/8">
+  <span className="font-display text-forest-900">Oling Dawn Kerjew</span>
+  <span className="font-semibold tracking-wide text-gold-500">Projects</span>
 </nav>
 
 // Hero
-<section className={clsx('bg-gradient-to-b', 'from-gold-100', 'to-surface')}>
-  <h1 className={clsx('font-display', 'italic', 'text-forest-900')}>Bringing dawn to every doorstep</h1>
-  <p className={clsx('font-body', 'text-navy-800/80')}>…</p>
-  <button className={clsx('bg-gold-500', 'hover:bg-gold-600', 'text-navy-900', 'font-body', 'font-semibold')}>
-    Get Involved
-  </button>
+<section className="relative overflow-hidden bg-ink-900">
+  {/* full-bleed real photo carousel, gradient wash, content on top */}
+  <h1 className="font-display text-surface">
+    Bringing dawn to every doorstep,{' '}
+    <span className="font-semibold text-gold-400 underline decoration-gold-500/50 decoration-2 underline-offset-4">
+      one house at a time.
+    </span>
+  </h1>
 </section>
 
 // Stat band
 <section className="bg-surface-alt">
-  <span className={clsx('font-mono', 'text-bronze-700')}>12,400</span>
-  <p className={clsx('font-body', 'text-forest-800')}>meals delivered this year</p>
+  <span className="font-mono text-bronze-700">12,400</span>
+  <p className="font-body text-forest-800">meals delivered this year</p>
 </section>
 ```

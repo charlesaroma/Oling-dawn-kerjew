@@ -36,7 +36,7 @@ function Brand() {
       <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-surface/20" />
       <div className="flex flex-col leading-[1.1]" title={orgName}>
         <span className="font-display text-[15px] text-surface">{wordmark}</span>
-        <span className="font-display text-[15px] italic text-gold-500">{division}</span>
+        <span className="font-display text-[15px] font-semibold tracking-wide text-gold-500">{division}</span>
         <span className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.22em] text-surface/55">Admin Console</span>
       </div>
     </Link>

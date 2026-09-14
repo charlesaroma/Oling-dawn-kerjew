@@ -1,5 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import Container from '../../components/common/Container';
+import PageHeader from '../../components/common/PageHeader';
 import MediaImage from '../../components/media/MediaImage';
 import Button from '../../components/common/Button';
 import ProjectGallery from './sections/ProjectGallery';
@@ -22,32 +23,14 @@ export default function ProjectDetail() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-ink-900">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-[8%] -top-[60%] h-[min(60vw,520px)] w-[min(60vw,520px)] rounded-full opacity-70"
-          style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.14) 0%, transparent 66%)' }}
-        />
-        <Container className="relative pb-16 pt-32 sm:pb-20 sm:pt-40">
-          <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">
-            {project.category} · {project.location}
-          </p>
-          <h1 className="max-w-[18ch] font-display text-[clamp(2.2rem,5.4vw,4rem)] leading-[0.98] tracking-[-0.02em] text-surface text-balance">
-            {project.title}
-          </h1>
-          {project.summary && (
-            <p className="mt-6 max-w-[52ch] text-base leading-relaxed text-surface/60">{project.summary}</p>
-          )}
-        </Container>
-        <div
-          aria-hidden="true"
-          className="h-1.5"
-          style={{
-            background:
-              'repeating-linear-gradient(90deg, var(--color-gold-500) 0 28px, var(--color-bronze-600) 28px 56px, var(--color-forest-700) 56px 84px)',
-          }}
-        />
-      </section>
+      <PageHeader
+        eyebrow={`${project.category} · ${project.location}`}
+        title={project.title}
+        subtitle={project.summary}
+        titleClassName="max-w-[18ch] font-display text-[clamp(2.2rem,5.4vw,4rem)] font-medium leading-[0.98] tracking-[-0.02em] text-surface text-balance"
+        image={project.coverImage}
+        imageAlt={project.title}
+      />
 
       <section className="bg-surface py-20 sm:py-24">
         <Container className="flex flex-col gap-14">
@@ -71,7 +54,7 @@ export default function ProjectDetail() {
               </div>
             </div>
 
-            <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-ink-900/8 bg-white p-6 shadow-elevated">
+            <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-ink-900/8 bg-surface-card p-6 shadow-elevated">
               <div>
                 <p className="font-mono text-xs uppercase tracking-wide text-ink-500">Status</p>
                 <p className="font-semibold text-forest-900">{project.status}</p>

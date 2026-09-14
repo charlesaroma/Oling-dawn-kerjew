@@ -26,6 +26,8 @@ export default function Projects() {
         eyebrow="Our work"
         title="Every initiative, on the record."
         subtitle="Construction, education, healthcare and community initiatives carried out alongside the people we serve."
+        image="/construction/namanve-bridges.jpg"
+        imageAlt="A completed bridge and drainage project in Namanve"
       />
       <section className="bg-surface-alt py-20 sm:py-28">
         <Container className="flex flex-col gap-12">

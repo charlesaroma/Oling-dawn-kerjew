@@ -32,7 +32,7 @@ export default function PartnersSection() {
 
         <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
           {/* Lead partner — carries the mark */}
-          <div className="flex items-center gap-7 rounded-2xl border border-ink-900/8 bg-white p-7 sm:p-9">
+          <div className="flex items-center gap-7 rounded-2xl border border-ink-900/8 bg-surface-card p-7 sm:p-9">
             <img
               src={lead.logo}
               alt={`${lead.short} logo`}

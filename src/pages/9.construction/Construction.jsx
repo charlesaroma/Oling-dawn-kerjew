@@ -37,6 +37,8 @@ export default function Construction() {
         eyebrow="Low-cost, non-profit construction"
         title="Build the thing itself."
         subtitle="Instead of subsidising rent for ever, we build refugee housing, health facilities, schools, roads and drainage at non-profit cost — using prefabricated modular concrete delivered by our building partner."
+        image="/construction/modular-storeys.jpg"
+        imageAlt="A multi-storey modular concrete building under construction"
       />
 
       {/* THE CONTEXT */}
@@ -49,7 +51,7 @@ export default function Construction() {
           />
           <dl className="grid gap-px overflow-hidden rounded-2xl border border-ink-900/10 bg-ink-900/10 sm:grid-cols-2 lg:grid-cols-4">
             {CONTEXT.map(({ value, label, source, approx }) => (
-              <div key={label} className="flex flex-col bg-white p-7">
+              <div key={label} className="flex flex-col bg-surface-card p-7">
                 {approx && (
                   <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-bronze-600">Approximately</span>
                 )}
@@ -94,7 +96,7 @@ export default function Construction() {
             </ul>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-ink-900/8 bg-white">
+          <div className="overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
             <img
               src="/construction/solution-unit.jpg"
               alt="A completed low-cost modular concrete housing unit"

@@ -22,7 +22,7 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
 
         <div className="absolute inset-x-0 bottom-0 p-12 xl:p-16">
           <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">{kicker}</p>
-          <h2 className="mt-6 max-w-[14ch] font-display text-[clamp(2rem,3.4vw,3rem)] leading-[1.02] tracking-[-0.02em] text-surface text-balance">
+          <h2 className="mt-6 max-w-[14ch] font-display font-medium text-[clamp(2rem,3.4vw,3rem)] leading-[1.02] tracking-[-0.02em] text-surface text-balance">
             {title}
           </h2>
           <p className="mt-5 max-w-[42ch] text-[15px] leading-relaxed text-surface/60">{blurb}</p>
@@ -45,7 +45,7 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
             <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-full ring-1 ring-ink-900/8" />
             <span className="flex flex-col font-display text-lg leading-[1.05]" title={orgName}>
               <span className="text-forest-900">{wordmark}</span>
-              <span className="italic text-gold-600">{division}</span>
+              <span className="font-semibold tracking-wide text-gold-600">{division}</span>
             </span>
           </Link>
           {children}

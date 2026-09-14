@@ -9,7 +9,7 @@ export default function SectionHeading({ eyebrow, title, subtitle, align = 'left
           {eyebrow}
         </span>
       )}
-      <h2 className={`mt-4 max-w-[18ch] font-display text-[clamp(1.9rem,3.6vw,2.9rem)] font-normal leading-[1.04] tracking-[-0.02em] text-balance ${dark ? 'text-surface' : 'text-forest-900'}`}>
+      <h2 className={`mt-4 max-w-[18ch] font-display text-[clamp(1.9rem,3.6vw,2.9rem)] font-medium leading-[1.04] tracking-[-0.02em] text-balance ${dark ? 'text-surface' : 'text-forest-900'}`}>
         {title}
       </h2>
       {subtitle && (

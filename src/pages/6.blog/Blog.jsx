@@ -21,6 +21,8 @@ export default function Blog() {
         eyebrow="Journal"
         title="Notes from the field."
         subtitle="Updates, stories and lessons from the districts where we work."
+        image="/construction/bukedea-teachers-lodge.jpg"
+        imageAlt="A teachers' lodge built in Bukedea district"
       />
       <section className="bg-surface-alt py-20 sm:py-28">
         <Container>

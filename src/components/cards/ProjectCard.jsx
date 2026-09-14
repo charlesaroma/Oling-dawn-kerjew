@@ -12,7 +12,7 @@ export default function ProjectCard({ project }) {
   return (
     <Link
       to={`/projects/${project.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-ink-900/16 hover:shadow-elevated-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card transition-all duration-300 hover:-translate-y-1 hover:border-ink-900/16 hover:shadow-elevated-lg"
     >
       <div className="relative aspect-4/3 overflow-hidden bg-forest-50">
         <MediaImage

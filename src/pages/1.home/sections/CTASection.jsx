@@ -9,6 +9,15 @@ import Container from '../../../components/common/Container';
 export default function CTASection() {
   return (
     <section className="relative overflow-hidden bg-gold-500">
+      {/* Texture, not a second focal image — kept low-opacity so the gold band
+          stays the one full-saturation moment on the page. */}
+      <img
+        src="/construction/modular-row.jpg"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.14] mix-blend-multiply"
+      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-[8%] -top-[40%] h-[min(56vw,480px)] w-[min(56vw,480px)] rounded-full opacity-60"
@@ -22,7 +31,10 @@ export default function CTASection() {
               Get involved
             </p>
             <h2 className="max-w-[14ch] font-display text-[clamp(2.2rem,5vw,3.8rem)] leading-[0.98] tracking-[-0.02em] text-ink-900 text-balance">
-              Help bring the <em className="italic text-bronze-800">next dawn.</em>
+              Help bring the{' '}
+              <span className="font-semibold text-bronze-800 underline decoration-ink-900/30 decoration-2 underline-offset-4">
+                next dawn.
+              </span>
             </h2>
             <p className="mt-6 max-w-[46ch] leading-relaxed text-ink-900/75">
               Every donation, volunteer hour and partnership brings construction, education, healthcare and hope

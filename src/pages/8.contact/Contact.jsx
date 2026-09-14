@@ -16,11 +16,23 @@ export default function Contact() {
         eyebrow="Get in touch"
         title="Start a conversation."
         subtitle="Partnerships, volunteering, media requests or a question about the work — this reaches the people who can answer it."
+        image="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/distributing_agricultural_tools_hoes_MG_7659.JPG?tr=w-1600,q-72"
+        imageAlt="Distributing agricultural tools to farming households in Oyam District"
       />
       <section className="bg-surface-alt py-20 sm:py-28">
         <Container className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
           <ContactForm />
-          <ContactInfo />
+          <div className="flex flex-col gap-10">
+            <div className="overflow-hidden rounded-2xl border border-ink-900/8 shadow-elevated">
+              <img
+                src="/construction/mulago-oxygen-plant.jpg"
+                alt="A medical oxygen plant built by the organisation at Mulago"
+                loading="lazy"
+                className="aspect-4/3 w-full object-cover"
+              />
+            </div>
+            <ContactInfo />
+          </div>
         </Container>
       </section>
     </>

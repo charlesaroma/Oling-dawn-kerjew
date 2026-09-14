@@ -57,7 +57,7 @@ export default function DeliveryGap() {
           />
           <div className="grid gap-px overflow-hidden rounded-2xl border border-ink-900/10 bg-ink-900/10 lg:grid-cols-3">
             {GAPS.map(({ icon: Icon, title, strap, points }) => (
-              <div key={title} className="flex flex-col gap-5 bg-white p-8">
+              <div key={title} className="flex flex-col gap-5 bg-surface-card p-8">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-900/10 text-forest-700">
                   <Icon size={18} strokeWidth={1.6} />
                 </span>
@@ -128,7 +128,7 @@ export default function DeliveryGap() {
                 </div>
               ))}
             </dl>
-            <p className="mt-8 border-t border-surface/12 pt-6 font-display text-lg italic text-surface/70">
+            <p className="mt-8 border-t border-surface/12 pt-6 font-display text-lg font-semibold text-surface/70">
               …and no asset at the end of any of them.
             </p>
           </figure>

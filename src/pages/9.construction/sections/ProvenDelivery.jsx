@@ -28,7 +28,7 @@ export default function ProvenDelivery() {
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WORKS.map(({ src, name, where }) => (
-              <figure key={src} className="group overflow-hidden rounded-2xl border border-ink-900/8 bg-white">
+              <figure key={src} className="group overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
                 <img
                   src={src}
                   alt={`${name}, ${where} — built by MEACCO`}

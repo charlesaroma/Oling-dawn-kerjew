@@ -17,7 +17,7 @@ export default function Lightbox({ item, onClose }) {
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+        className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-surface-card/10 text-white transition-colors hover:bg-surface-card/20"
         aria-label="Close"
       >
         <X size={20} />
