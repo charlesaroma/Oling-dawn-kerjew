@@ -8,20 +8,31 @@ const STATUS_STYLES = {
   Planned: 'border-info/30 text-info',
 };
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, to, badgeLabel }) {
+  const isLocalImage = project.coverImage?.startsWith('/');
+
   return (
     <Link
-      to={`/projects/${project.slug}`}
+      to={to || `/projects/${project.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card transition-all duration-300 hover:-translate-y-1 hover:border-ink-900/16 hover:shadow-elevated-lg"
     >
       <div className="relative aspect-4/3 overflow-hidden bg-forest-50">
-        <MediaImage
-          src={project.coverImage}
-          alt={project.title}
-          width={480}
-          height={360}
-          className="h-full w-full object-cover saturate-[0.75] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
-        />
+        {isLocalImage ? (
+          <img
+            src={project.coverImage}
+            alt={project.title}
+            loading="lazy"
+            className="h-full w-full object-cover saturate-[0.75] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
+          />
+        ) : (
+          <MediaImage
+            src={project.coverImage}
+            alt={project.title}
+            width={480}
+            height={360}
+            className="h-full w-full object-cover saturate-[0.75] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
+          />
+        )}
         <span className="absolute right-3 top-3 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-surface text-forest-800 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           <ArrowUpRight size={16} />
         </span>
@@ -30,8 +41,8 @@ export default function ProjectCard({ project }) {
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center justify-between gap-3">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-bronze-600">{project.category}</span>
-          <span className={`rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] ${STATUS_STYLES[project.status] ?? 'border-ink-900/15 text-ink-500'}`}>
-            {project.status}
+          <span className={`rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] ${badgeLabel ? 'border-gold-600/30 text-gold-700' : (STATUS_STYLES[project.status] ?? 'border-ink-900/15 text-ink-500')}`}>
+            {badgeLabel || project.status}
           </span>
         </div>
 

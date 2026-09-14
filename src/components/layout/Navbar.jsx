@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import Container from '../common/Container';
 import { DATA } from '../../services/jsonDataLoader';
+
+/* Wider than `container-site` (1280px) on purpose — the bar reads better
+   with more breathing room than the page content below it caps out at. */
+function NavContainer({ className = '', children }) {
+  return <div className={`mx-auto w-full max-w-[1680px] px-6 sm:px-10 ${className}`}>{children}</div>;
+}
 
 /* Every page opens on a dark band (the hero, or PageHeader), so the bar rides
    transparent over it and only takes a surface once you've scrolled past. */
@@ -31,7 +36,7 @@ export default function Navbar() {
         solid ? 'border-b border-ink-900/8 bg-surface/90 shadow-elevated backdrop-blur-xl' : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <Container className={`flex items-center justify-between gap-4 transition-all duration-300 ${solid ? 'py-2.5' : 'py-4'}`}>
+      <NavContainer className={`flex items-center justify-between gap-4 transition-all duration-300 ${solid ? 'py-2.5' : 'py-4'}`}>
         <NavLink to="/" className="flex min-w-0 items-center gap-3">
           <img
             src="/apple-touch-icon.png"
@@ -74,14 +79,14 @@ export default function Navbar() {
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
-      </Container>
+      </NavContainer>
 
       <div
         className={`overflow-hidden border-t border-ink-900/6 bg-surface transition-all duration-300 md:hidden ${
           open ? 'max-h-96' : 'max-h-0 border-t-0'
         }`}
       >
-        <Container className="flex flex-col gap-1 py-4">
+        <NavContainer className="flex flex-col gap-1 py-4">
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -104,7 +109,7 @@ export default function Navbar() {
           >
             Get Involved
           </NavLink>
-        </Container>
+        </NavContainer>
       </div>
     </header>
   );

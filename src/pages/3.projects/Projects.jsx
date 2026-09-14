@@ -8,6 +8,8 @@ import { useProjects } from '../../services/projectQueries';
 import { getPublishedProjects, getProjectCategories, filterProjectsByCategory } from '../../services/projectsService';
 import { useSEO } from '../../hooks/useSEO';
 
+const CONSTRUCTION_CATEGORY = 'Low-Cost Construction';
+
 export default function Projects() {
   useSEO({
     title: 'Our Projects',
@@ -19,6 +21,16 @@ export default function Projects() {
   const [category, setCategory] = useState('All');
   const categories = useMemo(() => getProjectCategories(published), [published]);
   const projects = useMemo(() => filterProjectsByCategory(published, category), [published, category]);
+
+  /* The standalone case-study page at /construction isn't its own backend
+     record — instead of a top-level nav link (or a fabricated card), the
+     first real, dynamically-fetched construction project links there
+     instead of its own detail page. Card content (image, title, summary,
+     status) stays 100% real DB data; only the destination changes. */
+  const constructionFlagshipId = useMemo(
+    () => published.find((p) => p.category === CONSTRUCTION_CATEGORY)?.id,
+    [published],
+  );
 
   return (
     <>
@@ -38,7 +50,12 @@ export default function Projects() {
           ) : (
             <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  to={project.id === constructionFlagshipId ? '/construction' : undefined}
+                  badgeLabel={project.id === constructionFlagshipId ? 'Full case study' : undefined}
+                />
               ))}
             </div>
           )}
