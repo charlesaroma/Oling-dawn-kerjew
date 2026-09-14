@@ -25,8 +25,8 @@ export default function Contact() {
           <div className="flex flex-col gap-10">
             <div className="overflow-hidden rounded-2xl border border-ink-900/8 shadow-elevated">
               <img
-                src="/construction/mulago-oxygen-plant.jpg"
-                alt="A medical oxygen plant built by the organisation at Mulago"
+                src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/ladies_hairdressing_training_20250812_123723.jpg?tr=w-900,q-72"
+                alt="Women's vocational training in hairdressing"
                 loading="lazy"
                 className="aspect-4/3 w-full object-cover"
               />

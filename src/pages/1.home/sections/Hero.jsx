@@ -130,17 +130,6 @@ export default function Hero() {
           </div>
         </div>
       </Container>
-
-      {/* Kitenge band — woven-textile stripe from the earth palette, doing real
-          work as the rule between the hero and the page. */}
-      <div
-        aria-hidden="true"
-        className="relative h-1.5"
-        style={{
-          background:
-            'repeating-linear-gradient(90deg, var(--color-gold-500) 0 28px, var(--color-bronze-600) 28px 56px, var(--color-forest-700) 56px 84px)',
-        }}
-      />
     </section>
   );
 }

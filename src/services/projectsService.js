@@ -23,3 +23,8 @@ export function filterProjectsByCategory(projects, category) {
   if (!category || category === 'All') return projects;
   return projects.filter((p) => p.category === category);
 }
+
+export function sortProjectsByDate(projects, order = 'newest') {
+  const sorted = [...projects].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return order === 'oldest' ? sorted.reverse() : sorted;
+}

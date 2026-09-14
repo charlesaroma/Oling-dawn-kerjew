@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import MediaImage from '../../components/media/MediaImage';
+import Loader from '../../components/common/Loader';
 import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts, getPostBySlug } from '../../services/blogService';
 import { formatDate } from '../../utils/formatDate';
@@ -9,7 +10,7 @@ import { useSEO } from '../../hooks/useSEO';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const { data: blogPosts } = useBlogPosts();
+  const { data: blogPosts, isFetching } = useBlogPosts();
   const post = getPostBySlug(getPublishedPosts(blogPosts), slug);
 
   useSEO({
@@ -18,7 +19,11 @@ export default function BlogPost() {
     image: post?.coverImage,
   });
 
-  if (!post) return <Navigate to="/blog" replace />;
+  // useBlogPosts() sets initialData: [] so isLoading is always false here —
+  // isFetching is what actually reflects the in-flight first request. Wait
+  // for it to settle before deciding the post genuinely doesn't exist,
+  // otherwise a direct/hard-loaded link always bounces to /blog.
+  if (!post) return isFetching ? <Loader /> : <Navigate to="/blog" replace />;
 
   return (
     <article>

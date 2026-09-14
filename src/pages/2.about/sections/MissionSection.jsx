@@ -35,23 +35,13 @@ export default function MissionSection() {
           </dl>
         </div>
 
-        <div className="relative">
-          <div className="aspect-4/5 overflow-hidden rounded-2xl bg-forest-50">
-            <MediaImage
-              src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/ladies_hairdressing_training_20250812_123723.jpg?updatedAt=1788261011246"
-              alt="Women's vocational training run by Oling Dawn Kerjew Projects"
-              width={640}
-              height={800}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-3 left-8 right-8 h-1.5 rounded-full"
-            style={{
-              background:
-                'repeating-linear-gradient(90deg, var(--color-gold-500) 0 22px, var(--color-bronze-600) 22px 44px, var(--color-forest-700) 44px 66px)',
-            }}
+        <div className="aspect-4/5 overflow-hidden rounded-2xl bg-forest-50">
+          <MediaImage
+            src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/ladies_hairdressing_training_20250812_123723.jpg?updatedAt=1788261011246"
+            alt="Women's vocational training run by Oling Dawn Kerjew Projects"
+            width={640}
+            height={800}
+            className="h-full w-full object-cover"
           />
         </div>
       </Container>

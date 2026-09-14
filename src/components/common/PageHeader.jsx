@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import Container from './Container';
 
 /* Every page opens on this dark band. It clears the fixed navbar, gives the
@@ -17,6 +19,8 @@ export default function PageHeader({
   imageAlt,
   containerClassName = '',
   titleClassName,
+  backTo,
+  backLabel = 'Back',
   children,
 }) {
   return (
@@ -42,6 +46,15 @@ export default function PageHeader({
         style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.14) 0%, transparent 66%)' }}
       />
       <Container className={`relative pb-16 pt-32 sm:pb-20 sm:pt-40 ${containerClassName}`}>
+        {backTo && (
+          <Link
+            to={backTo}
+            className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-surface/60 transition-colors hover:text-surface"
+          >
+            <ArrowLeft size={15} strokeWidth={2} />
+            {backLabel}
+          </Link>
+        )}
         {eyebrow && (
           <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">
             {eyebrow}
@@ -55,14 +68,6 @@ export default function PageHeader({
         )}
         {children}
       </Container>
-      <div
-        aria-hidden="true"
-        className="h-1.5"
-        style={{
-          background:
-            'repeating-linear-gradient(90deg, var(--color-gold-500) 0 28px, var(--color-bronze-600) 28px 56px, var(--color-forest-700) 56px 84px)',
-        }}
-      />
     </section>
   );
 }

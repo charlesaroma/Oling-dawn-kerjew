@@ -27,15 +27,6 @@ export default function AuthSplitShell({ kicker, title, blurb, children }) {
           </h2>
           <p className="mt-5 max-w-[42ch] text-[15px] leading-relaxed text-surface/60">{blurb}</p>
         </div>
-
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-1.5"
-          style={{
-            background:
-              'repeating-linear-gradient(90deg, var(--color-gold-500) 0 28px, var(--color-bronze-600) 28px 56px, var(--color-forest-700) 56px 84px)',
-          }}
-        />
       </div>
 
       {/* Form panel */}
