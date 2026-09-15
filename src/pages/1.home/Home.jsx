@@ -1,5 +1,5 @@
 import Hero from './sections/Hero';
-import ImpactStats from './sections/ImpactStats';
+import ImpactStats from '../../components/sections/ImpactStats';
 import ConstructionSection from './sections/ConstructionSection';
 import PartnersSection from './sections/PartnersSection';
 import FeaturedProjects from './sections/FeaturedProjects';

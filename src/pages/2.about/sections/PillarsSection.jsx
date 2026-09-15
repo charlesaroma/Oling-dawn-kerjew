@@ -26,8 +26,8 @@ const PILLAR_IMAGES = {
     alt: "Women's vocational training in hairdressing",
   },
   'pillar-04': {
-    src: '/construction/build-04-finish.jpg',
-    alt: 'A finished low-cost modular construction build',
+    src: 'https://ik.imagekit.io/u8h0uidte/oling-dawn-kerjew-projects/media/sudanese-refugees-5_9cxTSl1c3.jpeg?tr=w-800,q-72',
+    alt: 'Food aid distributed to a vulnerable refugee family',
   },
   'pillar-05': {
     src: `${IK}/NGO_secondary_school_20250811_120553.jpg?tr=w-800,q-72`,

@@ -1,6 +1,6 @@
-import Container from '../../../components/common/Container';
-import { useProjects } from '../../../services/projectQueries';
-import { getProjectCategories } from '../../../services/projectsService';
+import Container from '../common/Container';
+import { useProjects } from '../../services/projectQueries';
+import { getProjectCategories } from '../../services/projectsService';
 
 /* Counts every initiative the organisation runs, not only the ones with a
    published page — a project in draft is still real work on the ground. */
@@ -10,11 +10,13 @@ export default function ImpactStats() {
     projects.map((p) => p.location?.split(',')[0].trim()).filter(Boolean),
   );
 
+  const completed = projects.filter((p) => p.status === 'Completed').length;
+
   const stats = [
     { value: String(projects.length), label: 'Initiatives' },
     { value: String(getProjectCategories(projects).length), label: 'Focus areas' },
     { value: String(districts.size), label: 'Districts reached' },
-    { value: '2025', label: 'Registered' },
+    { value: String(completed), label: 'Completed' },
   ];
 
   return (

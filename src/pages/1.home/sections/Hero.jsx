@@ -94,7 +94,7 @@ export default function Hero() {
           </p>
 
           <p className="mt-8 max-w-[44ch] font-display text-lg leading-snug text-surface/85">
-            {initiativeCount || '—'} initiatives across {districtCount || '—'} districts, all delivered since 2025.
+            {initiativeCount || '—'} initiatives and counting, across {districtCount || '—'} districts.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">

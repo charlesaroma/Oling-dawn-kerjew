@@ -5,6 +5,7 @@ import PageHeader from '../../components/common/PageHeader';
 import EmptyState from '../../components/common/EmptyState';
 import ProjectCard from '../../components/cards/ProjectCard';
 import CategoryFilterBar from './sections/CategoryFilterBar';
+import CategorySidebar from './sections/CategorySidebar';
 import { useProjects } from '../../services/projectQueries';
 import {
   getPublishedProjects,
@@ -55,37 +56,50 @@ export default function Projects() {
         imageAlt="A completed bridge and drainage project in Namanve"
       />
       <section className="bg-surface-alt py-20 sm:py-28">
-        <Container className="flex flex-col gap-12">
-          <div className="flex flex-col gap-4">
-            <CategoryFilterBar categories={categories} active={category} onChange={setCategory} />
-            <div className="relative w-full sm:ml-auto sm:w-48">
-              <select
-                value={order}
-                onChange={(e) => setOrder(e.target.value)}
-                className={SELECT_CLASSES}
-                aria-label="Sort projects"
-              >
-                <option value="newest">Newest first</option>
-                <option value="oldest">Oldest first</option>
-              </select>
-              <ChevronDown size={16} strokeWidth={2} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-forest-600" />
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-12">
+            {/* Sticky category sidebar — desktop only, stays in view while the grid scrolls */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 rounded-2xl border border-ink-900/8 bg-surface-card p-3 shadow-elevated">
+                <CategorySidebar categories={categories} active={category} onChange={setCategory} />
+              </div>
+            </aside>
+
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="lg:hidden">
+                  <CategoryFilterBar categories={categories} active={category} onChange={setCategory} />
+                </div>
+                <div className="relative w-full sm:w-48 lg:ml-auto">
+                  <select
+                    value={order}
+                    onChange={(e) => setOrder(e.target.value)}
+                    className={SELECT_CLASSES}
+                    aria-label="Sort projects"
+                  >
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                  </select>
+                  <ChevronDown size={16} strokeWidth={2} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-forest-600" />
+                </div>
+              </div>
+
+              {projects.length === 0 ? (
+                <EmptyState title="No projects in this category yet" message="Check back soon, or explore another category." />
+              ) : (
+                <div className="grid gap-7 sm:grid-cols-2 xl:grid-cols-3">
+                  {projects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      to={project.id === constructionFlagshipId ? '/construction' : undefined}
+                      badgeLabel={project.id === constructionFlagshipId ? 'Full case study' : undefined}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-
-          {projects.length === 0 ? (
-            <EmptyState title="No projects in this category yet" message="Check back soon, or explore another category." />
-          ) : (
-            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  to={project.id === constructionFlagshipId ? '/construction' : undefined}
-                  badgeLabel={project.id === constructionFlagshipId ? 'Full case study' : undefined}
-                />
-              ))}
-            </div>
-          )}
         </Container>
       </section>
     </>

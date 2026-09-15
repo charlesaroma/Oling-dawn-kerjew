@@ -1,7 +1,10 @@
 import PageHeader from '../../components/common/PageHeader';
+import ImpactStats from '../../components/sections/ImpactStats';
 import MissionSection from './sections/MissionSection';
 import PillarsSection from './sections/PillarsSection';
 import TeamSection from './sections/TeamSection';
+import Timeline from './sections/Timeline';
+import FAQSection from './sections/FAQSection';
 import { useSEO } from '../../hooks/useSEO';
 
 export default function About() {
@@ -22,6 +25,9 @@ export default function About() {
       <MissionSection />
       <PillarsSection />
       <TeamSection />
+      <Timeline />
+      <ImpactStats />
+      <FAQSection />
     </>
   );
 }
