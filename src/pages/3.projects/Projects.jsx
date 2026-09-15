@@ -56,9 +56,9 @@ export default function Projects() {
       />
       <section className="bg-surface-alt py-20 sm:py-28">
         <Container className="flex flex-col gap-12">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4">
             <CategoryFilterBar categories={categories} active={category} onChange={setCategory} />
-            <div className="relative w-full sm:w-48">
+            <div className="relative w-full sm:ml-auto sm:w-48">
               <select
                 value={order}
                 onChange={(e) => setOrder(e.target.value)}
