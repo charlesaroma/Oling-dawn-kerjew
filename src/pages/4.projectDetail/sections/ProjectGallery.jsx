@@ -1,7 +1,7 @@
 import MediaImage from '../../../components/media/MediaImage';
 import MediaVideo from '../../../components/media/MediaVideo';
 
-export default function ProjectGallery({ project }) {
+export default function ProjectGallery({ project, onOpenImage }) {
   return (
     <div className="flex flex-col gap-6">
       {project.video && (
@@ -10,10 +10,16 @@ export default function ProjectGallery({ project }) {
         </div>
       )}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-        {project.gallery.map((src) => (
-          <div key={src} className="group aspect-square overflow-hidden rounded-xl bg-forest-50 shadow-elevated transition-transform duration-300 hover:-translate-y-0.5">
+        {project.gallery.map((src, i) => (
+          <button
+            key={src}
+            type="button"
+            onClick={() => onOpenImage(i)}
+            className="group aspect-square overflow-hidden rounded-xl bg-forest-50 shadow-elevated transition-transform duration-300 hover:-translate-y-0.5"
+            aria-label={`Open image ${i + 1} of ${project.gallery.length}`}
+          >
             <MediaImage src={src} alt={project.title} width={320} height={320} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-          </div>
+          </button>
         ))}
       </div>
     </div>

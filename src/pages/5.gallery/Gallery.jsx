@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import GalleryTile from '../../components/cards/GalleryTile';
-import Lightbox from './sections/Lightbox';
+import Lightbox from '../../components/media/Lightbox';
 import EmptyState from '../../components/common/EmptyState';
 import { useMedia } from '../../services/mediaQueries';
 import { useSEO } from '../../hooks/useSEO';
@@ -13,8 +13,9 @@ export default function Gallery() {
     description: 'Photos and videos from across Oling Dawn Kerjew Projects sites in Uganda.',
   });
 
-  const [active, setActive] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
   const { data: items } = useMedia();
+  const lightboxItems = items.map((item) => ({ src: item.url, alt: item.alt }));
 
   return (
     <>
@@ -34,14 +35,14 @@ export default function Gallery() {
             />
           ) : (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              {items.map((item) => (
-                <GalleryTile key={item.id} item={item} onClick={() => setActive(item)} />
+              {items.map((item, i) => (
+                <GalleryTile key={item.id} item={item} onClick={() => setActiveIndex(i)} />
               ))}
             </div>
           )}
         </Container>
       </section>
-      <Lightbox item={active} onClose={() => setActive(null)} />
+      <Lightbox items={lightboxItems} index={activeIndex} onClose={() => setActiveIndex(null)} onChangeIndex={setActiveIndex} />
     </>
   );
 }

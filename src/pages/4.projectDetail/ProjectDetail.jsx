@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import SectionHeading from '../../components/common/SectionHeading';
 import MediaImage from '../../components/media/MediaImage';
+import Lightbox from '../../components/media/Lightbox';
 import Button from '../../components/common/Button';
 import ShareButton from '../../components/common/ShareButton';
 import Loader from '../../components/common/Loader';
@@ -21,6 +23,7 @@ export default function ProjectDetail() {
   const project = getProjectBySlug(published, slug);
   const related = project ? getRelatedProjects(published, project) : [];
   const constructionFlagshipId = published.find((p) => p.category === CONSTRUCTION_CATEGORY)?.id;
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   useSEO({
     title: project?.title,
@@ -33,6 +36,13 @@ export default function ProjectDetail() {
   // for it to settle before deciding the project genuinely doesn't exist,
   // otherwise a direct/hard-loaded link always bounces to /projects.
   if (!project) return isFetching ? <Loader /> : <Navigate to="/projects" replace />;
+
+  // Cover image first, then the gallery — one shared index space so the
+  // lightbox can step through everything in order, wherever it was opened from.
+  const lightboxItems = [
+    { src: project.coverImage, alt: project.title },
+    ...project.gallery.map((src) => ({ src, alt: project.title })),
+  ];
 
   return (
     <>
@@ -49,15 +59,20 @@ export default function ProjectDetail() {
 
       <section className="bg-surface py-20 sm:py-24">
         <Container className="flex flex-col gap-14">
-          <div className="aspect-21/9 overflow-hidden rounded-3xl shadow-elevated-lg">
+          <button
+            type="button"
+            onClick={() => setLightboxIndex(0)}
+            className="group relative aspect-21/9 overflow-hidden rounded-3xl shadow-elevated-lg"
+            aria-label={`Open ${project.title} image`}
+          >
             <MediaImage
               src={project.coverImage}
               alt={project.title}
               width={1600}
               height={686}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
-          </div>
+          </button>
 
           <div className="grid gap-12 lg:grid-cols-3">
             <div className="flex flex-col gap-4 lg:col-span-2">
@@ -65,7 +80,7 @@ export default function ProjectDetail() {
                 <p key={paragraph} className="text-ink-900/80">{paragraph}</p>
               ))}
               <div className="pt-4">
-                <ProjectGallery project={project} />
+                <ProjectGallery project={project} onOpenImage={(i) => setLightboxIndex(i + 1)} />
               </div>
             </div>
 
@@ -106,6 +121,13 @@ export default function ProjectDetail() {
           </Container>
         </section>
       )}
+
+      <Lightbox
+        items={lightboxItems}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChangeIndex={setLightboxIndex}
+      />
     </>
   );
 }
