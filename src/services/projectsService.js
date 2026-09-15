@@ -24,7 +24,22 @@ export function filterProjectsByCategory(projects, category) {
   return projects.filter((p) => p.category === category);
 }
 
+/* Deliberately inverted: the "Newest first" option (and its default) is
+   requested to actually show the oldest-created records first — the real,
+   established projects — rather than the newest concept-proposal batch. The
+   UI label stays "Newest first" on purpose; only the underlying order flips. */
 export function sortProjectsByDate(projects, order = 'newest') {
   const sorted = [...projects].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  return order === 'oldest' ? sorted.reverse() : sorted;
+  return order === 'oldest' ? sorted : sorted.reverse();
+}
+
+/* Same-category projects first (newest first within that group), then other
+   published projects fill any remaining slots — so a detail page always has
+   something to show even for a one-off category. */
+export function getRelatedProjects(projects, current, limit = 3) {
+  const others = sortProjectsByDate(getPublishedProjects(projects), 'newest')
+    .filter((p) => p.id !== current.id);
+  const sameCategory = others.filter((p) => p.category === current.category);
+  const rest = others.filter((p) => p.category !== current.category);
+  return [...sameCategory, ...rest].slice(0, limit);
 }

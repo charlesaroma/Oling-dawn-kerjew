@@ -1,19 +1,26 @@
 import { Navigate, useParams } from 'react-router-dom';
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
+import SectionHeading from '../../components/common/SectionHeading';
 import MediaImage from '../../components/media/MediaImage';
 import Button from '../../components/common/Button';
 import ShareButton from '../../components/common/ShareButton';
 import Loader from '../../components/common/Loader';
+import ProjectCard from '../../components/cards/ProjectCard';
 import ProjectGallery from './sections/ProjectGallery';
 import { useProjects } from '../../services/projectQueries';
-import { getPublishedProjects, getProjectBySlug } from '../../services/projectsService';
+import { getPublishedProjects, getProjectBySlug, getRelatedProjects } from '../../services/projectsService';
 import { useSEO } from '../../hooks/useSEO';
+
+const CONSTRUCTION_CATEGORY = 'Low-Cost Construction';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const { data: projects, isFetching } = useProjects();
-  const project = getProjectBySlug(getPublishedProjects(projects), slug);
+  const published = getPublishedProjects(projects);
+  const project = getProjectBySlug(published, slug);
+  const related = project ? getRelatedProjects(published, project) : [];
+  const constructionFlagshipId = published.find((p) => p.category === CONSTRUCTION_CATEGORY)?.id;
 
   useSEO({
     title: project?.title,
@@ -81,6 +88,24 @@ export default function ProjectDetail() {
           </div>
         </Container>
       </section>
+
+      {related.length > 0 && (
+        <section className="bg-surface-alt py-20 sm:py-24">
+          <Container className="flex flex-col gap-12">
+            <SectionHeading eyebrow="Keep exploring" title="Other initiatives." />
+            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((p) => (
+                <ProjectCard
+                  key={p.id}
+                  project={p}
+                  to={p.id === constructionFlagshipId ? '/construction' : undefined}
+                  badgeLabel={p.id === constructionFlagshipId ? 'Full case study' : undefined}
+                />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
     </>
   );
 }
