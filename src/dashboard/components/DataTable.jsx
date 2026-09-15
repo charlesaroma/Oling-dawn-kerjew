@@ -31,8 +31,9 @@ export default function DataTable({
   filters = [],
   pageSize = 10,
   onVisibleRowsChange,
+  initialSorting = [],
 }) {
-  const [sorting, setSorting] = useState([]);
+  const [sorting, setSorting] = useState(initialSorting);
   const [globalFilter, setGlobalFilter] = useState('');
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});

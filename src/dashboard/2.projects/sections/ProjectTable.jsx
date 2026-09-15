@@ -2,6 +2,7 @@ import DataTable from '../../components/DataTable';
 import StatusPill from '../../components/StatusPill';
 import MediaImage from '../../../components/media/MediaImage';
 import { isVideoUrl } from '../../../utils/isVideoUrl';
+import { formatDate } from '../../../utils/formatDate';
 
 // Cover image if there is one, else the first still from the gallery — a
 // video can't be shown as a thumbnail, so it falls through to MediaImage's
@@ -29,6 +30,9 @@ const columns = [
   { key: 'status', label: 'Lifecycle' },
   { key: 'publishStatus', label: 'Publish', render: (r) => <StatusPill status={r.publishStatus} /> },
   { key: 'year', label: 'Year' },
+  { key: 'createdAt', label: 'Uploaded', render: (r) => (
+    <span className="whitespace-nowrap">{r.createdAt ? formatDate(r.createdAt) : '—'}</span>
+  ) },
 ];
 
 export default function ProjectTable({ rows, onTogglePublish, onEdit, onDelete }) {
@@ -50,6 +54,7 @@ export default function ProjectTable({ rows, onTogglePublish, onEdit, onDelete }
       searchPlaceholder="Search title, category or slug…"
       filters={['category', 'status', 'publishStatus']}
       emptyMessage="No projects yet."
+      initialSorting={[{ id: 'createdAt', desc: true }]}
     />
   );
 }

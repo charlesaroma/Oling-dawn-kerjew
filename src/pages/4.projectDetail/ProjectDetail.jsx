@@ -3,6 +3,7 @@ import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import MediaImage from '../../components/media/MediaImage';
 import Button from '../../components/common/Button';
+import ShareButton from '../../components/common/ShareButton';
 import Loader from '../../components/common/Loader';
 import ProjectGallery from './sections/ProjectGallery';
 import { useProjects } from '../../services/projectQueries';
@@ -75,6 +76,7 @@ export default function ProjectDetail() {
                 <p className="font-semibold text-forest-900">{project.location}</p>
               </div>
               <Button to="/contact" variant="primary" className="mt-2 w-full">Support This Work</Button>
+              <ShareButton title={project.title} text={project.summary} className="w-full [&>button]:w-full [&>button]:justify-center" />
             </aside>
           </div>
         </Container>
