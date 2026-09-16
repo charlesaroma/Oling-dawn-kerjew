@@ -50,7 +50,7 @@ export default function ProjectDetail() {
         eyebrow={`${project.category} · ${project.location}`}
         title={project.title}
         subtitle={project.summary}
-        titleClassName="max-w-[18ch] font-display text-[clamp(2.2rem,5.4vw,4rem)] font-medium leading-[0.98] tracking-[-0.02em] text-surface text-balance"
+        titleClassName="max-w-[18ch] font-display text-[clamp(2.2rem,5.4vw,4rem)] font-medium leading-[0.98] tracking-[-0.02em] text-forest-900 text-balance"
         image={project.coverImage}
         imageAlt={project.title}
         backTo="/projects"

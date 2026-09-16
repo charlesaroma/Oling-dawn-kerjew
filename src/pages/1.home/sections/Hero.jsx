@@ -25,7 +25,7 @@ function Motto({ text }) {
   return (
     <>
       {text.slice(0, comma + 1)}{' '}
-      <span className="font-semibold text-gold-400 underline decoration-gold-500/50 decoration-2 underline-offset-4">
+      <span className="font-semibold text-gold-600 underline decoration-gold-500/60 decoration-2 underline-offset-4">
         {text.slice(comma + 1).trim()}
       </span>
     </>
@@ -49,84 +49,85 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-ink-900">
-      {/* Photography sits behind the copy on the right and dissolves into the
-          ground before it reaches the text column. */}
-      <div className="absolute inset-y-0 right-0 flex w-full flex-col lg:w-[62%]">
-        <div className="relative flex-1">
-          {SLIDES.map((slide, i) => (
-            <img
-              key={slide.src}
-              src={slide.src}
-              alt={slide.alt}
-              aria-hidden={i !== active}
-              loading={i === 0 ? 'eager' : 'lazy'}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-in-out ${
-                i === active ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
-          {/* Left-facing fade into the ground, plus a top/bottom settle */}
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/85 to-ink-900/20 lg:via-ink-900/55 lg:to-transparent" />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-ink-900/50" />
-        </div>
-
-        {/* A photo credit line, not a UI widget — ties each frame to where it
-            was actually taken, the way a printed feature story would. */}
-        <p className="hidden items-baseline gap-2 border-t border-surface/15 px-10 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-surface/45 lg:flex">
-          <MapPin size={11} className="shrink-0 translate-y-px text-surface/35" strokeWidth={2} />
-          {SLIDES[active].alt}
-        </p>
-      </div>
-
+    <section className="relative overflow-hidden bg-surface">
       <Container className="relative">
-        <div className="flex min-h-[86vh] max-w-[42rem] flex-col justify-center py-32 lg:min-h-[88vh] lg:py-36">
-          <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-bronze-400">
-            Registered NGO — Oyam District, Northern Uganda
-          </p>
+        <div className="grid gap-10 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-[minmax(0,40rem)_1fr] lg:items-center lg:gap-14 lg:pb-24 lg:pt-40">
+          {/* Text column */}
+          <div className="flex flex-col justify-center">
+            <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-bronze-600">
+              Registered NGO — Oyam District, Northern Uganda
+            </p>
 
-          <h1 className="max-w-[15ch] font-display text-[clamp(2.1rem,4.6vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-surface text-balance">
-            <Motto text={tagline} />
-          </h1>
+            <h1 className="max-w-[15ch] font-display text-[clamp(2.1rem,4.2vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-forest-900 text-balance">
+              <Motto text={tagline} />
+            </h1>
 
-          <p className="mt-7 max-w-[44ch] text-[15px] leading-relaxed text-surface/60 sm:text-base">
-            {description}
-          </p>
+            <p className="mt-7 max-w-[44ch] text-[15px] leading-relaxed text-ink-600 sm:text-base">
+              {description}
+            </p>
 
-          <p className="mt-8 max-w-[44ch] font-display text-lg leading-snug text-surface/85">
-            {initiativeCount || '—'} initiatives and counting, across {districtCount || '—'} districts.
-          </p>
+            <p className="mt-8 max-w-[44ch] font-display text-lg leading-snug text-forest-800">
+              {initiativeCount || '—'} initiatives and counting, across {districtCount || '—'} districts.
+            </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link
-              to="/projects"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
-            >
-              See what we&apos;ve built
-              <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/contact"
-              className="rounded-full border border-surface/25 px-7 py-3.5 text-sm font-semibold text-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-surface/60 hover:bg-surface/10"
-            >
-              Partner with us
-            </Link>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Link
+                to="/projects"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-400"
+              >
+                See what we&apos;ve built
+                <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/contact"
+                className="rounded-full border border-ink-900/15 px-7 py-3.5 text-sm font-semibold text-forest-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30 hover:bg-ink-900/5"
+              >
+                Partner with us
+              </Link>
+            </div>
+
+            {/* Slide markers double as controls */}
+            <div className="mt-14 flex items-center gap-2.5">
+              {SLIDES.map((slide, i) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={`Show image ${i + 1} of ${SLIDES.length}`}
+                  aria-current={i === active}
+                  className={`h-0.5 rounded-full transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-surface ${
+                    i === active ? 'w-10 bg-gold-500' : 'w-5 bg-ink-900/15 hover:bg-ink-900/30'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
-          {/* Slide markers double as controls */}
-          <div className="mt-16 flex items-center gap-2.5">
-            {SLIDES.map((slide, i) => (
-              <button
-                key={slide.src}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-label={`Show image ${i + 1} of ${SLIDES.length}`}
-                aria-current={i === active}
-                className={`h-0.5 rounded-full transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-ink-900 ${
-                  i === active ? 'w-10 bg-gold-500' : 'w-5 bg-surface/25 hover:bg-surface/50'
-                }`}
-              />
-            ))}
+          {/* Photo card — separated from the text by a shadow, not a dark fill */}
+          <div className="relative overflow-hidden rounded-[28px] shadow-elevated-lg">
+            <div className="relative h-[300px] sm:h-[380px] lg:h-[540px]">
+              {SLIDES.map((slide, i) => (
+                <img
+                  key={slide.src}
+                  src={slide.src}
+                  alt={slide.alt}
+                  aria-hidden={i !== active}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-in-out ${
+                    i === active ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              ))}
+              {/* Localized fade so the caption line stays legible over any photo */}
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-900/70 to-transparent" />
+            </div>
+
+            {/* A photo credit line, not a UI widget — ties each frame to where it
+                was actually taken, the way a printed feature story would. */}
+            <p className="absolute inset-x-0 bottom-0 flex items-baseline gap-2 px-6 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-surface/80">
+              <MapPin size={11} className="shrink-0 translate-y-px text-surface/60" strokeWidth={2} />
+              {SLIDES[active].alt}
+            </p>
           </div>
         </div>
       </Container>

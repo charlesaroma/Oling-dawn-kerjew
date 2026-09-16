@@ -35,7 +35,6 @@ const MediaLibrary = lazy(() => import('./dashboard/3.gallery/MediaLibrary'));
 const BlogPostList = lazy(() => import('./dashboard/4.blog/BlogPostList'));
 const TeamList = lazy(() => import('./dashboard/5.team/TeamList'));
 const SiteSettings = lazy(() => import('./dashboard/6.settings/SiteSettings'));
-const SearchResults = lazy(() => import('./dashboard/7.search/SearchResults'));
 const LogsList = lazy(() => import('./dashboard/8.logs/LogsList'));
 
 function DashboardLoading() {
@@ -72,23 +71,21 @@ function SiteLayout() {
   );
 }
 
-/* Dark like every other page top — the navbar rides transparent until you
-   scroll, so a light background here would leave it invisible. */
 function NotFound() {
   return (
-    <div className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-ink-900 px-6 py-32 text-center">
+    <div className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-surface px-6 py-32 text-center">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-[min(60vw,520px)] w-[min(60vw,520px)] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70"
         style={{ background: 'radial-gradient(circle, rgba(223,161,38,0.14) 0%, transparent 66%)' }}
       />
-      <p className="relative font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-400">
+      <p className="relative font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bronze-600">
         Error 404
       </p>
-      <h1 className="relative mt-6 max-w-[16ch] font-display text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.02] tracking-[-0.02em] text-surface text-balance">
+      <h1 className="relative mt-6 max-w-[16ch] font-display text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.02] tracking-[-0.02em] text-forest-900 text-balance">
         This page hasn&apos;t been built yet.
       </h1>
-      <p className="relative mt-5 max-w-[42ch] leading-relaxed text-surface/60">
+      <p className="relative mt-5 max-w-[42ch] leading-relaxed text-ink-600">
         The link may be old, or the page may still be in progress. Everything else is a click away.
       </p>
       <Link
@@ -150,7 +147,6 @@ function Shell() {
           <Route path="blog" element={<BlogPostList />} />
           <Route path="team" element={<TeamList />} />
           <Route path="settings" element={<SiteSettings />} />
-          <Route path="search" element={<SearchResults />} />
           <Route path="logs" element={<LogsList />} />
         </Route>
       </Routes>

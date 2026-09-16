@@ -31,14 +31,14 @@ export default function BlogPost() {
         eyebrow={`${formatDate(post.publishedAt)}${post.author ? ` · ${post.author}` : ''}`}
         title={post.title}
         containerClassName="mx-auto max-w-3xl"
-        titleClassName="font-display text-[clamp(2rem,4.6vw,3.4rem)] font-medium leading-[1.02] tracking-[-0.02em] text-surface text-balance"
+        titleClassName="font-display text-[clamp(2rem,4.6vw,3.4rem)] font-medium leading-[1.02] tracking-[-0.02em] text-forest-900 text-balance"
         image={post.coverImage}
         imageAlt={post.title}
       >
         {post.tags?.length > 0 && (
           <div className="mt-7 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-surface/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-surface/70">
+              <span key={tag} className="rounded-full border border-ink-900/12 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-500">
                 {tag}
               </span>
             ))}

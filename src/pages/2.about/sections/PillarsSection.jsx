@@ -43,21 +43,20 @@ export default function PillarsSection() {
   const { pillars } = DATA;
 
   return (
-    <section className="border-y border-surface/10 bg-ink-900 py-20 sm:py-28">
+    <section className="border-y border-ink-900/8 bg-surface-alt py-20 sm:py-28">
       <Container className="flex flex-col gap-14">
         <SectionHeading
           eyebrow="What we do"
           title="Six areas, one commitment."
           subtitle="Each pillar runs continuously rather than as a one-off campaign — the buildings, the training and the follow-up all sit under the same programme."
-          tone="dark"
         />
 
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-surface/12 bg-surface/12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-ink-900/8 bg-ink-900/8 shadow-elevated sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((pillar, index) => {
             const Icon = ICONS[index % ICONS.length];
             const image = PILLAR_IMAGES[pillar.id];
             return (
-              <div key={pillar.id} className="group relative flex min-h-[15rem] flex-col justify-end gap-4 overflow-hidden bg-ink-900 p-8">
+              <div key={pillar.id} className="group relative flex min-h-[15rem] flex-col justify-end gap-4 overflow-hidden bg-surface-card p-8">
                 {image && (
                   <>
                     <img

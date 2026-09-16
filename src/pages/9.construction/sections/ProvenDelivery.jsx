@@ -50,19 +50,19 @@ export default function ProvenDelivery() {
         </Container>
       </section>
 
-      <section className="border-t border-surface/10 bg-ink-900 py-20 sm:py-28">
+      <section className="border-t border-ink-900/8 bg-surface-alt py-20 sm:py-28">
         <Container className="grid gap-14 lg:grid-cols-[1fr_0.8fr] lg:gap-20">
           <div>
-            <SectionHeading eyebrow="The ask" title="What we are seeking from partners." tone="dark" />
-            <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-surface/12 bg-surface/12 sm:grid-cols-2">
+            <SectionHeading eyebrow="The ask" title="What we are seeking from partners." />
+            <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-ink-900/8 bg-ink-900/8 shadow-elevated sm:grid-cols-2">
               {ASKS.map(({ icon: Icon, title, note }) => (
-                <div key={title} className="flex flex-col gap-4 bg-ink-900 p-7">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-surface/15 text-gold-400">
+                <div key={title} className="flex flex-col gap-4 bg-surface-card p-7">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-900/10 text-gold-600">
                     <Icon size={16} strokeWidth={1.6} />
                   </span>
                   <div>
-                    <dt className="font-display text-lg text-surface">{title}</dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-surface/60">{note}</dd>
+                    <dt className="font-display text-lg text-forest-900">{title}</dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-ink-600">{note}</dd>
                   </div>
                 </div>
               ))}
@@ -70,11 +70,11 @@ export default function ProvenDelivery() {
           </div>
 
           <aside className="h-fit rounded-2xl border border-gold-500/25 bg-gold-500/8 p-7">
-            <p className="flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-gold-400">
+            <p className="flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-gold-700">
               <ShieldCheck size={14} strokeWidth={1.8} />
               Safeguarding
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-surface/70">
+            <p className="mt-4 text-sm leading-relaxed text-ink-600">
               Every case referenced in our briefings is handled individually, with consent and safeguarding review,
               before any details are shared beyond the organisations directly supporting the family.
             </p>

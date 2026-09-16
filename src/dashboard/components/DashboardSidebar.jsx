@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  LayoutDashboard, Users, FolderKanban, Images, Newspaper, UsersRound, Search, Settings, ScrollText, LogOut, X, ChevronRight,
+  LayoutDashboard, Users, FolderKanban, Images, Newspaper, UsersRound, Settings, ScrollText, LogOut, X, ChevronRight,
 } from 'lucide-react';
 import { logout, getSession } from '../../services/authService';
 import { DATA } from '../../services/jsonDataLoader';
@@ -23,7 +23,6 @@ const SECTIONS = [
   {
     label: 'System',
     items: [
-      { to: '/dashboard/search', label: 'Search', icon: Search },
       { to: '/dashboard/logs', label: 'Logs', icon: ScrollText },
       { to: '/dashboard/settings', label: 'Account', icon: Settings },
     ],
@@ -34,11 +33,11 @@ function Brand() {
   const { orgName, wordmark, division } = DATA.siteConfig;
   return (
     <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-      <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-surface/20" />
+      <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 shrink-0 rounded-full ring-1 ring-ink-900/10" />
       <div className="flex flex-col leading-[1.1]" title={orgName}>
-        <span className="font-display text-[15px] text-surface">{wordmark}</span>
-        <span className="font-display text-[15px] font-semibold tracking-wide text-gold-500">{division}</span>
-        <span className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.22em] text-surface/55">Admin Console</span>
+        <span className="font-display text-[15px] text-forest-900">{wordmark}</span>
+        <span className="font-display text-[15px] font-semibold tracking-wide text-gold-600">{division}</span>
+        <span className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.22em] text-ink-500">Admin Console</span>
       </div>
     </Link>
   );
@@ -46,22 +45,22 @@ function Brand() {
 
 function AccountBlock({ session, onSignOut }) {
   return (
-    <div className="border-t border-surface/10 p-3">
+    <div className="border-t border-ink-900/8 p-3">
       {session && (
         <div className="mb-1 flex items-center gap-3 px-3.5 py-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-surface/15 font-mono text-xs text-gold-400">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink-900/12 font-mono text-xs text-gold-600">
             {session.name?.charAt(0) ?? 'A'}
           </span>
           <div className="min-w-0 leading-tight">
-            <p className="truncate text-[13px] font-medium text-surface">{session.name}</p>
-            <p className="truncate text-[11px] text-surface/60">{session.email}</p>
+            <p className="truncate text-[13px] font-medium text-forest-900">{session.name}</p>
+            <p className="truncate text-[11px] text-ink-500">{session.email}</p>
           </div>
         </div>
       )}
       <button
         type="button"
         onClick={onSignOut}
-        className="flex w-full items-center gap-3 rounded-lg px-3.5 py-2.5 text-left text-sm text-surface/60 transition-colors hover:bg-error/10 hover:text-error"
+        className="flex w-full items-center gap-3 rounded-lg px-3.5 py-2.5 text-left text-sm text-ink-500 transition-colors hover:bg-error/10 hover:text-error"
       >
         <LogOut size={16} strokeWidth={1.75} />
         Sign out
@@ -73,7 +72,7 @@ function AccountBlock({ session, onSignOut }) {
 function NavSections({ dense, onNavigate }) {
   return SECTIONS.map((section) => (
     <div key={section.label} className="mb-5 last:mb-0">
-      <p className="mb-2.5 px-3.5 font-mono text-[10px] uppercase tracking-[0.22em] text-surface/55">{section.label}</p>
+      <p className="mb-2.5 px-3.5 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-500">{section.label}</p>
       <div className="space-y-0.5">
         {section.items.map((item) => {
           const Icon = item.icon;
@@ -85,19 +84,19 @@ function NavSections({ dense, onNavigate }) {
               onClick={onNavigate}
               className={({ isActive }) =>
                 `group relative flex items-center gap-3 rounded-lg px-3.5 text-sm transition-all duration-150 ${dense ? 'py-3' : 'py-2.5'} ${
-                  isActive ? 'bg-gold-500 font-semibold text-ink-900' : 'text-surface/60 hover:bg-surface/8 hover:text-surface'
+                  isActive ? 'bg-gold-500 font-semibold text-ink-900' : 'text-ink-700 hover:bg-ink-900/5 hover:text-forest-900'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
                   <Icon size={dense ? 18 : 17} strokeWidth={1.75}
-                    className={isActive ? 'text-ink-900' : 'text-surface/45 group-hover:text-gold-400'} />
+                    className={isActive ? 'text-ink-900' : 'text-ink-400 group-hover:text-gold-600'} />
                   {item.label}
                   {!dense && (
                     <ChevronRight
                       size={14}
-                      className={`ml-auto opacity-0 transition-opacity group-hover:opacity-100 ${isActive ? 'text-ink-900/45' : 'text-surface/30'}`}
+                      className={`ml-auto opacity-0 transition-opacity group-hover:opacity-100 ${isActive ? 'text-ink-900/45' : 'text-ink-300'}`}
                     />
                   )}
                 </>
@@ -130,8 +129,8 @@ export default function DashboardSidebar({ open, onClose }) {
   return (
     <>
       {/* DESKTOP RAIL */}
-      <aside className="fixed inset-y-0 left-0 z-50 hidden h-screen w-[var(--sidebar-w)] shrink-0 flex-col border-r border-surface/10 bg-ink-900 text-surface lg:flex">
-        <div className="border-b border-surface/10 px-6 py-6">
+      <aside className="fixed inset-y-0 left-0 z-50 hidden h-screen w-[var(--sidebar-w)] shrink-0 flex-col bg-surface-card text-ink-800 shadow-elevated-lg lg:flex">
+        <div className="border-b border-ink-900/8 px-6 py-6">
           <Brand />
         </div>
         <nav className="flex flex-1 flex-col overflow-y-auto px-3 py-5">
@@ -158,16 +157,16 @@ export default function DashboardSidebar({ open, onClose }) {
                 animate={{ y: 0 }}
                 exit={{ y: '100%' }}
                 transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-                className="absolute bottom-0 left-0 right-0 flex max-h-[88dvh] flex-col overflow-hidden rounded-t-3xl bg-ink-900 text-surface shadow-elevated-lg"
+                className="absolute bottom-0 left-0 right-0 flex max-h-[88dvh] flex-col overflow-hidden rounded-t-3xl bg-surface-card text-ink-800 shadow-elevated-lg"
               >
-                <div className="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-surface/20" />
-                <div className="flex items-center justify-between border-b border-surface/10 px-6 py-4">
+                <div className="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-ink-900/15" />
+                <div className="flex items-center justify-between border-b border-ink-900/8 px-6 py-4">
                   <Brand />
                   <button
                     type="button"
                     onClick={onClose}
                     aria-label="Close menu"
-                    className="rounded-full p-1.5 text-surface/60 hover:text-surface"
+                    className="rounded-full p-1.5 text-ink-500 hover:text-forest-900"
                   >
                     <X size={20} />
                   </button>

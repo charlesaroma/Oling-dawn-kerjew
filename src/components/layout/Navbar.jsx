@@ -9,8 +9,8 @@ function NavContainer({ className = '', children }) {
   return <div className={`mx-auto w-full max-w-[1680px] px-6 sm:px-10 ${className}`}>{children}</div>;
 }
 
-/* Every page opens on a dark band (the hero, or PageHeader), so the bar rides
-   transparent over it and only takes a surface once you've scrolled past. */
+/* Solid on a light ground at all times — a shadow, not a color swap, marks
+   the transition once you've scrolled past the top of the page. */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -27,13 +27,13 @@ export default function Navbar() {
 
   const linkClasses = ({ isActive }) =>
     `relative py-1 text-sm font-medium transition-colors duration-200 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:rounded-full after:bg-gold-500 after:transition-opacity after:duration-200 ${
-      isActive ? 'after:opacity-100' : 'after:opacity-0 hover:after:opacity-100'
-    } ${solid ? (isActive ? 'text-forest-900' : 'text-ink-700 hover:text-forest-900') : (isActive ? 'text-surface' : 'text-surface/70 hover:text-surface')}`;
+      isActive ? 'after:opacity-100 text-forest-900' : 'after:opacity-0 hover:after:opacity-100 text-ink-700 hover:text-forest-900'
+    }`;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        solid ? 'border-b border-ink-900/8 bg-surface/90 shadow-elevated backdrop-blur-xl' : 'border-b border-transparent bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 border-b border-ink-900/8 bg-surface/95 backdrop-blur-xl transition-all duration-300 ${
+        solid ? 'shadow-elevated' : ''
       }`}
     >
       <NavContainer className={`flex items-center justify-between gap-4 transition-all duration-300 ${solid ? 'py-2.5' : 'py-4'}`}>
@@ -41,13 +41,11 @@ export default function Navbar() {
           <img
             src="/apple-touch-icon.png"
             alt=""
-            className={`shrink-0 rounded-full transition-all duration-300 ${
-              solid ? 'h-9 w-9 ring-1 ring-ink-900/10' : 'h-10 w-10 ring-1 ring-surface/25'
-            }`}
+            className={`shrink-0 rounded-full ring-1 ring-ink-900/10 transition-all duration-300 ${solid ? 'h-9 w-9' : 'h-10 w-10'}`}
           />
           <span className="flex flex-col font-display text-base leading-[1.05] tracking-tight sm:text-lg" title={orgName}>
-            <span className={`font-semibold ${solid ? 'text-forest-900' : 'text-surface'}`}>{wordmark}</span>
-            <span className="text-[11px] font-semibold tracking-wide text-gold-500 sm:text-xs">{division}</span>
+            <span className="font-semibold text-forest-900">{wordmark}</span>
+            <span className="text-[11px] font-semibold tracking-wide text-gold-600 sm:text-xs">{division}</span>
           </span>
         </NavLink>
 
@@ -61,18 +59,14 @@ export default function Navbar() {
 
         <NavLink
           to="/contact"
-          className={`hidden shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 md:inline-flex ${
-            solid ? 'bg-forest-800 text-surface hover:bg-forest-900' : 'bg-gold-500 text-ink-900 hover:bg-gold-400'
-          }`}
+          className="hidden shrink-0 rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-400 md:inline-flex"
         >
           Get Involved
         </NavLink>
 
         <button
           type="button"
-          className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors md:hidden ${
-            solid ? 'border-ink-900/12 text-forest-800' : 'border-surface/25 text-surface'
-          }`}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-900/12 text-forest-800 transition-colors md:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}

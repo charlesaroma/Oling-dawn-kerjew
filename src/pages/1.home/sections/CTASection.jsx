@@ -2,10 +2,9 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '../../../components/common/Container';
 
-/* The one full-saturation moment on the page. Everything around it is either
-   sand or ink, so this band carries the whole palette's warmth on its own —
-   and it sits between the light sections and the dark footer, which stops the
-   two dark bands from running together. */
+/* The one full-saturation moment on the page — everything around it is light,
+   so this band carries the whole palette's warmth on its own, right before
+   the dark footer closes the page out. */
 export default function CTASection() {
   return (
     <section className="relative overflow-hidden bg-gold-500">

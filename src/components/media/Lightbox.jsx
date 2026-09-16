@@ -24,11 +24,12 @@ export default function Lightbox({ items, index, onClose, onChangeIndex }) {
     return () => document.removeEventListener('keydown', onKey);
   }, [isOpen, index, count, onClose, onChangeIndex]);
 
-  // Keep the active thumbnail in view when stepping via arrows/keyboard,
-  // not just when clicking directly on the strip.
+  // Keep the active thumbnail in view when stepping via arrows/keyboard, not
+  // just when clicking directly on the strip. Instant, not smooth — smooth
+  // scrolling visibly lags when stepping through images quickly.
   useEffect(() => {
     if (!isOpen) return;
-    thumbRefs.current[index]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    thumbRefs.current[index]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'instant' });
   }, [isOpen, index]);
 
   if (!isOpen) return null;
@@ -82,9 +83,8 @@ export default function Lightbox({ items, index, onClose, onChangeIndex }) {
         ) : (
           <MediaImage src={item.src} alt={item.alt} width={1200} height={800} className="max-h-[70vh] w-full rounded-2xl object-contain shadow-elevated-lg" />
         )}
-        {item.alt && <p className="mt-4 text-center text-sm text-gold-100/80">{item.alt}</p>}
         {showNav && (
-          <p className="mt-2 text-center font-mono text-[10px] uppercase tracking-wide text-surface/40 tabular-nums">
+          <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-wide text-surface/40 tabular-nums">
             {index + 1} / {count}
           </p>
         )}

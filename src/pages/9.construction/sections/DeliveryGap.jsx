@@ -79,47 +79,46 @@ export default function DeliveryGap() {
         </Container>
       </section>
 
-      <section className="border-y border-surface/10 bg-ink-900 py-20 sm:py-28">
+      <section className="border-y border-ink-900/8 bg-surface-alt py-20 sm:py-28">
         <Container className="grid gap-14 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
           <div>
             <SectionHeading
               eyebrow="The economics of renting"
               title="UGX 700,000 a month buys nothing that lasts."
-              tone="dark"
             />
-            <p className="mt-6 max-w-[52ch] leading-relaxed text-surface/65">
+            <p className="mt-6 max-w-[52ch] leading-relaxed text-ink-600">
               A refugee family renting a modest room in Kampala pays roughly UGX 700,000 every month. The money
               leaves. Nothing accumulates. After five years the household owns exactly what it owned on the first
               day — and five years of that rent is enough to own a low-cost housing unit outright.
             </p>
-            <ul className="mt-8 flex flex-col gap-4 border-t border-surface/12 pt-8">
+            <ul className="mt-8 flex flex-col gap-4 border-t border-ink-900/10 pt-8">
               {[
                 "Rent rises with market demand; a displaced household's income does not.",
                 'Landlords require deposits and advances that arriving families cannot raise.',
                 'Every shilling spent on rent is a shilling not spent on food, school or treatment.',
               ].map((point) => (
-                <li key={point} className="flex gap-3 text-sm leading-relaxed text-surface/65">
-                  <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-500" />
+                <li key={point} className="flex gap-3 text-sm leading-relaxed text-ink-600">
+                  <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-600" />
                   {point}
                 </li>
               ))}
             </ul>
           </div>
 
-          <figure className="rounded-2xl border border-surface/12 p-7 sm:p-9">
-            <figcaption className="font-mono text-[10px] uppercase tracking-[0.16em] text-gold-400">
+          <figure className="rounded-2xl bg-surface-card p-7 shadow-elevated sm:p-9">
+            <figcaption className="font-mono text-[10px] uppercase tracking-[0.16em] text-gold-600">
               What renting costs, cumulatively
             </figcaption>
             <dl className="mt-8 flex flex-col gap-7">
               {RENT.map(({ period, amount, pct }) => (
                 <div key={period}>
                   <div className="flex items-baseline justify-between gap-4">
-                    <dt className="text-sm text-surface/60">{period}</dt>
-                    <dd className={`font-display text-2xl tabular-nums ${pct === 100 ? 'text-gold-400' : 'text-surface'}`}>
+                    <dt className="text-sm text-ink-500">{period}</dt>
+                    <dd className={`font-display text-2xl tabular-nums ${pct === 100 ? 'text-gold-600' : 'text-forest-900'}`}>
                       {amount}
                     </dd>
                   </div>
-                  <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-surface/12">
+                  <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-ink-900/8">
                     <div
                       className={`h-full rounded-full ${pct === 100 ? 'bg-gold-500' : 'bg-gold-500/55'}`}
                       style={{ width: `${pct}%` }}
@@ -128,7 +127,7 @@ export default function DeliveryGap() {
                 </div>
               ))}
             </dl>
-            <p className="mt-8 border-t border-surface/12 pt-6 font-display text-lg font-semibold text-surface/70">
+            <p className="mt-8 border-t border-ink-900/10 pt-6 font-display text-lg font-semibold text-ink-600">
               …and no asset at the end of any of them.
             </p>
           </figure>
