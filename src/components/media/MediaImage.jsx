@@ -15,7 +15,7 @@ const IMAGEKIT_URL_ENDPOINT = import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT;
   each item gets a consistent image) so pages look populated in the
   meantime. This branch disappears on its own once the env var is set.
 */
-export default function MediaImage({ src, alt, className = '', width, height, ...props }) {
+export default function MediaImage({ src, alt, className = '', width, height, loading = 'lazy', ...props }) {
   if (!IMAGEKIT_URL_ENDPOINT) {
     const seed = (src ?? 'odkhc').replace(/[^a-zA-Z0-9]+/g, '-');
     return (
@@ -23,7 +23,7 @@ export default function MediaImage({ src, alt, className = '', width, height, ..
         src={`https://picsum.photos/seed/${seed}/${width || 800}/${height || 600}`}
         alt={alt}
         className={className}
-        loading="lazy"
+        loading={loading}
       />
     );
   }

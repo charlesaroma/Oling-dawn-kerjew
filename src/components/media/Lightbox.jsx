@@ -40,6 +40,14 @@ export default function Lightbox({ items, index, onClose, onChangeIndex }) {
   const goPrev = (e) => { e.stopPropagation(); onChangeIndex((index - 1 + count) % count); };
   const goNext = (e) => { e.stopPropagation(); onChangeIndex((index + 1) % count); };
 
+  // Warm the browser cache for the neighbours so stepping through the strip
+  // shows the next photo instantly instead of waiting on a fresh fetch —
+  // same component, same width/height, so it's the exact resource the
+  // visible <MediaImage> will ask for next.
+  const preloadIndexes = showNav
+    ? [(index - 1 + count) % count, (index + 1) % count].filter((i) => i !== index)
+    : [];
+
   return (
     <div
       className="fixed inset-0 z-100 flex items-center justify-center overflow-y-auto bg-ink-900/90 p-6 backdrop-blur-sm"
@@ -77,11 +85,21 @@ export default function Lightbox({ items, index, onClose, onChangeIndex }) {
         </>
       )}
 
+      {preloadIndexes.map((i) => {
+        const neighbor = items[i];
+        if (isVideoUrl(neighbor.src)) return null;
+        return (
+          <div key={neighbor.src} aria-hidden="true" className="absolute h-px w-px overflow-hidden opacity-0">
+            <MediaImage src={neighbor.src} alt="" width={1200} height={800} loading="eager" />
+          </div>
+        );
+      })}
+
       <div className="w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
         {isVideo ? (
           <MediaVideo src={item.src} className="max-h-[70vh] w-full rounded-2xl shadow-elevated-lg" />
         ) : (
-          <MediaImage src={item.src} alt={item.alt} width={1200} height={800} className="max-h-[70vh] w-full rounded-2xl object-contain shadow-elevated-lg" />
+          <MediaImage src={item.src} alt={item.alt} width={1200} height={800} loading="eager" className="max-h-[70vh] w-full rounded-2xl object-contain shadow-elevated-lg" />
         )}
         {showNav && (
           <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-wide text-surface/40 tabular-nums">
@@ -90,7 +108,7 @@ export default function Lightbox({ items, index, onClose, onChangeIndex }) {
         )}
 
         {showNav && (
-          <div className="no-scrollbar mt-5 flex gap-2 overflow-x-auto px-1 pb-1">
+          <div className="no-scrollbar mt-5 flex gap-2 overflow-x-auto px-1 py-2">
             {items.map((it, i) => {
               const active = i === index;
               const thumbIsVideo = isVideoUrl(it.src);
