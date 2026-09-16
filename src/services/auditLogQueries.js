@@ -11,5 +11,6 @@ export function useAuditLogs() {
       return data;
     },
     initialData: EMPTY,
+    refetchInterval: 30000,
   });
 }

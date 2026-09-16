@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  LayoutDashboard, Users, FolderKanban, Images, Newspaper, UsersRound, Search, Settings, LogOut, X, ChevronRight,
+  LayoutDashboard, Users, FolderKanban, Images, Newspaper, UsersRound, Search, Settings, ScrollText, LogOut, X, ChevronRight,
 } from 'lucide-react';
 import { logout, getSession } from '../../services/authService';
 import { DATA } from '../../services/jsonDataLoader';
@@ -24,6 +24,7 @@ const SECTIONS = [
     label: 'System',
     items: [
       { to: '/dashboard/search', label: 'Search', icon: Search },
+      { to: '/dashboard/logs', label: 'Logs', icon: ScrollText },
       { to: '/dashboard/settings', label: 'Account', icon: Settings },
     ],
   },

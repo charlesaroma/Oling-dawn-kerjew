@@ -36,6 +36,7 @@ const BlogPostList = lazy(() => import('./dashboard/4.blog/BlogPostList'));
 const TeamList = lazy(() => import('./dashboard/5.team/TeamList'));
 const SiteSettings = lazy(() => import('./dashboard/6.settings/SiteSettings'));
 const SearchResults = lazy(() => import('./dashboard/7.search/SearchResults'));
+const LogsList = lazy(() => import('./dashboard/8.logs/LogsList'));
 
 function DashboardLoading() {
   return (
@@ -150,6 +151,7 @@ function Shell() {
           <Route path="team" element={<TeamList />} />
           <Route path="settings" element={<SiteSettings />} />
           <Route path="search" element={<SearchResults />} />
+          <Route path="logs" element={<LogsList />} />
         </Route>
       </Routes>
     </>
