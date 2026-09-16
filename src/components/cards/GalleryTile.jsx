@@ -27,11 +27,6 @@ export default function GalleryTile({ item, onClick }) {
           </span>
         </span>
       )}
-      {item.alt && (
-        <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/80 to-transparent p-3 pt-8 text-left text-xs text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          {item.alt}
-        </span>
-      )}
     </button>
   );
 }
