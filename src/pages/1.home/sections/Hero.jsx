@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin } from 'lucide-react';
-import Container from '../../../components/common/Container';
 import { useProjects } from '../../../services/projectQueries';
 import { DATA } from '../../../services/jsonDataLoader';
 
@@ -50,7 +49,9 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-surface">
-      <Container className="relative">
+      {/* Matches Navbar's own container exactly (wider cap, larger side padding
+          at sm+) so the hero content lines up with the logo/CTA above it. */}
+      <div className="relative mx-auto w-full max-w-[1680px] px-6 sm:px-10">
         <div className="grid gap-10 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-[minmax(0,40rem)_1fr] lg:items-center lg:gap-14 lg:pb-24 lg:pt-40">
           {/* Text column */}
           <div className="flex flex-col justify-center">
@@ -130,7 +131,7 @@ export default function Hero() {
             </p>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
