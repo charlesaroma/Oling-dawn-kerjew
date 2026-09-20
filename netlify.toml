@@ -1,3 +1,0 @@
-[build.environment]
-  VITE_API_URL = "https://oling-dawn-kerjew-projects-backend-2l3u.onrender.com"
-  VITE_IMAGEKIT_URL_ENDPOINT = "https://ik.imagekit.io/u8h0uidte"
