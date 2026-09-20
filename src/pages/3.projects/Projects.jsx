@@ -14,6 +14,7 @@ import {
   sortProjectsByDate,
 } from '../../services/projectsService';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 const SELECT_CLASSES =
   'w-full appearance-none rounded-full border border-ink-900/10 bg-surface-card py-2.5 pl-5 pr-10 text-sm font-medium text-forest-800 shadow-elevated outline-none transition-colors focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10';
@@ -21,10 +22,7 @@ const SELECT_CLASSES =
 const CONSTRUCTION_CATEGORY = 'Low-Cost Construction';
 
 export default function Projects() {
-  useSEO({
-    title: 'Our Projects',
-    description: 'Construction, education, healthcare, and community initiatives carried out alongside the people Oling Dawn Kerjew Projects serves.',
-  });
+  useSEO(ROUTE_SEO['/projects']);
 
   const { data: allProjects } = useProjects();
   const published = useMemo(() => getPublishedProjects(allProjects), [allProjects]);

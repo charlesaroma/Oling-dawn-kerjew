@@ -6,12 +6,10 @@ import TeamSection from './sections/TeamSection';
 import Timeline from './sections/Timeline';
 import FAQSection from './sections/FAQSection';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 export default function About() {
-  useSEO({
-    title: 'About Us',
-    description: 'Oling Dawn Kerjew Humanitarian and Charities NGO: why we serve, and who we serve alongside. Mission, focus areas and team across Uganda.',
-  });
+  useSEO(ROUTE_SEO['/about']);
 
   return (
     <>

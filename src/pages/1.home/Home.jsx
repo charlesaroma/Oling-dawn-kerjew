@@ -6,12 +6,10 @@ import FeaturedProjects from './sections/FeaturedProjects';
 import FeaturedVideo from './sections/FeaturedVideo';
 import CTASection from './sections/CTASection';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 export default function Home() {
-  useSEO({
-    title: 'Oling Dawn Kerjew Projects | Humanitarian NGO in Northern Uganda',
-    description: "A registered Ugandan NGO serving Oyam District and Northern Uganda through low-cost construction, education, healthcare, women's empowerment and community development.",
-  });
+  useSEO(ROUTE_SEO['/']);
 
   return (
     <>

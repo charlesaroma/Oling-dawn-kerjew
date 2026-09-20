@@ -2,10 +2,12 @@ import { Home, HeartPulse, School, Waypoints } from 'lucide-react';
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import SectionHeading from '../../components/common/SectionHeading';
+import CountUp from '../../components/common/CountUp';
 import DeliveryGap from './sections/DeliveryGap';
 import HowItsBuilt from './sections/HowItsBuilt';
 import ProvenDelivery from './sections/ProvenDelivery';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 /* Figures and sourcing carried over verbatim from the organisation's own
    conference briefing, attributions included — they are other people's
@@ -25,11 +27,7 @@ const BUILDS = [
 ];
 
 export default function Construction() {
-  useSEO({
-    title: 'Low-Cost Construction',
-    description: 'Instead of subsidising rent for ever, we build the thing itself: refugee housing, health facilities, schools, roads and drainage at non-profit cost, using prefabricated modular concrete.',
-    image: 'https://olingdawnkerjewprojects.org/construction/entebbe-health-center.jpg',
-  });
+  useSEO(ROUTE_SEO['/construction']);
 
   return (
     <>
@@ -56,7 +54,7 @@ export default function Construction() {
                   <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-bronze-600">Approximately</span>
                 )}
                 <dd className="mt-1 font-display text-[clamp(2rem,3.4vw,2.75rem)] leading-none text-forest-900 tabular-nums">
-                  {value}
+                  <CountUp value={value} />
                 </dd>
                 <dt className="mt-3 text-sm leading-relaxed text-ink-600">{label}</dt>
                 <p className="mt-auto pt-5 font-mono text-[9px] uppercase tracking-[0.12em] text-ink-500">{source}</p>

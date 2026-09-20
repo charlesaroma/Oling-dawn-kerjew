@@ -9,6 +9,7 @@ import { getSession } from './services/authService';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 import Home from './pages/1.home/Home';
 import About from './pages/2.about/About';
@@ -60,11 +61,29 @@ function ProtectedRoute({ children }) {
 }
 
 function SiteLayout() {
+  const { pathname } = useLocation();
+
   return (
     <div className="flex min-h-screen flex-col">
+      {/* First thing in the tab order: keyboard and switch users would
+          otherwise have to step through the whole nav on every page.
+          Visually hidden until focused, then pinned above the fixed navbar
+          (z-50), which would otherwise paint over it. */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold-500 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-ink-900 focus:shadow-elevated-lg focus:outline-none focus:ring-4 focus:ring-gold-500/30"
+      >
+        Skip to content
+      </a>
       <Navbar />
-      <main className="flex-1">
-        <Outlet />
+      {/* tabIndex -1 so the skip link actually moves focus here, not just
+          the scroll position. The boundary is keyed on the pathname so a
+          route that throws doesn't leave the fallback stuck on every page
+          the visitor moves to afterwards. */}
+      <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+        <ErrorBoundary key={pathname}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
       <Footer />
     </div>

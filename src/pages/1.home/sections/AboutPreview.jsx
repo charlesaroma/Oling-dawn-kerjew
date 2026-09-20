@@ -2,20 +2,17 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Container from '../../../components/common/Container';
 import MediaImage from '../../../components/media/MediaImage';
+import CountUp from '../../../components/common/CountUp';
 import { useProjects } from '../../../services/projectQueries';
-import { getProjectCategories } from '../../../services/projectsService';
+import { getImpactStats } from '../../../services/impactStatsService';
 
 export default function AboutPreview() {
   const { data: projects } = useProjects();
-  const districts = new Set(
-    projects.map((p) => p.location?.split(',')[0].trim()).filter(Boolean),
-  );
+  const stats = getImpactStats(projects, 3);
 
-  const stats = [
-    { value: String(projects.length), label: 'Initiatives' },
-    { value: String(getProjectCategories(projects).length), label: 'Focus areas' },
-    { value: String(districts.size), label: 'Districts reached' },
-  ];
+  /* Written out rather than interpolated: Tailwind scans source text, so a
+     `grid-cols-${n}` built at runtime never gets generated. */
+  const columns = { 1: 'grid-cols-1', 2: 'grid-cols-2', 3: 'grid-cols-3' }[stats.length] ?? 'grid-cols-3';
 
   return (
     <section className="bg-surface-alt py-20 sm:py-28">
@@ -43,11 +40,11 @@ export default function AboutPreview() {
             <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
 
-          <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-ink-900/10 pt-8">
+          <dl className={`mt-12 grid gap-6 border-t border-ink-900/10 pt-8 ${columns}`}>
             {stats.map((stat) => (
               <div key={stat.label}>
                 <dd className="font-display text-[clamp(1.8rem,3.2vw,2.5rem)] leading-none text-forest-900 tabular-nums">
-                  {stat.value || '—'}
+                  {stat.value ? <CountUp value={stat.value} /> : '—'}
                 </dd>
                 <dt className="mt-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-500">{stat.label}</dt>
               </div>

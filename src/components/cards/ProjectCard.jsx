@@ -22,6 +22,8 @@ export default function ProjectCard({ project, to, badgeLabel }) {
             src={project.coverImage}
             alt={project.title}
             loading="lazy"
+            width={480}
+            height={360}
             className="h-full w-full object-cover saturate-[0.75] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
           />
         ) : (

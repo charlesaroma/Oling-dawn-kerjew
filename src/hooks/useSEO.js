@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_NAME = 'Oling Dawn Kerjew Projects';
-const LEGAL_NAME = 'Oling Dawn Kerjew Humanitarian and Charities NGO';
-const SITE_URL = 'https://olingdawnkerjewprojects.org';
-const DEFAULT_IMAGE = `${SITE_URL}/construction/entebbe-health-center.jpg`;
+import { LEGAL_NAME, SITE_URL, DEFAULT_IMAGE, buildTitle } from '../data/seoRoutes';
 
 function setMeta(attr, value, content) {
   let tag = document.querySelector(`meta[${attr}="${value}"]`);
@@ -33,11 +30,15 @@ function setCanonical(href) {
   Canonical URLs are always built against the production origin rather than
   window.location, so Netlify deploy previews and localhost point search
   engines at the real page instead of competing with it.
+
+  The same metadata is baked into a static HTML file per route at build time
+  by scripts/prerender-head.mjs — both read src/data/seoRoutes.js, so the
+  tags a crawler sees and the tags this hook sets are the same tags.
 */
 export function useSEO({ title, description, image, type = 'website' }) {
   useEffect(() => {
     const url = `${SITE_URL}${window.location.pathname}`;
-    const fullTitle = !title || title === SITE_NAME ? SITE_NAME : `${title} | ${SITE_NAME}`;
+    const fullTitle = buildTitle(title);
 
     document.title = fullTitle;
     setCanonical(url);

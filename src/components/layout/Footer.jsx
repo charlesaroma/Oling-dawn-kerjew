@@ -14,7 +14,7 @@ export default function Footer() {
       <Container className="grid gap-14 py-20 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:gap-16">
         <div>
           <Link to="/" className="flex items-center gap-3">
-            <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-full ring-1 ring-surface/15" />
+            <img src="/apple-touch-icon.png" alt="" width={44} height={44} className="h-11 w-11 shrink-0 rounded-full ring-1 ring-surface/15" />
             <span className="flex flex-col font-display text-lg leading-[1.05]">
               <span className="text-surface">{wordmark}</span>
               <span className="font-semibold tracking-wide text-gold-500">{division}</span>
@@ -35,7 +35,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-surface/15 text-surface/60 transition-all duration-200 hover:-translate-y-0.5 hover:border-gold-500/60 hover:text-gold-400"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-surface/15 text-surface/60 transition-all duration-200 hover:-translate-y-0.5 hover:border-gold-500/60 hover:text-gold-400"
                 >
                   <SocialIcon label={social.label} />
                 </a>
@@ -44,25 +44,28 @@ export default function Footer() {
           )}
         </div>
 
-        <nav className="flex flex-col gap-3.5">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Explore</span>
+        {/* No `gap` between the rows: each link carries its own 12px of
+            vertical padding instead, so the tappable box is a full 44px tall
+            and adjacent boxes sit flush rather than overlapping. */}
+        <nav className="flex flex-col">
+          <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Explore</span>
           {navLinks.map((link) => (
-            <Link key={link.path} to={link.path} className="w-fit text-sm text-surface/65 transition-colors hover:text-surface">
+            <Link key={link.path} to={link.path} className="flex w-fit items-center py-3 text-sm text-surface/65 transition-colors hover:text-surface">
               {link.label}
             </Link>
           ))}
         </nav>
 
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Contact</span>
+          <div className="flex flex-col">
+            <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-surface/35">Contact</span>
             {emails.map((email) => (
-              <a key={email} href={`mailto:${email}`} className="w-fit break-all text-sm text-surface/65 transition-colors hover:text-surface">
+              <a key={email} href={`mailto:${email}`} className="flex w-fit items-center break-all py-3 text-sm text-surface/65 transition-colors hover:text-surface">
                 {email}
               </a>
             ))}
             {phones.map((phone) => (
-              <a key={phone} href={`tel:${phone.replace(/\s+/g, '')}`} className="w-fit text-sm text-surface/65 transition-colors hover:text-surface">
+              <a key={phone} href={`tel:${phone.replace(/\s+/g, '')}`} className="flex w-fit items-center py-3 text-sm text-surface/65 transition-colors hover:text-surface">
                 {phone}
               </a>
             ))}

@@ -22,7 +22,7 @@ export default function FeaturedProjects() {
           />
           <Link
             to="/projects"
-            className="group flex shrink-0 items-center gap-2 border-b border-forest-800/25 pb-1 text-sm font-semibold text-forest-800 transition-colors hover:border-forest-800"
+            className="tap-target group flex shrink-0 items-center gap-2 border-b border-forest-800/25 pb-1 text-sm font-semibold text-forest-800 transition-colors hover:border-forest-800"
           >
             View all projects
             <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />

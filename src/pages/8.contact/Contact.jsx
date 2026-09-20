@@ -3,12 +3,10 @@ import PageHeader from '../../components/common/PageHeader';
 import ContactForm from './sections/ContactForm';
 import ContactInfo from './sections/ContactInfo';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 export default function Contact() {
-  useSEO({
-    title: 'Contact Us',
-    description: "Questions, partnerships, or ways to get involved with Oling Dawn Kerjew Projects. We'd love to hear from you.",
-  });
+  useSEO(ROUTE_SEO['/contact']);
 
   return (
     <>
@@ -30,6 +28,8 @@ export default function Contact() {
               src="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/ladies_hairdressing_training_20250812_123723.jpg?tr=w-900,q-72"
               alt="Women's vocational training in hairdressing"
               loading="lazy"
+              width={900}
+              height={675}
               className="aspect-4/3 w-full object-cover"
             />
             <div className="p-7 sm:p-9">

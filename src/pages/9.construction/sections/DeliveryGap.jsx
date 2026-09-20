@@ -1,6 +1,7 @@
 import { Home, HeartPulse, ShieldAlert } from 'lucide-react';
 import Container from '../../../components/common/Container';
 import SectionHeading from '../../../components/common/SectionHeading';
+import CountUp from '../../../components/common/CountUp';
 
 const GAPS = [
   {
@@ -115,7 +116,7 @@ export default function DeliveryGap() {
                   <div className="flex items-baseline justify-between gap-4">
                     <dt className="text-sm text-ink-500">{period}</dt>
                     <dd className={`font-display text-2xl tabular-nums ${pct === 100 ? 'text-gold-600' : 'text-forest-900'}`}>
-                      {amount}
+                      <CountUp value={amount} />
                     </dd>
                   </div>
                   <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-ink-900/8">

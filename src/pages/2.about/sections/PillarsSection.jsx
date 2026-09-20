@@ -63,6 +63,8 @@ export default function PillarsSection() {
                       src={image.src}
                       alt={image.alt}
                       loading="lazy"
+                      width={800}
+                      height={600}
                       className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-500 group-hover:scale-105 group-hover:opacity-85"
                     />
                     <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/75 to-ink-900/30" />

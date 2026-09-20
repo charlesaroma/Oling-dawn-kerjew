@@ -5,12 +5,10 @@ import EmptyState from '../../components/common/EmptyState';
 import { useBlogPosts } from '../../services/blogQueries';
 import { getPublishedPosts } from '../../services/blogService';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 export default function Blog() {
-  useSEO({
-    title: 'Blog & Articles',
-    description: 'Updates, stories, and lessons from the field. News from Oling Dawn Kerjew Projects.',
-  });
+  useSEO(ROUTE_SEO['/blog']);
 
   const { data: blogPosts } = useBlogPosts();
   const posts = getPublishedPosts(blogPosts);

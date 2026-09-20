@@ -34,7 +34,7 @@ export default function ConstructionSection() {
           />
           <Link
             to="/construction"
-            className="group flex shrink-0 items-center gap-2 border-b border-gold-500/40 pb-1 text-sm font-semibold text-gold-700 transition-colors hover:border-gold-500"
+            className="tap-target group flex shrink-0 items-center gap-2 border-b border-gold-500/40 pb-1 text-sm font-semibold text-gold-700 transition-colors hover:border-gold-500"
           >
             How it works
             <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />

@@ -11,9 +11,12 @@ import { writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
+import { resolveApiBase } from './apiBase.mjs';
+
 const SITE = 'https://olingdawnkerjewprojects.org';
-const API = process.env.VITE_API_URL || 'https://oling-dawn-kerjew-projects-backend.onrender.com';
-const OUT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public', 'sitemap.xml');
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const API = resolveApiBase(ROOT);
+const OUT = path.join(ROOT, 'public', 'sitemap.xml');
 
 const STATIC = [
   { path: '/', freq: 'weekly', pri: '1.0' },
@@ -39,6 +42,7 @@ const url = ({ path: p, freq, pri, lastmod }) =>
   `    <changefreq>${freq}</changefreq>\n    <priority>${pri}</priority>\n  </url>`;
 
 try {
+  if (!API) throw new Error('no VITE_API_URL — set it in .env or the build environment');
   const [projects, posts] = await Promise.all([get('/api/projects'), get('/api/blog')]);
 
   const entries = [

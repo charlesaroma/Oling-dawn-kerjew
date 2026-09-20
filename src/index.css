@@ -1,6 +1,6 @@
 /*
-   FONTS — via Google Fonts
-   Fraunces (display/headlines — a warm, hand-finished serif; only upright
+   FONTS: via Google Fonts
+   Fraunces (display/headlines: a warm, hand-finished serif; only upright
    weights are requested, no italic axis, so emphasis never falls back to a
    slanted cut); Public Sans (body/UI, a civic-grade humanist sans built for
    legibility); IBM Plex Mono (stats, dates, eyebrow labels).
@@ -9,13 +9,13 @@
 @import "tailwindcss";
 
 /*
-   THEME — "Editorial Earth"
+   THEME: "Editorial Earth"
    Editorial Bold's structure (deep ground, type as the hero, restraint)
    grounded in Ugandan Earth's palette: palm green, clay red, ochre and sand.
    Neutrals carry a deliberate green-brown bias so nothing reads as stock grey.
 */
 @theme {
-  /* Forest — palm green. Headings, nav, brand voice. */
+  /* Forest: palm green. Headings, nav, brand voice. */
   --color-forest-50:  #F0F6F2;
   --color-forest-100: #DCEBE1;
   --color-forest-200: #B7D6C2;
@@ -27,7 +27,7 @@
   --color-forest-800: #1E4032;
   --color-forest-900: #163025;
 
-  /* Gold — ochre. Buttons, links, the one CTA band (always intentional). */
+  /* Gold: ochre. Buttons, links, the one CTA band (always intentional). */
   --color-gold-50:  #FDF8EC;
   --color-gold-100: #FAEECB;
   --color-gold-200: #F5DC98;
@@ -39,7 +39,7 @@
   --color-gold-800: #7A5116;
   --color-gold-900: #5C3D13;
 
-  /* Bronze — clay red. Eyebrows, markers, the kitenge band (<5%). */
+  /* Bronze: clay red. Eyebrows, markers, the kitenge band (<5%). */
   --color-bronze-50:  #FCF2ED;
   --color-bronze-100: #F7DFD3;
   --color-bronze-200: #EDBEA8;
@@ -51,7 +51,7 @@
   --color-bronze-800: #6B2B15;
   --color-bronze-900: #4D1F10;
 
-  /* Ink — warm green-charcoal. Body text, the dark hero + footer ground. */
+  /* Ink: warm green-charcoal. Body text, the dark hero + footer ground. */
   --color-ink-50:  #F2F5F3;
   --color-ink-100: #E3E8E5;
   --color-ink-200: #C9D1CC;
@@ -63,25 +63,25 @@
   --color-ink-800: #1F2E25;
   --color-ink-900: #0F1611;
 
-  /* Functional / status — tuned to sit inside the palette, but each still
+  /* Functional / status: tuned to sit inside the palette, but each still
      clearly distinct from the brand accents (error is never mistaken for clay). */
   --color-success: #2F7A52;
   --color-warning: #C0851B;
   --color-error:   #B3261E;
   --color-info:    #2E6470;
 
-  /* Semantic surfaces — named by purpose, so section backgrounds read as
+  /* Semantic surfaces: named by purpose, so section backgrounds read as
      intent, not raw color. Crisp near-white canvas -> light warm-grey tint ->
      ochre CTA -> ink. Color is carried by photography, gold accents and
      section-level blocks (CTA, PageHeader, Pillars) rather than by a heavy
-     tint across every section — that read as dated/beige at higher chroma. */
+     tint across every section: that read as dated/beige at higher chroma. */
   --color-surface:      #FDFCF9;                /* crisp, barely-warm near-white canvas */
   --color-surface-alt:  #F5F1E8;                /* light warm-grey tint, alternating sections */
-  --color-surface-card: #FFFFFF;                /* raised card fill — brighter than the canvas it sits on */
+  --color-surface-card: #FFFFFF;                /* raised card fill: brighter than the canvas it sits on */
   --color-surface-cta:  var(--color-gold-500);  /* the one bold donate/CTA band */
   --color-surface-dark: var(--color-ink-900);   /* hero + footer ground */
 
-  /* Dashboard chrome — single source of truth for the fixed sidebar's width,
+  /* Dashboard chrome: single source of truth for the fixed sidebar's width,
      shared by DashboardSidebar.jsx (w-[var(--sidebar-w)]) and
      DashboardLayout.jsx (pl-[var(--sidebar-w)]) so the two never drift apart. */
   --sidebar-w: 18rem;
@@ -115,7 +115,7 @@
   button:disabled {
     cursor: not-allowed;
   }
-  /* Slim, quiet scrollbar — a small but noticeable "considered" touch */
+  /* Slim, quiet scrollbar: a small but noticeable "considered" touch */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -149,7 +149,38 @@
   }
 }
 
-/* Warm-tinted elevation instead of flat-black shadows — reads as considered,
+/* ---------------------------------------------------------------------------
+   TAP TARGETS
+
+   A 44x44 minimum hit area without changing the painted size: a transparent
+   pseudo-element centred on the control. Nav links, small text links and the
+   like stay visually compact — the target around them just stops being a
+   22px-tall sliver on a phone.
+
+   Uses ::before deliberately — the nav links already own ::after for their
+   underline.
+
+   Only for controls with enough clearance around them: where neighbours sit
+   closer than 44px apart the hit areas would overlap and steal each other's
+   taps, so those are spaced or padded out to size instead (see the footer
+   link columns and the hero slide markers).
+--------------------------------------------------------------------------- */
+@utility tap-target {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    min-width: 44px;
+    min-height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Warm-tinted elevation instead of flat-black shadows: reads as considered,
    not default-Tailwind. Use on cards/panels that should feel lifted. */
 @utility shadow-elevated {
   box-shadow:
@@ -163,11 +194,66 @@
     0 20px 40px -12px rgba(27, 50, 32, 0.18);
 }
 
-/* Toast enter animation — ToastContext.jsx */
+/* Toast enter animation: ToastContext.jsx */
 @keyframes slide-in {
   from { transform: translateX(100%); opacity: 0; }
   to   { transform: translateX(0);    opacity: 1; }
 }
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
+}
+
+/* ---------------------------------------------------------------------------
+   HERO MOTION: src/pages/1.home/sections/Hero.jsx
+
+   A slow push on the active frame (so a still photograph reads as alive), a
+   staggered rise on the copy, a fill on the active slide marker that doubles
+   as the slide timer, and a short fade on the caption as it swaps. Every one
+   of them is switched off wholesale under prefers-reduced-motion: the hero
+   still works as a static photograph with the copy in place.
+   `hero-progress` must stay in step with INTERVAL in Hero.jsx.
+--------------------------------------------------------------------------- */
+@keyframes hero-zoom {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1.13); }
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+@keyframes hero-caption {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-zoom     { animation: hero-zoom 9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
+.hero-rise     { animation: hero-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-progress { animation: hero-progress 6.5s linear forwards; }
+.hero-caption  { animation: hero-caption 0.6s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom     { animation: none; transform: scale(1.04); }
+  .hero-rise     { animation: none; }
+  .hero-caption  { animation: none; }
+  .hero-progress { animation: none; width: 100%; }
+}
+
+/* ---------------------------------------------------------------------------
+   MOBILE MENU: src/components/layout/Navbar.jsx
+   Each row rises in behind the one above it; the delay is set per-item
+   inline. Only runs while the sheet is open, so a closed menu isn't
+   animating off-screen.
+--------------------------------------------------------------------------- */
+@keyframes nav-row-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.nav-row-in { animation: nav-row-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-row-in { animation: none; }
 }

@@ -7,14 +7,12 @@ import Lightbox from '../../components/media/Lightbox';
 import EmptyState from '../../components/common/EmptyState';
 import { useMedia } from '../../services/mediaQueries';
 import { useSEO } from '../../hooks/useSEO';
+import { ROUTE_SEO } from '../../data/seoRoutes';
 
 const PAGE_SIZE = 24;
 
 export default function Gallery() {
-  useSEO({
-    title: 'Gallery',
-    description: 'Photos and videos from across Oling Dawn Kerjew Projects sites in Uganda.',
-  });
+  useSEO(ROUTE_SEO['/gallery']);
 
   const [activeIndex, setActiveIndex] = useState(null);
   const [page, setPage] = useState(1);

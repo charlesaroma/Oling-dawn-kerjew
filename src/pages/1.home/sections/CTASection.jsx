@@ -17,6 +17,8 @@ export default function CTASection() {
           alt=""
           aria-hidden="true"
           loading="lazy"
+          width={1600}
+          height={1067}
           className="h-full w-full object-cover opacity-[0.14] mix-blend-multiply"
         />
       </Parallax>

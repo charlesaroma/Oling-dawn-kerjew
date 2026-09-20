@@ -31,6 +31,8 @@ export default function PageHeader({
             alt={imageAlt || ''}
             aria-hidden={!imageAlt}
             loading="eager"
+            width={1600}
+            height={900}
             className="h-full w-full object-cover"
           />
         </Parallax>
