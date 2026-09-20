@@ -66,8 +66,21 @@ export default function CountUp({ value, duration = 1.6 }) {
 
   useEffect(() => {
     if (!hasNumber) return undefined;
-    if (prefersReducedMotion() || !inView || from.current === target) {
+
+    if (prefersReducedMotion()) {
       from.current = target;
+      setShown(target);
+      return undefined;
+    }
+
+    /* Hold at the current value until the stat is actually on screen.
+       Snapping to the target here instead would leave nothing left to count:
+       every one of these blocks sits below the fold, so by the time it
+       scrolled into view `from` would already equal `target` and the
+       animation would be skipped entirely. */
+    if (!inView) return undefined;
+
+    if (from.current === target) {
       setShown(target);
       return undefined;
     }
