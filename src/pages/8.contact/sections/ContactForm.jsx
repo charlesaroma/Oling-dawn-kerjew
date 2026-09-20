@@ -39,7 +39,7 @@ export default function ContactForm() {
 
   if (formik.status === 'success') {
     return (
-      <div className="flex flex-col items-start rounded-2xl border border-ink-900/8 bg-surface-card p-10">
+      <div className="flex flex-col items-start rounded-2xl border border-ink-900/8 bg-surface-card p-7 shadow-elevated sm:p-9">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-success/10 text-success">
           <CheckCircle2 size={22} strokeWidth={1.75} />
         </span>
@@ -59,7 +59,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={formik.handleSubmit} noValidate className="relative rounded-2xl border border-ink-900/8 bg-surface-card p-7 sm:p-9">
+    <form onSubmit={formik.handleSubmit} noValidate className="relative rounded-2xl border border-ink-900/8 bg-surface-card p-7 shadow-elevated sm:p-9">
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-bronze-600">Send a message</p>
       <h3 className="mt-3 font-display text-3xl leading-[1.05] text-forest-900">
         Tell us what you have in mind.
