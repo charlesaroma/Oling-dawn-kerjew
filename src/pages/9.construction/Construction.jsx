@@ -12,7 +12,7 @@ import { useSEO } from '../../hooks/useSEO';
    research and are cited as such. */
 const CONTEXT = [
   { value: '2.03M', label: 'Refugees & asylum-seekers in Uganda', source: 'UNHCR, 31 July 2026', approx: true },
-  { value: '150,600', label: 'Registered in Kampala — 9% of the national total', source: 'IIED', approx: true },
+  { value: '150,600', label: 'Registered in Kampala, 9% of the national total', source: 'IIED', approx: true },
   { value: '340,000+', label: 'Estimated undocumented in Kampala Metropolitan', source: 'IIED', approx: true },
   { value: '10%', label: "Of Africa's climate finance needs met domestically", source: 'MUBS Climate Finance & Sustainability Centre' },
 ];
@@ -27,7 +27,7 @@ const BUILDS = [
 export default function Construction() {
   useSEO({
     title: 'Low-Cost Construction',
-    description: 'Instead of subsidising rent for ever, we build the thing itself — refugee housing, health facilities, schools, roads and drainage at non-profit cost, using prefabricated modular concrete.',
+    description: 'Instead of subsidising rent for ever, we build the thing itself: refugee housing, health facilities, schools, roads and drainage at non-profit cost, using prefabricated modular concrete.',
     image: 'https://olingdawnkerjewprojects.org/construction/entebbe-health-center.jpg',
   });
 
@@ -36,7 +36,7 @@ export default function Construction() {
       <PageHeader
         eyebrow="Low-cost, non-profit construction"
         title="Build the thing itself."
-        subtitle="Instead of subsidising rent for ever, we build refugee housing, health facilities, schools, roads and drainage at non-profit cost — using prefabricated modular concrete delivered by our building partner."
+        subtitle="Instead of subsidising rent for ever, we build refugee housing, health facilities, schools, roads and drainage at non-profit cost, using prefabricated modular concrete delivered by our building partner."
         image="/construction/modular-storeys.jpg"
         imageAlt="A multi-storey modular concrete building under construction"
       />
@@ -65,7 +65,7 @@ export default function Construction() {
           </dl>
           <p className="max-w-[76ch] leading-relaxed text-ink-600">
             Urban arrivals fall outside the support architecture built for camp-based populations. With no settlement
-            food distribution, clinic or school nearby, households navigate rent, hospitals and city life alone —
+            food distribution, clinic or school nearby, households navigate rent, hospitals and city life alone,
             usually with no income and no legal work status.
           </p>
         </Container>
@@ -80,11 +80,11 @@ export default function Construction() {
             <SectionHeading
               eyebrow="From commitments to capital"
               title="Capital is not the bottleneck. Delivery is."
-              subtitle="Africa's climate finance architecture is thickening — funds, facilities, carbon markets, loss-and-damage instruments. What remains thin is the machinery that converts a commitment into a house that stands, a clinic that opens, a household that stops paying rent it cannot afford."
+              subtitle="Africa's climate finance architecture is thickening: funds, facilities, carbon markets, loss-and-damage instruments. What remains thin is the machinery that converts a commitment into a house that stands, a clinic that opens, a household that stops paying rent it cannot afford."
             />
             <ul className="mt-8 flex flex-col gap-4 border-t border-ink-900/10 pt-8">
               {[
-                'Instruments are designed for entities that can absorb, report and audit — most affected communities are neither.',
+                'Instruments are designed for entities that can absorb, report and audit, and most affected communities are neither.',
                 'Adaptation spend concentrates where fiduciary capacity already exists, which is rarely where vulnerability is highest.',
                 'The last mile is a delivery problem before it is a funding problem.',
               ].map((point) => (
@@ -98,8 +98,8 @@ export default function Construction() {
 
           <div className="overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
             <img
-              src="/construction/solution-unit.jpg"
-              alt="A completed low-cost modular concrete housing unit"
+              src="/construction/build-04-finish.jpg"
+              alt="A completed low-cost modular concrete housing unit, fitted out and handed over"
               loading="lazy"
               width={1200}
               height={900}

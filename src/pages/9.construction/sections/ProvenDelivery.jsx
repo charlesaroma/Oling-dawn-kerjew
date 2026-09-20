@@ -31,7 +31,7 @@ export default function ProvenDelivery() {
               <figure key={src} className="group overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
                 <img
                   src={src}
-                  alt={`${name}, ${where} — built by MEACCO`}
+                  alt={`${name}, ${where}, built by MEACCO`}
                   loading="lazy"
                   width={1400}
                   height={1050}

@@ -40,10 +40,10 @@ export default function ProfileList() {
         count={profiles.length}
         onExportCSV={() => (visibleRows.length
           ? exportProfilesCSV(visibleRows)
-          : addToast('Nothing to export — adjust your search or filters.', 'warning'))}
+          : addToast('Nothing to export, adjust your search or filters.', 'warning'))}
         onExportPDF={() => (visibleRows.length
           ? exportProfilesPDF(visibleRows)
-          : addToast('Nothing to export — adjust your search or filters.', 'warning'))}
+          : addToast('Nothing to export, adjust your search or filters.', 'warning'))}
         onAdd={() => setModalItem({ item: null })}
       />
 

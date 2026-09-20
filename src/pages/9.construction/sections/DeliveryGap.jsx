@@ -20,7 +20,7 @@ const GAPS = [
     points: [
       'KCCA facilities are free on paper for refugees and nationals alike.',
       'In practice, patients report being asked for money at several points.',
-      'Chronic conditions — diabetes, hypertension, cancer — become emergencies.',
+      'Chronic conditions like diabetes, hypertension and cancer become emergencies.',
     ],
   },
   {
@@ -89,7 +89,7 @@ export default function DeliveryGap() {
             <p className="mt-6 max-w-[52ch] leading-relaxed text-ink-600">
               A refugee family renting a modest room in Kampala pays roughly UGX 700,000 every month. The money
               leaves. Nothing accumulates. After five years the household owns exactly what it owned on the first
-              day — and five years of that rent is enough to own a low-cost housing unit outright.
+              day, and five years of that rent is enough to own a low-cost housing unit outright.
             </p>
             <ul className="mt-8 flex flex-col gap-4 border-t border-ink-900/10 pt-8">
               {[

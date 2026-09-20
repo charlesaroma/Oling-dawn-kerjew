@@ -15,7 +15,7 @@ export default function UploadTray() {
   let label = `Uploading ${files.length} file${files.length === 1 ? '' : 's'}…`;
   if (!uploading && allDone) {
     icon = <CheckCircle2 size={18} className="text-success" />;
-    label = `Upload complete — ${doneCount} file${doneCount === 1 ? '' : 's'} uploaded`;
+    label = `Upload complete: ${doneCount} file${doneCount === 1 ? '' : 's'} uploaded`;
   } else if (!uploading && failedCount > 0) {
     icon = <AlertCircle size={18} className="text-error" />;
     label = `${failedCount} upload${failedCount === 1 ? '' : 's'} failed`;

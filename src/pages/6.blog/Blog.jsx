@@ -9,7 +9,7 @@ import { useSEO } from '../../hooks/useSEO';
 export default function Blog() {
   useSEO({
     title: 'Blog & Articles',
-    description: 'Updates, stories, and lessons from the field — news from Oling Dawn Kerjew Projects.',
+    description: 'Updates, stories, and lessons from the field. News from Oling Dawn Kerjew Projects.',
   });
 
   const { data: blogPosts } = useBlogPosts();

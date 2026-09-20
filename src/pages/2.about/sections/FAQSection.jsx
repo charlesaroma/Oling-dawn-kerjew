@@ -22,16 +22,16 @@ export default function FAQSection() {
     { question: 'What does Oling Dawn Kerjew Projects do?', answer: description },
     {
       question: 'Is Oling Dawn Kerjew Projects a registered NGO?',
-      answer: `Yes — ${orgName} is a registered Ugandan NGO, based in ${registeredAddress}.`,
+      answer: `Yes. ${orgName} is a registered Ugandan NGO, based in ${registeredAddress}.`,
     },
     { question: 'Where does the work happen?', answer: whereWeWork },
     {
       question: 'What is the low-cost construction programme?',
-      answer: 'A separate case-study covering the modular concrete building system used for housing, health centres and schools — look for the "Full case study" link on any construction-related project.',
+      answer: 'A separate case-study covering the modular concrete building system used for housing, health centres and schools. Look for the "Full case study" link on any construction-related project.',
     },
     {
       question: 'How can I get involved or partner with you?',
-      answer: `Reach out through the contact form, or directly at ${emails[0]}${phones[0] ? ` / ${phones[0]}` : ''} — partnerships, volunteering and media requests all go to the same place.`,
+      answer: `Reach out through the contact form, or directly at ${emails[0]}${phones[0] ? ` / ${phones[0]}` : ''}. Partnerships, volunteering and media requests all go to the same place.`,
     },
   ];
 

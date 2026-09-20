@@ -10,7 +10,7 @@ const STEPS = [
 ];
 
 const ADVANTAGES = [
-  { icon: Clock, title: 'Fast', note: 'Units arrive cured and ready. Site time collapses from months to days — decisive after a flood or an eviction wave.' },
+  { icon: Clock, title: 'Fast', note: 'Units arrive cured and ready. Site time collapses from months to days, decisive after a flood or an eviction wave.' },
   { icon: Coins, title: 'Economical', note: 'Factory repetition strips out the cost and waste of one-off site construction.' },
   { icon: ShieldCheck, title: 'Durable', note: 'Reinforced concrete, not sheeting. Built to last decades, not a season.' },
   { icon: Layers, title: 'Scalable', note: 'One mould makes two one-room units; four make an 80m² family home. Storeys stack for density.' },
@@ -33,7 +33,7 @@ export default function HowItsBuilt() {
               <li key={n} className="flex flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card">
                 <img
                   src={img}
-                  alt={`${title} — ${note}`}
+                  alt={`${title}: ${note}`}
                   loading="lazy"
                   width={1200}
                   height={900}

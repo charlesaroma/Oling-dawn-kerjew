@@ -32,7 +32,7 @@ export function buildHighlights({ profiles, projects, galleryItems, blogPosts, t
       icon: 'pending',
       pre: '',
       bold: 'Team and profile registration',
-      post: ' are still empty — first onboarding is pending.',
+      post: ' are still empty; first onboarding is pending.',
     });
   } else {
     const parts = [];

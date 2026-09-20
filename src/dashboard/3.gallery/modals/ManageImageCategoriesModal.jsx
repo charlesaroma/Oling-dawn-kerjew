@@ -150,7 +150,7 @@ export default function ManageImageCategoriesModal({ isOpen, onClose }) {
       </Reorder.Group>
 
       {items.length === 0 && (
-        <p className="py-8 text-center text-sm text-ink-500">No categories yet — add one above.</p>
+        <p className="py-8 text-center text-sm text-ink-500">No categories yet. Add one above.</p>
       )}
     </Modal>
   );

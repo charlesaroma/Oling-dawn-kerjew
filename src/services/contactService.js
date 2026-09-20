@@ -14,7 +14,7 @@ export async function submitContactMessage(values) {
   const formData = new FormData();
   formData.append('access_key', WEB3FORMS_ACCESS_KEY);
   formData.append('subject', `Website enquiry: ${values.subject}`);
-  formData.append('from_name', 'Oling Dawn Kerjew Projects — Contact form');
+  formData.append('from_name', 'Oling Dawn Kerjew Projects: Contact form');
   formData.append('name', values.name);
   formData.append('email', values.email);
   if (values.organisation) formData.append('organisation', values.organisation);

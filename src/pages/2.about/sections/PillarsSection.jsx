@@ -48,7 +48,7 @@ export default function PillarsSection() {
         <SectionHeading
           eyebrow="What we do"
           title="Six areas, one commitment."
-          subtitle="Each pillar runs continuously rather than as a one-off campaign — the buildings, the training and the follow-up all sit under the same programme."
+          subtitle="Each pillar runs continuously rather than as a one-off campaign. The buildings, the training and the follow-up all sit under the same programme."
         />
 
         <div className="grid gap-px overflow-hidden rounded-2xl border border-ink-900/8 bg-ink-900/8 shadow-elevated sm:grid-cols-2 lg:grid-cols-3">

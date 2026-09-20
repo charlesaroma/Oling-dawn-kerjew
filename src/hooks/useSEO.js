@@ -37,7 +37,7 @@ function setCanonical(href) {
 export function useSEO({ title, description, image, type = 'website' }) {
   useEffect(() => {
     const url = `${SITE_URL}${window.location.pathname}`;
-    const fullTitle = !title || title === SITE_NAME ? SITE_NAME : `${title} — ${SITE_NAME}`;
+    const fullTitle = !title || title === SITE_NAME ? SITE_NAME : `${title} | ${SITE_NAME}`;
 
     document.title = fullTitle;
     setCanonical(url);

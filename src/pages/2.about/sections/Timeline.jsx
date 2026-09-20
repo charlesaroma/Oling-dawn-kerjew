@@ -24,7 +24,7 @@ export default function Timeline() {
     {
       year: '1986',
       title: 'Community service begins',
-      detail: "Dr. Oling Dawn Kerjew began community liaison and relief work in Northern Uganda's Lango sub-region — the grassroots foundation the organisation was later built on.",
+      detail: "Dr. Oling Dawn Kerjew began community liaison and relief work in Northern Uganda's Lango sub-region, the grassroots foundation the organisation was later built on.",
     },
     ...milestones.map((p) => ({ year: String(p.year), title: p.title, detail: p.summary })),
   ];

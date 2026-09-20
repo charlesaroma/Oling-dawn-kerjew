@@ -1,5 +1,5 @@
 import Hero from './sections/Hero';
-import ImpactStats from '../../components/sections/ImpactStats';
+import AboutPreview from './sections/AboutPreview';
 import ConstructionSection from './sections/ConstructionSection';
 import PartnersSection from './sections/PartnersSection';
 import FeaturedProjects from './sections/FeaturedProjects';
@@ -9,14 +9,14 @@ import { useSEO } from '../../hooks/useSEO';
 
 export default function Home() {
   useSEO({
-    title: 'Oling Dawn Kerjew Projects',
-    description: "Low-cost, non-profit construction of hospitals, schools, roads and bridges across Uganda — plus education, healthcare and community development. The Projects arm of Oling Dawn Kerjew Humanitarian and Charities NGO.",
+    title: 'Oling Dawn Kerjew Projects | Humanitarian NGO in Northern Uganda',
+    description: "A registered Ugandan NGO serving Oyam District and Northern Uganda through low-cost construction, education, healthcare, women's empowerment and community development.",
   });
 
   return (
     <>
       <Hero />
-      <ImpactStats />
+      <AboutPreview />
       <ConstructionSection />
       <PartnersSection />
       <FeaturedProjects />

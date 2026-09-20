@@ -19,7 +19,7 @@ export default function TeamTable({ rows, onEdit, onDelete }) {
       rows={rows}
       actions={rowActions}
       searchPlaceholder="Search name or role…"
-      emptyMessage="No team members yet — add the first one."
+      emptyMessage="No team members yet. Add the first one."
     />
   );
 }

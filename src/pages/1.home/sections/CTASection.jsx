@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '../../../components/common/Container';
+import Parallax from '../../../components/common/Parallax';
 
 /* The one full-saturation moment on the page — everything around it is light,
    so this band carries the whole palette's warmth on its own, right before
@@ -10,13 +11,15 @@ export default function CTASection() {
     <section className="relative overflow-hidden bg-gold-500">
       {/* Texture, not a second focal image — kept low-opacity so the gold band
           stays the one full-saturation moment on the page. */}
-      <img
-        src="/construction/modular-row.jpg"
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover opacity-[0.14] mix-blend-multiply"
-      />
+      <Parallax className="absolute inset-0" strength={10}>
+        <img
+          src="/construction/modular-row.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="h-full w-full object-cover opacity-[0.14] mix-blend-multiply"
+        />
+      </Parallax>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-[8%] -top-[40%] h-[min(56vw,480px)] w-[min(56vw,480px)] rounded-full opacity-60"

@@ -54,20 +54,29 @@ export default function ConstructionSection() {
           <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">
             Delivered by our engineering partner, MEACCO
           </p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {BUILT.map((build) => (
-              <figure key={build.src} className="group overflow-hidden rounded-2xl border border-ink-900/8 bg-surface-card shadow-elevated">
+          {/* Bento: the lead build runs double-wide and full-height, the rest
+              fill in around it, so the grid has a focal point instead of four
+              interchangeable tiles. Collapses to one column on phones. */}
+          <div className="grid auto-rows-[190px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[200px]">
+            {BUILT.map((build, i) => (
+              <figure
+                key={build.src}
+                className={`group relative overflow-hidden rounded-3xl bg-surface-card shadow-elevated transition-shadow duration-300 hover:shadow-elevated-lg ${
+                  i === 0 ? 'sm:col-span-2 sm:row-span-2' : ''
+                } ${i === 3 ? 'sm:col-span-2 lg:col-span-2' : ''}`}
+              >
                 <img
                   src={build.src}
-                  alt={`${build.name} — modular concrete building constructed by MEACCO`}
+                  alt={`${build.name}, a modular concrete building constructed by MEACCO`}
                   loading="lazy"
                   width={1400}
                   height={1050}
-                  className="aspect-4/3 w-full object-cover saturate-[0.8] transition-all duration-700 group-hover:scale-[1.03] group-hover:saturate-100"
+                  className="h-full w-full object-cover saturate-[0.85] transition-all duration-700 group-hover:scale-[1.03] group-hover:saturate-100"
                 />
-                <figcaption className="px-4 py-4">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-gold-700">{build.type}</p>
-                  <p className="mt-1.5 text-sm leading-snug text-forest-900">{build.name}</p>
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/20 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-gold-400">{build.type}</p>
+                  <p className="mt-1.5 text-sm leading-snug text-surface">{build.name}</p>
                 </figcaption>
               </figure>
             ))}

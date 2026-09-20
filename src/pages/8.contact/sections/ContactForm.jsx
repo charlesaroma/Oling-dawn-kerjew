@@ -45,7 +45,7 @@ export default function ContactForm() {
         </span>
         <h3 className="mt-6 font-display text-3xl leading-tight text-forest-900">Message received.</h3>
         <p className="mt-3 max-w-[40ch] leading-relaxed text-ink-500">
-          Thank you for reaching out. Someone from the team will reply to you directly — usually within two working days.
+          Thank you for reaching out. Someone from the team will reply to you directly, usually within two working days.
         </p>
         <button
           type="button"
@@ -125,7 +125,7 @@ export default function ContactForm() {
 
       {formik.status === 'error' && (
         <p className="mt-5 rounded-xl border border-error/20 bg-error/5 px-4 py-3 text-sm text-error" role="alert">
-          That didn't send. Check your connection and try again — or email us directly at info@olingdawnkerjew.org.
+          That didn't send. Check your connection and try again, or email us directly at info@olingdawnkerjew.org.
         </p>
       )}
 

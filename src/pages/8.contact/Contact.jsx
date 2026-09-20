@@ -7,7 +7,7 @@ import { useSEO } from '../../hooks/useSEO';
 export default function Contact() {
   useSEO({
     title: 'Contact Us',
-    description: "Questions, partnerships, or ways to get involved with Oling Dawn Kerjew Projects — we'd love to hear from you.",
+    description: "Questions, partnerships, or ways to get involved with Oling Dawn Kerjew Projects. We'd love to hear from you.",
   });
 
   return (
@@ -15,7 +15,7 @@ export default function Contact() {
       <PageHeader
         eyebrow="Get in touch"
         title="Start a conversation."
-        subtitle="Partnerships, volunteering, media requests or a question about the work — this reaches the people who can answer it."
+        subtitle="Partnerships, volunteering, media requests or a question about the work. This reaches the people who can answer it."
         image="https://ik.imagekit.io/u8h0uidte/Oling-Dawn-Kerjew-/distributing_agricultural_tools_hoes_MG_7659.JPG?tr=w-1600,q-72"
         imageAlt="Distributing agricultural tools to farming households in Oyam District"
       />

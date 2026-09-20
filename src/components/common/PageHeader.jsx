@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Container from './Container';
+import Parallax from './Parallax';
 
 /* Every page opens on a photo banner with the title/subtitle sitting in a
    light card that overlaps its bottom edge — separated by a shadow, not a
@@ -24,15 +25,15 @@ export default function PageHeader({
   return (
     <section className="relative overflow-hidden bg-surface">
       {image && (
-        <div className="relative h-[34vh] min-h-[200px] sm:h-[40vh] lg:h-[46vh]">
+        <Parallax className="h-[34vh] min-h-[200px] sm:h-[40vh] lg:h-[46vh]" strength={7}>
           <img
             src={image}
             alt={imageAlt || ''}
             aria-hidden={!imageAlt}
             loading="eager"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="h-full w-full object-cover"
           />
-        </div>
+        </Parallax>
       )}
       <Container className={`relative ${image ? '' : 'pt-32 sm:pt-40'} ${containerClassName}`}>
         <div

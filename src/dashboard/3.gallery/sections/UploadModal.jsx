@@ -182,7 +182,7 @@ export default function UploadModal() {
             >
               <UploadIcon size={22} className="text-forest-700" />
               <span className="text-sm font-semibold text-forest-900">Click to upload</span>
-              <span className="text-xs text-ink-500">PNG, JPEG, or WEBP — up to 25MB each</span>
+              <span className="text-xs text-ink-500">PNG, JPEG, or WEBP, up to 25MB each</span>
               <input
                 ref={inputRef}
                 type="file"
