@@ -11,6 +11,7 @@ export function useProjects() {
       return data;
     },
     initialData: EMPTY,
+    initialDataUpdatedAt: 0,
   });
 }
 

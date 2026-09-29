@@ -44,9 +44,6 @@ function format(n, { decimals, grouped }) {
   });
 }
 
-/* Read synchronously at mount rather than from an effect: effects run after
-   paint, so a visitor who asked for no motion would still catch one frame of
-   "0" before it snapped to the real figure. */
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -58,32 +55,27 @@ export default function CountUp({ value, duration = 1.6 }) {
   const hasNumber = shape !== null;
   const target = shape?.target ?? 0;
 
-  const [shown, setShown] = useState(() => (prefersReducedMotion() ? target : 0));
+  /* Read once at mount, and resolved during render rather than from an
+     effect: effects run after paint, so a visitor who asked for no motion
+     would still catch one frame of "0" before it snapped to the real
+     figure. */
+  const [reduceMotion] = useState(prefersReducedMotion);
+
+  const [shown, setShown] = useState(0);
   /* Where the next run starts from. The counts on the homepage are backed by
      a fetch, so the target jumps from 0 to its real figure once the request
      lands — that should carry on from whatever is on screen, not restart. */
   const from = useRef(0);
 
   useEffect(() => {
-    if (!hasNumber) return undefined;
-
-    if (prefersReducedMotion()) {
-      from.current = target;
-      setShown(target);
-      return undefined;
-    }
+    if (!hasNumber || reduceMotion) return undefined;
 
     /* Hold at the current value until the stat is actually on screen.
        Snapping to the target here instead would leave nothing left to count:
        every one of these blocks sits below the fold, so by the time it
        scrolled into view `from` would already equal `target` and the
        animation would be skipped entirely. */
-    if (!inView) return undefined;
-
-    if (from.current === target) {
-      setShown(target);
-      return undefined;
-    }
+    if (!inView || from.current === target) return undefined;
 
     // Same expo-out curve as the hero and nav entrances: quick off the mark,
     // long settle, so the final figure is what you're left looking at.
@@ -100,7 +92,7 @@ export default function CountUp({ value, duration = 1.6 }) {
       },
     });
     return () => controls.stop();
-  }, [inView, target, duration, hasNumber]);
+  }, [inView, target, duration, hasNumber, reduceMotion]);
 
   if (!hasNumber) return <span ref={ref}>{value}</span>;
 
@@ -110,7 +102,7 @@ export default function CountUp({ value, duration = 1.6 }) {
     <span ref={ref}>
       <span aria-hidden="true">
         {shape.prefix}
-        {format(shown, shape)}
+        {format(reduceMotion ? target : shown, shape)}
         {shape.suffix}
       </span>
       <span className="sr-only">{value}</span>

@@ -14,6 +14,7 @@ export function useMedia(tag) {
       return data;
     },
     initialData: EMPTY,
+    initialDataUpdatedAt: 0,
   });
 }
 

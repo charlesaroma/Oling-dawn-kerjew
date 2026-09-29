@@ -6,9 +6,13 @@ import EmptyState from '../../../components/common/EmptyState';
 import { Link } from 'react-router-dom';
 import { useProjects } from '../../../services/projectQueries';
 import { getFeaturedProjects } from '../../../services/projectsService';
+import { isAwaitingFirstData } from '../../../services/queryState';
+import ProjectCardSkeleton from '../../../components/cards/ProjectCardSkeleton';
+import ServerWakeNotice from '../../../components/common/ServerWakeNotice';
 
 export default function FeaturedProjects() {
-  const { data: allProjects } = useProjects();
+  const projectsQuery = useProjects();
+  const { data: allProjects } = projectsQuery;
   const projects = getFeaturedProjects(allProjects, 3);
 
   return (
@@ -29,7 +33,14 @@ export default function FeaturedProjects() {
           </Link>
         </div>
 
-        {projects.length === 0 ? (
+        {isAwaitingFirstData(projectsQuery) ? (
+          <div>
+            <ServerWakeNotice />
+            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true" aria-label="Loading projects">
+              {Array.from({ length: 3 }, (_, i) => <ProjectCardSkeleton key={i} />)}
+            </div>
+          </div>
+        ) : projects.length === 0 ? (
           <EmptyState
             title="Projects are being prepared"
             message="Our initiatives are being written up and photographed. Check back shortly."

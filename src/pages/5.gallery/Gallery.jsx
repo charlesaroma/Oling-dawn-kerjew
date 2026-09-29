@@ -3,9 +3,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import GalleryTile from '../../components/cards/GalleryTile';
+import GalleryTileSkeleton from '../../components/cards/GalleryTileSkeleton';
+import ServerWakeNotice from '../../components/common/ServerWakeNotice';
 import Lightbox from '../../components/media/Lightbox';
 import EmptyState from '../../components/common/EmptyState';
 import { useMedia } from '../../services/mediaQueries';
+import { isAwaitingFirstData } from '../../services/queryState';
 import { useSEO } from '../../hooks/useSEO';
 import { ROUTE_SEO } from '../../data/seoRoutes';
 
@@ -16,7 +19,9 @@ export default function Gallery() {
 
   const [activeIndex, setActiveIndex] = useState(null);
   const [page, setPage] = useState(1);
-  const { data: items } = useMedia();
+  const mediaQuery = useMedia();
+  const { data: items } = mediaQuery;
+  const loading = isAwaitingFirstData(mediaQuery);
 
   // The lightbox always gets the full set so arrow-key/filmstrip navigation
   // moves through every photo, independent of which grid page is showing.
@@ -42,7 +47,14 @@ export default function Gallery() {
       />
       <section className="bg-surface-alt py-20 sm:py-28">
         <Container>
-          {items.length === 0 ? (
+          {loading ? (
+            <>
+              <ServerWakeNotice />
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" aria-busy="true" aria-label="Loading gallery">
+                {Array.from({ length: 12 }, (_, i) => <GalleryTileSkeleton key={i} />)}
+              </div>
+            </>
+          ) : items.length === 0 ? (
             <EmptyState
               title="Photographs are on their way"
               message="Images from our project sites are being uploaded and captioned."

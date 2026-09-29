@@ -7,6 +7,7 @@ import MediaImage from '../../components/media/MediaImage';
 import Lightbox from '../../components/media/Lightbox';
 import Button from '../../components/common/Button';
 import ShareButton from '../../components/common/ShareButton';
+import ServerWakeNotice from '../../components/common/ServerWakeNotice';
 import Loader from '../../components/common/Loader';
 import ProjectCard from '../../components/cards/ProjectCard';
 import ProjectGallery from './sections/ProjectGallery';
@@ -35,7 +36,14 @@ export default function ProjectDetail() {
   // isFetching is what actually reflects the in-flight first request. Wait
   // for it to settle before deciding the project genuinely doesn't exist,
   // otherwise a direct/hard-loaded link always bounces to /projects.
-  if (!project) return isFetching ? <Loader /> : <Navigate to="/projects" replace />;
+  if (!project) {
+    return isFetching ? (
+      <div className="px-4 pb-16 pt-32">
+        <Loader />
+        <ServerWakeNotice />
+      </div>
+    ) : <Navigate to="/projects" replace />;
+  }
 
   // Cover image first, then the gallery — one shared index space so the
   // lightbox can step through everything in order, wherever it was opened from.

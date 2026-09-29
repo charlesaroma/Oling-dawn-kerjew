@@ -4,9 +4,12 @@ import Container from '../../components/common/Container';
 import PageHeader from '../../components/common/PageHeader';
 import EmptyState from '../../components/common/EmptyState';
 import ProjectCard from '../../components/cards/ProjectCard';
+import ProjectCardSkeleton from '../../components/cards/ProjectCardSkeleton';
+import ServerWakeNotice from '../../components/common/ServerWakeNotice';
 import CategoryFilterBar from './sections/CategoryFilterBar';
 import CategorySidebar from './sections/CategorySidebar';
 import { useProjects } from '../../services/projectQueries';
+import { isAwaitingFirstData } from '../../services/queryState';
 import {
   getPublishedProjects,
   getProjectCategories,
@@ -24,7 +27,9 @@ const CONSTRUCTION_CATEGORY = 'Low-Cost Construction';
 export default function Projects() {
   useSEO(ROUTE_SEO['/projects']);
 
-  const { data: allProjects } = useProjects();
+  const projectsQuery = useProjects();
+  const { data: allProjects } = projectsQuery;
+  const loading = isAwaitingFirstData(projectsQuery);
   const published = useMemo(() => getPublishedProjects(allProjects), [allProjects]);
   const [category, setCategory] = useState('All');
   const [order, setOrder] = useState('newest');
@@ -82,7 +87,14 @@ export default function Projects() {
                 </div>
               </div>
 
-              {projects.length === 0 ? (
+              {loading ? (
+                <div>
+                  <ServerWakeNotice />
+                  <div className="grid gap-7 sm:grid-cols-2 xl:grid-cols-3" aria-busy="true" aria-label="Loading projects">
+                    {Array.from({ length: 6 }, (_, i) => <ProjectCardSkeleton key={i} />)}
+                  </div>
+                </div>
+              ) : projects.length === 0 ? (
                 <EmptyState title="No projects in this category yet" message="Check back soon, or explore another category." />
               ) : (
                 <div className="grid gap-7 sm:grid-cols-2 xl:grid-cols-3">
