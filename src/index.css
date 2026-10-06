@@ -258,11 +258,4 @@
   .nav-row-in { animation: none; }
 }
 
-/* Server wake-up bar: src/components/common/ServerWakeNotice.jsx
-   Eases toward (never reaching) full over roughly a cold start's length —
-   it signals progress, it doesn't measure it. */
-@keyframes wake-progress {
-  from { width: 4%; }
-  to   { width: 92%; }
-}
-.wake-progress { animation: wake-progress 50s cubic-bezier(0.1, 0.7, 0.3, 1) forwards; }
+
